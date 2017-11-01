@@ -1,5 +1,7 @@
 'use strict';
 
+var adapter = utils.adapter('bosesoundtouch');
+
 module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     constructor(address) {
