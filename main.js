@@ -110,7 +110,7 @@ class boseAdapter {
         if (typeof obj == 'object' && obj.message) {
             if (obj.command == 'send') {
                 // e.g. send email or pushover or whatever
-                console.log('send command');
+                adapter.log('send command');
 
                 // Send response in callback if required
                 if (obj.callback) {

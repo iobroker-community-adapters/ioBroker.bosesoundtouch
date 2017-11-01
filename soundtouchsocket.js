@@ -14,14 +14,14 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
     
     connect() {
-    	console.debug('connect');
+    	adapter.debug('connect');
     	var instance = this;
 
     	return new this.promise.Promise(function(resolve, reject) {
 	        var address = 'ws://' + instance.address + ':8080/';
 	        const WebSocket = require('ws');
 	        
-		    console.log('connecting to host ' + address);
+		    adapter.log('connecting to host ' + address);
 		    instance.ws = new WebSocket(address, "gabbo");
 		    
 		    instance.ws.on('open', function() { instance._onOpen(resolve); });
@@ -32,20 +32,20 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
     
 	_heartBeatFunc() {
-	    console.debug('_heartBeatFunc');
+	    adapter.debug('_heartBeatFunc');
 		if (Date.now() - this._lastMessage > 30000) {
-			console.warn('heartbeat timeout');
+			adapter.warn('heartbeat timeout');
 			this.ws.close();
 			clearInterval(this.heartBeatInterval);
 		}
 		else {
-    		//console.log('<span style="color:darkblue;">sending heartbeat');
+    		//adapter.log('<span style="color:darkblue;">sending heartbeat');
     		this.send('webserver/pingRequest');
 		}
     }
     
     _restartHeartBeat() {
-        console.debug('_restartHeartBeat');
+        adapter.debug('_restartHeartBeat');
     	this._lastMessage = Date.now();
         clearInterval(this.heartBeatInterval);
         var instance = this;
@@ -53,7 +53,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
     
     _onOpen(resolve) {
-        console.debug('onOpen');
+        adapter.debug('onOpen');
         var instance = this;
         this._restartHeartBeat();
 		this.emit('connected');
@@ -61,26 +61,26 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 	}
 	
 	_onClose() {
-        console.log('onClose');
+        adapter.log('onClose');
 		clearInterval(this.heartBeatInterval);
 		this.emit('closed');
 	}
 		
     _onError(error, reject) {
-        console.error('websocket error ' + error);
+        adapter.error('websocket error ' + error);
 	    this.rmit('error', error);
 		reject();
     }
     
     _onMessage(data, flags) {
-        console.debug('onMessage');
+        adapter.debug('onMessage');
         this._parse(data);
     }
     
     send(data) {
     	var instance = this;
     	return new this.promise.Promise(function(resolve, reject) {
-    	    console.log('Send: ' + data);
+    	    adapter.log('Send: ' + data);
     		instance.ws.send(data, function ackSend(err) {
     			if (err) {
     				reject(err);
@@ -93,13 +93,13 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
     
     _handleVolume(volume) {
-    	console.log('received [volume]:' + volume.actualvolume);
+    	adapter.log('received [volume]:' + volume.actualvolume);
     	//this.emit('volume', JSON.stringify(volume));
     	this.emit('volume', volume);
 	}
 	
 	_handlePresets(data) {
-		//console.log('for:' + JSON.stringify(data.presets));
+		//adapter.log('for:' + JSON.stringify(data.presets));
 		var preset = data.presets.preset;
 		var object = [];
 	    for (var i in preset) {
@@ -114,7 +114,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 	}
 
 	_handleDeviceInfo(data) {
-		console.log('received [info] ' + JSON.stringify(data));
+		adapter.log('received [info] ' + JSON.stringify(data));
 		var object = {};/*
 			name: '',
 			type: '',
@@ -130,7 +130,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 	}
     
     _handleNowPlaying(data) {
-        console.log('received [now_playing] ' + JSON.stringify(data));
+        adapter.log('received [now_playing] ' + JSON.stringify(data));
         var source = data.source;
         var track = '';
         var artist = '';
@@ -160,7 +160,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _onJsData(jsData) {
-        console.log(JSON.stringify(jsData));
+        adapter.log(JSON.stringify(jsData));
 		for (var infoItem in jsData) {
 			switch(infoItem) {
 				case 'info':
@@ -243,7 +243,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         var instance = this;
         this.xml2js.parseString(xml, {explicitArray: false, mergeAttrs: true}, function(err, jsData) { 
             if (err) {
-                console.error(err);
+                adapter.error(err);
             }
             else {
                 instance._onJsData(jsData);
@@ -265,20 +265,20 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             function(error, response, body) {
                 //log(' ----  response: ' + response.statusCode + ' --- body: ' + body, 'info');
                 if (error) {
-                    console.error(error, 'error');
+                    adapter.error(error, 'error');
                 }
             }
         );
-        console.log('setValue: ' + urlString + command + ' - ' + bodyString);
+        adapter.log('setValue: ' + urlString + command + ' - ' + bodyString);
     }
     
     get(value) {
         var instance = this;
         var command = 'http://' + this.address + ':8090/' + value;
-        console.log('request: ' + command);
+        adapter.log('request: ' + command);
         this.request.get(command, function(error, response, body) {  
             if (error) {
-                console.error(response.statusCode);
+                adapter.error(response.statusCode);
             }
             else {
                 instance._parse(body);
@@ -303,7 +303,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
     
     updateAll() {
-        console.debug('updateAll');
+        adapter.debug('updateAll');
     	var instance = this;
     	return this.promise.Promise.all([
     		instance.getDeviceInfo(),
