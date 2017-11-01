@@ -1,0 +1,51 @@
+{
+  "name": "iobroker.bosesoundtouch",
+  "version": "0.0.1",
+  "description": "Bose SoundTouch Adapter",
+  "author": {
+    "name": "@@Author@@",
+    "email": "@@email@@"
+  },
+  "contributors": [
+    {
+      "name": "@@Author@@",
+      "email": "@@email@@"
+    }
+  ],
+  "homepage": "https://github.com/ioBroker/ioBroker.bosesoundtouch",
+  "license": "MIT",
+  "keywords": [
+    "ioBroker",
+    "bosesoundtouch",
+    "Smart Home",
+    "home automation"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ioBroker/ioBroker.bosesoundtouch"
+  },
+  "dependencies": {
+    "request": "^2.83.0",
+    "es6-promise": "^4.1.1",
+    "xml2js": "^0.4.19",
+    "ws": "^3.2.0",
+    "string-format": "^0.5.0"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-replace": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-jscs": "^3.0.1",
+    "grunt-http": "^2.2.0",
+    "mocha": "^3.5.3",
+    "chai": "^4.1.2"
+  },
+  "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "bugs": {
+    "url": "https://github.com/ioBroker/ioBroker.bosesoundtouch/issues"
+  },
+  "readmeFilename": "README.md"
+}
