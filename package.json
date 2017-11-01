@@ -1,9 +1,9 @@
 {
   "name": "iobroker.bosesoundtouch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Bose SoundTouch Adapter",
   "author": {
-    "name": "@@Author@@",
+    "name": "@@SwedishChef@@",
     "email": "@@email@@"
   },
   "contributors": [
