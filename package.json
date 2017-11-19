@@ -3,13 +3,13 @@
   "version": "0.0.7",
   "description": "Bose SoundTouch Adapter",
   "author": {
-    "name": "@@SwedishChef@@",
-    "email": "@@email@@"
+    "name": "SwedishChef",
+    "email": ""
   },
   "contributors": [
     {
-      "name": "@@Author@@",
-      "email": "@@email@@"
+      "name": "",
+      "email": ""
     }
   ],
   "homepage": "https://github.com/ioBroker/ioBroker.bosesoundtouch",

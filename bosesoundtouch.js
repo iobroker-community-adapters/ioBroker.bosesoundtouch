@@ -74,32 +74,29 @@ class boseSoundTouch {
         // Warning, state can be null if it was deleted
         this.adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
 
-        //var ar = id.split('.');
-        //var deviceName = ar[2];
-        //var stateName = ar[3];
-        //var o = devices.get(deviceName);
+        var namespace = this.adapter.namespace + '.';
         
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
             switch (id) {
-                case 'bosesoundtouch.0.' + BOSE_ID_ON:
+                case namespace + BOSE_ID_ON:
                     this.adapter.setState(BOSE_ID_KEY, 'POWER');
                     break;
         
-                case 'bosesoundtouch.0.' + BOSE_ID_VOLUME:
+                case namespace + BOSE_ID_VOLUME:
                     this.socket.setValue('volume', '', state.val);
                     break;
                 
-                case 'bosesoundtouch.0.' + BOSE_ID_KEY:
+                case namespace + BOSE_ID_KEY:
                     this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
                     this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
                     break;
 
-                case 'bosesoundtouch.0.' + BOSE_ID_MUTED:
+                case namespace + BOSE_ID_MUTED:
                     this.adapter.setState(BOSE_ID_KEY, 'MUTE');
                     break;
             }
-            this.adapter.log.info('ack is not set!');
+            this.adapter.log.debug('ack is not set!');
         }
     }
 
@@ -107,7 +104,7 @@ class boseSoundTouch {
         if (typeof obj == 'object' && obj.message) {
             if (obj.command == 'send') {
                 // e.g. send email or pushover or whatever
-                adapter.log('send command');
+                adapter.log.debug('send command');
 
                 // Send response in callback if required
                 if (obj.callback) {
@@ -244,6 +241,7 @@ class boseSoundTouch {
         this.adapter.setState(BOSE_ID_INFO_NAME, {val: obj.name, ack: true});
         this.adapter.setState(BOSE_ID_INFO_TYPE, {val: obj.type, ack: true});
         this.adapter.setState(BOSE_ID_INFO_MAC_ADDRESS, {val: obj.macAddress, ack: true});
+        this.macAddress = obj.macAddress;
     }
 
     setVolume(obj) {

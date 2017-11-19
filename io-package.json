@@ -26,13 +26,13 @@
         ],
         "platform": "Javascript/Node.js",
         "mode": "daemon",
-        "icon": "bose-logo.png",
+        "icon": "bosesoundtouch.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.template/master/admin/template.png",
+        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
         "keywords": ["template", "vis", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/ioBroker/ioBroker.template/blob/master/README.md",
+        "readme": "https://github.com/ioBroker/ioBroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
-        "type": "general",
+        "type": "multimedia",
         "restartAdapters": ["vis"]
     },
     "native": {
