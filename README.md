@@ -40,10 +40,13 @@ INVALID_KEY
 ```
 
 * muted
+
 Mute or unmute the device.
 
 * on
+
 Power on or off the device.
 
 * volume
+
 Change device volume between 0 and 100.
