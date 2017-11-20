@@ -28,12 +28,12 @@
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
         "enabled": true,
-        "extIcon": "https://raw.githubusercontent.com/ioBroker/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
-        "keywords": ["template", "vis", "GUI", "graphical", "scada"],
-        "readme": "https://github.com/ioBroker/ioBroker.bosesoundtouch/blob/master/README.md",
+        "extIcon": "https://raw.githubusercontent.com/SwedishChef1/iobroker.bosesoundtouch/master/admin/template.png",
+        "keywords": ["bose", "soundtouch"],
+        "readme": "https://github.com/SwedishChef1/iobroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
         "type": "multimedia",
-        "restartAdapters": ["vis"]
+        "restartAdapters": []
     },
     "native": {
         "address": ""
