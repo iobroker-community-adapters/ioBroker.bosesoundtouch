@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.0.7",
+        "version": "0.0.8",
         "news": {
-            "0.0.7": {
+            "0.0.8": {
                 "en": "initial adapter",
                 "de": "Initiale Version",
                 "ru": "Первоначальный адаптер",
