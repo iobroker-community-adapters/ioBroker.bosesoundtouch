@@ -4,7 +4,7 @@ Bose SoundTouch adapter for iobroker
 ## Usage
 
 The following objects can be written:
-* key
+### key
 
 One of the following keys to send:
 
@@ -39,14 +39,14 @@ REMOVE_FAVORITE
 INVALID_KEY
 ```
 
-* muted
+### muted
 
 Mute or unmute the device.
 
-* on
+### on
 
 Power on or off the device.
 
-* volume
+### volume
 
 Change device volume between 0 and 100.
