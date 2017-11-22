@@ -1,3 +1,8 @@
+/* jshint -W097 */
+// jshint strict:false
+/* jslint node: true */
+/* jslint esversion: 6 */
+
 'use strict';
 
 const BOSE_ID_ON     = 'on';
@@ -21,7 +26,7 @@ const BOSE_ID_DEVICE_INFO = 'deviceInfo.';
 const BOSE_ID_INFO_NAME = BOSE_ID_DEVICE_INFO + 'name';
 const BOSE_ID_INFO_TYPE = BOSE_ID_DEVICE_INFO + 'type';
 const BOSE_ID_INFO_MAC_ADDRESS = BOSE_ID_DEVICE_INFO + 'macAddress';
-    
+
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
@@ -35,7 +40,7 @@ var soundtouchsocket = require(__dirname + '/soundtouchsocket');
 class boseSoundTouch {
     constructor() {
         var instance = this;
-        
+
         this.adapter = utils.adapter('bosesoundtouch');
 
         // is called when adapter shuts down - callback has to be called under any circumstances!
@@ -46,7 +51,7 @@ class boseSoundTouch {
 
         // is called if a subscribed state changes
         this.adapter.on('stateChange', function (id, state) { instance.onStateChange(id, state); });
-        
+
         // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
         this.adapter.on('message', function(obj) { instance.onMessage(obj); });
 
@@ -59,7 +64,7 @@ class boseSoundTouch {
         try {
             this.adapter.log.info('cleaned everything up...');
             callback();
-        } 
+        }
         catch (e) {
             callback();
         }
@@ -74,20 +79,37 @@ class boseSoundTouch {
         // Warning, state can be null if it was deleted
         this.adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
 
+<<<<<<< HEAD
         var namespace = this.adapter.namespace + '.';
         
+=======
+        //var ar = id.split('.');
+        //var deviceName = ar[2];
+        //var stateName = ar[3];
+        //var o = devices.get(deviceName);
+
+>>>>>>> updates, fixes and add testing
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
             switch (id) {
                 case namespace + BOSE_ID_ON:
                     this.adapter.setState(BOSE_ID_KEY, 'POWER');
                     break;
+<<<<<<< HEAD
         
                 case namespace + BOSE_ID_VOLUME:
                     this.socket.setValue('volume', '', state.val);
                     break;
                 
                 case namespace + BOSE_ID_KEY:
+=======
+
+                case 'bosesoundtouch.0.' + BOSE_ID_VOLUME:
+                    this.socket.setValue('volume', '', state.val);
+                    break;
+
+                case 'bosesoundtouch.0.' + BOSE_ID_KEY:
+>>>>>>> updates, fixes and add testing
                     this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
                     this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
                     break;
@@ -114,25 +136,25 @@ class boseSoundTouch {
         }
     }
 
-    onReady() {        
+    onReady() {
         this.initObjects();
         this.adapter.subscribeStates('*');
-        
+
         // in this template all states changes inside the adapters namespace are subscribed
         this.socket = new soundtouchsocket(this.adapter);
-        
+
         var instance = this;
 
-        this.socket.connect().then( function(server) { 
+        this.socket.connect().then( function(server) {
             instance.socket.addListener('deviceInfo', function(obj) { instance.setDeviceInfo(obj); });
             instance.socket.addListener('volume', function(obj) { instance.setVolume(obj); });
             instance.socket.addListener('nowPlaying', function(obj) { instance.setNowPlaying(obj); });
             instance.socket.addListener('presets', function(obj) { instance.setPresets(obj); });
-            instance.socket.updateAll(server); 
+            instance.socket.updateAll(server);
         }).catch(function(err) {
             // error here
             instance.adapter.error(err);
-        });    
+        });
     }
 
     initObjects() {
@@ -146,45 +168,45 @@ class boseSoundTouch {
                 write: true
             },
             native: {}
-        });        
+        });
 
         this.adapter.setObjectNotExists(BOSE_ID_VOLUME, {
             type: 'state',
             common: {
                 name: 'volume',
                 type: 'number',
-                role: 'level',                
+                role: 'level',
                 read: true,
                 write: true
 
             },
             native: {}
         });
-        
+
         this.adapter.setObjectNotExists(BOSE_ID_MUTED, {
             type: 'state',
             common: {
                 name: 'muted',
                 type: 'boolean',
-                role: 'indicator',                
+                role: 'indicator',
                 read: true,
                 write: true
             },
             native: {}
         });
-        
+
         this.adapter.setObjectNotExists(BOSE_ID_ON, {
             type: 'state',
             common: {
                 name: 'on',
                 type: 'boolean',
-                role: 'indicator',                
+                role: 'indicator',
                 read: true,
                 write: true
             },
             native: {}
         });
-        
+
         const presetsConfig = {
             type: 'state',
             common: {
@@ -209,7 +231,7 @@ class boseSoundTouch {
             common: {
                 name: '',
                 type: 'string',
-                role: 'text',                
+                role: 'text',
                 read: true,
                 write: false
             },
@@ -257,13 +279,13 @@ class boseSoundTouch {
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ARTIST, {val: obj.artist, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ALBUM, {val: obj.album, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_STATION, {val: obj.station, ack: true});
-        
+
         this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
     }
 
     setPresets(obj) {
         //var presets = JSON.parse(data);
-        for (var i = 0; i < 6; i++) {            
+        for (var i = 0; i < 6; i++) {
             var preset = {
                 source: 	'',
                 name:		'',

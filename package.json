@@ -12,7 +12,7 @@
       "email": ""
     }
   ],
-  "homepage": "https://github.com/ioBroker/ioBroker.bosesoundtouch",
+  "homepage": "https://github.com/SwedishChef1/iobroker.bosesoundtouch",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -22,7 +22,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.bosesoundtouch"
+    "url": "https://github.com/SwedishChef1/iobroker.bosesoundtouch"
   },
   "dependencies": {
     "es6-promise": "^4.1.1",
@@ -46,7 +46,7 @@
     "test": "node node_modules/mocha/bin/mocha"
   },
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.bosesoundtouch/issues"
+    "url": "https://github.com/SwedishChef1/iobroker.bosesoundtouch/issues"
   },
   "readmeFilename": "README.md"
 }
