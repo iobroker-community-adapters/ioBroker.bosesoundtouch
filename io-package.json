@@ -1,9 +1,9 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.0.8",
+        "version": "0.0.9",
         "news": {
-            "0.0.8": {
+            "0.0.9": {
                 "en": "initial adapter",
                 "de": "Initiale Version",
                 "ru": "Первоначальный адаптер",
@@ -27,7 +27,7 @@
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
-        "enabled": true,
+        "enabled": false,
         "extIcon": "https://raw.githubusercontent.com/SwedishChef1/iobroker.bosesoundtouch/master/admin/template.png",
         "keywords": ["bose", "soundtouch"],
         "readme": "https://github.com/SwedishChef1/iobroker.bosesoundtouch/blob/master/README.md",

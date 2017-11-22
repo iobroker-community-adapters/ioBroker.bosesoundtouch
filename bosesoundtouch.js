@@ -79,37 +79,20 @@ class boseSoundTouch {
         // Warning, state can be null if it was deleted
         this.adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
 
-<<<<<<< HEAD
         var namespace = this.adapter.namespace + '.';
         
-=======
-        //var ar = id.split('.');
-        //var deviceName = ar[2];
-        //var stateName = ar[3];
-        //var o = devices.get(deviceName);
-
->>>>>>> updates, fixes and add testing
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
             switch (id) {
                 case namespace + BOSE_ID_ON:
                     this.adapter.setState(BOSE_ID_KEY, 'POWER');
                     break;
-<<<<<<< HEAD
         
                 case namespace + BOSE_ID_VOLUME:
                     this.socket.setValue('volume', '', state.val);
                     break;
                 
                 case namespace + BOSE_ID_KEY:
-=======
-
-                case 'bosesoundtouch.0.' + BOSE_ID_VOLUME:
-                    this.socket.setValue('volume', '', state.val);
-                    break;
-
-                case 'bosesoundtouch.0.' + BOSE_ID_KEY:
->>>>>>> updates, fixes and add testing
                     this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
                     this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
                     break;
