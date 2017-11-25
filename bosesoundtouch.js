@@ -5,10 +5,11 @@
 
 'use strict';
 
-const BOSE_ID_ON     = 'on';
-const BOSE_ID_KEY    = 'key';
-const BOSE_ID_VOLUME = 'volume';
-const BOSE_ID_MUTED  = 'muted';
+const BOSE_ID_ON          = 'on';
+const BOSE_ID_KEY         = 'key';
+const BOSE_ID_VOLUME      = 'volume';
+const BOSE_ID_MUTED       = 'muted';
+const BOSE_ID_ZONE_MASTER = 'zoneMaster';
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying.';
 const BOSE_ID_NOW_PLAYING_SOURCE  = BOSE_ID_NOW_PLAYING + 'source';
@@ -26,7 +27,7 @@ const BOSE_ID_DEVICE_INFO = 'deviceInfo.';
 const BOSE_ID_INFO_NAME = BOSE_ID_DEVICE_INFO + 'name';
 const BOSE_ID_INFO_TYPE = BOSE_ID_DEVICE_INFO + 'type';
 const BOSE_ID_INFO_MAC_ADDRESS = BOSE_ID_DEVICE_INFO + 'macAddress';
-
+const BOSE_ID_INFO_IP_ADDRESS = BOSE_ID_DEVICE_INFO + 'ipAddress';
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
@@ -99,6 +100,10 @@ class boseSoundTouch {
 
                 case namespace + BOSE_ID_MUTED:
                     this.adapter.setState(BOSE_ID_KEY, 'MUTE');
+                    break;
+
+                case namespace + BOSE_ID_ZONE_MASTER:
+                    this.addToZoneMaster(state.val);
                     break;
             }
             this.adapter.log.debug('ack is not set!');
@@ -190,6 +195,17 @@ class boseSoundTouch {
             native: {}
         });
 
+        this.adapter.setObjectNotExists(BOSE_ID_ZONE_MASTER, {
+            type: 'state',
+            common: {
+                name: 'master',
+                type: 'number',
+                read: true,
+                write: true
+            },
+            native: {}
+        });
+
         const presetsConfig = {
             type: 'state',
             common: {
@@ -240,12 +256,14 @@ class boseSoundTouch {
         this.adapter.setObjectNotExists(BOSE_ID_INFO_NAME, deviceInfoConfig);
         this.adapter.setObjectNotExists(BOSE_ID_INFO_TYPE, deviceInfoConfig);
         this.adapter.setObjectNotExists(BOSE_ID_INFO_MAC_ADDRESS, deviceInfoConfig);
+        this.adapter.setObjectNotExists(BOSE_ID_INFO_IP_ADDRESS, deviceInfoConfig);
     }
 
     setDeviceInfo(obj) {
         this.adapter.setState(BOSE_ID_INFO_NAME, {val: obj.name, ack: true});
         this.adapter.setState(BOSE_ID_INFO_TYPE, {val: obj.type, ack: true});
         this.adapter.setState(BOSE_ID_INFO_MAC_ADDRESS, {val: obj.macAddress, ack: true});
+        this.adapter.setState(BOSE_ID_INFO_IP_ADDRESS, {val: this.adapter.config.address, ack:true});
         this.macAddress = obj.macAddress;
     }
 
@@ -282,6 +300,45 @@ class boseSoundTouch {
             this.adapter.setState(format(BOSE_ID_PRESET_NAME, i+1), {val: preset.name, ack: true});
             this.adapter.setState(format(BOSE_ID_PRESET_ICON, i+1), {val: preset.iconUrl, ack: true});
         }
+    }
+
+    addToZoneMaster(masterId) {
+        var instance = this;
+        var masterNamespace = this.adapter.name + '.' + masterId + '.';
+        var idMasterIp = masterNamespace + BOSE_ID_INFO_IP_ADDRESS;
+        var idMasterMac = masterNamespace + BOSE_ID_INFO_MAC_ADDRESS;
+        var master = {
+            mac: '',
+            ip: ''
+        };
+        this.adapter.getForeignState(idMasterIp, function (err, state) {
+            if (err) {
+                instance.adapter.log.error(err);
+            } 
+            else {
+                master.ip = state.val;
+                instance.adapter.getForeignState(idMasterMac, function (err, state) {
+                    if (err) {
+                        instance.adapter.log.error(err);
+                    } 
+                    else {
+                        master.mac = state.val;
+                        console.log(JSON.stringify(master) + ' - ' + instance.macAddress + ' ' + instance.adapter.config.address);
+                        /*instance.socket.setValue(
+                            'setZone', 
+                            'master="' + master.mac + '" senderIPAddress="' + master.ip + '"', 
+                            '<member ipaddress="' + instance.adapter.config.address + '">' + instance.macAddress + '</member>'
+                        );*/
+                        instance.socket.setValue(
+                            'setZone', 
+                            'master="' + instance.macAddress + '" senderIPAddress="' + instance.adapter.config.address + '"', 
+                            '<member ipaddress="' + master.ip + '">' + master.mac + '</member>'
+                        );
+                    }
+                });
+            }
+        });
+        //this.adapter.log.debug('master:' + masterId + ', ' + masterIp);
     }
 }
 

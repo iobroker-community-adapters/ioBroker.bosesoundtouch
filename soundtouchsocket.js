@@ -164,6 +164,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.emit('nowPlaying', object);
     }
 
+    _handleZone(data) {
+
+    }
+
     _onJsData(jsData) {
         this.adapter.log.debug(JSON.stringify(jsData));
         for (var infoItem in jsData) {
@@ -231,6 +235,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                                     else {
                                         this.getVolume();
                                     }
+                                    break;
+                                }
+
+                                case 'zoneUpdated': {
                                     break;
                                 }
 
@@ -306,6 +314,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.get('volume');
     }
 
+    getZone() {
+        this.get('getZone');
+    }
+
     updateAll() {
         this.adapter.log.debug('updateAll');
         var instance = this;
@@ -317,7 +329,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             //_instance.getBassInfo(),
             instance.getVolume(),
             //_instance.getSources(),
-            //_instance.getZone(),
+            instance.getZone(),
             //_instance.getTrackInfo()
         ]);
     }
