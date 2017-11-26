@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.0.9",
+        "version": "0.1.0",
         "news": {
+            "0.1.0": {
+                "en": "objectChange/stateChange: log level 'debug'\nadded 'STORED_MUSIC' to now playing info.",
+                "de": "objectChange/stateChange: log level 'debug'\n'STORED_MUSIC' wird berücksichting für 'nowPlaying'"
+            },
             "0.0.9": {
                 "en": "initial adapter",
                 "de": "Initiale Version",

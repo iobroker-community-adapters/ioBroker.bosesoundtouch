@@ -72,12 +72,12 @@ class boseSoundTouch {
 
     onObjectChange(id, obj) {
         // Warning, obj can be null if it was deleted
-        this.adapter.log.info('objectChange ' + id + ' ' + JSON.stringify(obj));
+        this.adapter.log.debug('objectChange ' + id + ' ' + JSON.stringify(obj));
     }
 
     onStateChange(id, state) {
         // Warning, state can be null if it was deleted
-        this.adapter.log.info('stateChange ' + id + ' ' + JSON.stringify(state));
+        this.adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
 
         var namespace = this.adapter.namespace + '.';
         
