@@ -17,17 +17,10 @@ module.exports = {
             4,
             { "SwitchCase": 1 }
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "eol-last": ["error", "always"],
+        "no-trailing-spaces": ["error"]
     }
 };
