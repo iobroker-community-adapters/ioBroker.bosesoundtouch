@@ -72,16 +72,4 @@ Change device volume between 0 and 100.
 * strings: single quote
 
 ### 0.0.5 and earlier (01.11.2017)
-* use console.log (temporary solution)
-
-### 0.0.4 (01.11.2017)
-* use utils.adapter for logging (temporary solution)
-
-### 0.0.3 (01.11.2017)
-* added missing file lib/utils.js
-
-### 0.0.2 (01.11.2017)
-* changed console.log to adapter.log
-
-### 0.0.1 (01.11.2017)
-* Initial version
+* Initial versions
