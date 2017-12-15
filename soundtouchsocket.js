@@ -120,48 +120,42 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleDeviceInfo(data) {
         this.adapter.log.debug('received [info] ' + JSON.stringify(data));
-        var object = {};/*
-            name: '',
-            type: '',
-            swVersion: '',
-            macAddress: '',
-            ipAddress: ''
-        };*/
-
-        object.name = data.name;
-        object.type = data.type;
-        object.macAddress = data.deviceID;
+        var object = {
+            name:       data.name,
+            type:       data.type,
+            macAddress: data.deviceID
+        };
         this.emit('deviceInfo', object);
     }
 
     _handleNowPlaying(data) {
         this.adapter.log.debug('received [now_playing] ' + JSON.stringify(data));
-        var source = data.source;
-        var track = '';
-        var artist = '';
-        var album = '';
-        var station = '';
-        switch (source) {
+        var object = {
+            source:  data.source,
+            track:   '',
+            artist:  '',
+            album:   '',
+            station: '',
+            art:     ''
+        };
+        switch (data.source) {
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
             case 'STORED_MUSIC':
-                track = data.track;
-                artist = data.artist;
-                album = data.album;
-                station = data.stationName;
+                object.track = data.track;
+                object.artist = data.artist;
+                object.album = data.album;
+                object.station = data.stationName;
+                if (data.art && data.art._) {
+                    object.art = data.art._;
+                }
                 break;
 
             case 'PRODUCT':
-                station = data.sourceAccount;
+                object.station = data.sourceAccount;
                 break;
         }
-        var object = {
-            source:     source,
-            track:      track,
-            artist:     artist,
-            album:      album,
-            station:    station
-        };
+
         this.emit('nowPlaying', object);
     }
 

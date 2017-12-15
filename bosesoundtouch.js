@@ -16,6 +16,7 @@ const BOSE_ID_NOW_PLAYING_TRACK   = BOSE_ID_NOW_PLAYING + 'track';
 const BOSE_ID_NOW_PLAYING_ARTIST  = BOSE_ID_NOW_PLAYING + 'artist';
 const BOSE_ID_NOW_PLAYING_ALBUM   = BOSE_ID_NOW_PLAYING + 'album';
 const BOSE_ID_NOW_PLAYING_STATION = BOSE_ID_NOW_PLAYING + 'station';
+const BOSE_ID_NOW_PLAYING_ART     = BOSE_ID_NOW_PLAYING + 'art';
 
 const BOSE_ID_PRESETS = 'presets.';
 const BOSE_ID_PRESET_SOURCE = BOSE_ID_PRESETS + '{}.source';
@@ -80,18 +81,18 @@ class boseSoundTouch {
         this.adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
 
         var namespace = this.adapter.namespace + '.';
-        
+
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
             switch (id) {
                 case namespace + BOSE_ID_ON:
                     this.adapter.setState(BOSE_ID_KEY, 'POWER');
                     break;
-        
+
                 case namespace + BOSE_ID_VOLUME:
                     this.socket.setValue('volume', '', state.val);
                     break;
-                
+
                 case namespace + BOSE_ID_KEY:
                     this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
                     this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
@@ -225,6 +226,7 @@ class boseSoundTouch {
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ARTIST,  nowPlayingConfig);
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ALBUM,   nowPlayingConfig);
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_STATION, nowPlayingConfig);
+        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ART,     nowPlayingConfig);
 
         const deviceInfoConfig = {
             type: 'state',
@@ -262,6 +264,7 @@ class boseSoundTouch {
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ARTIST, {val: obj.artist, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ALBUM, {val: obj.album, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_STATION, {val: obj.station, ack: true});
+        this.adapter.setState(BOSE_ID_NOW_PLAYING_ART, {val: obj.art, ack: true});
 
         this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
     }

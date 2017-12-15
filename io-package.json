@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.0",
+        "version": "0.1.1",
         "news": {
+            "0.1.1": {
+                "en": "now playing: added state 'art' (URL to cover image if available)",
+                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)"
+            },
             "0.1.0": {
                 "en": "objectChange/stateChange: log level 'debug'\nadded 'STORED_MUSIC' to now playing info.",
                 "de": "objectChange/stateChange: log level 'debug'\n'STORED_MUSIC' wird berücksichting für 'nowPlaying'"
