@@ -5,6 +5,8 @@
 
 'use strict';
 
+var format = require('string-format');
+
 module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     constructor(adapter) {
@@ -282,6 +284,19 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             }
         });
         this.adapter.log.debug('setValue: ' + urlString + command + ' - ' + bodyString);
+    }
+
+    createZone(master, slaves)
+    {
+        const body = '<zone master="{}"> {} </zone>';
+        const member = '<member ipaddress="{}">{}</member>';
+
+        var members = '';
+        slaves.forEach(slave => {
+            members = members + format(member, slave.ip, slave.mac);
+        });
+        var str = format(body, master.mac, members);
+        this.adapter.log.debug('createZone: ' + str);
     }
 
     get(value) {

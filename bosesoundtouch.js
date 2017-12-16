@@ -313,11 +313,8 @@ class boseSoundTouch {
             }
             else {
                 var id = data.shift();
-                var slave = {
-                    id: id,
-                    value: ''
-                };
-                //instance.masterSlaveData.slave.push(id);
+                var slave = {};
+                slave.id = id;
                 this.adapter.getForeignState(id, function(err, state) {
                     if (err) {
                         instance.adapter.log.error(err);
@@ -334,7 +331,22 @@ class boseSoundTouch {
     }
     
     _collectPlayEverywhereFinished(instance) {
-        instance.masterSlaveData.slave.shift();
+        var slaveList = [];
+        var items = instance.masterSlaveData.slave;
+        for (let index = 0; index < items.length; index += 2) {  
+            var type = items[index].id.split('.');
+            type = type[type.length - 1];
+            if (type === 'ipAddress') {
+                var slave = {
+                    ip: items[index].value,
+                    mac: items[index +1].value
+                };
+                slaveList.push(slave);
+            }
+        }
+        if (slaveList.length > 0) {
+            instance.socket.createZone(instance.masterSlaveData.master, slaveList);
+        }
     }
     
     playEverywhere() {
