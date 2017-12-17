@@ -266,24 +266,31 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         });
     }
 
+    _postCallback(error /*, response, body*/) {
+        if (error) {
+            this.adapter.error(error, 'error');
+        }
+        /*else {
+            this.adapter.log.debug('_post: ' + body);//options.baseUrl + command + ' - ' + bodyString);
+        }*/
+    }
+
+    _post(command, bodyString) {
+        var options = {
+            baseUrl:    'http://' + this.address + ':8090/',
+            uri:        command,
+            body:       bodyString
+        };
+        this.adapter.log.debug('_post: ' + options.baseUrl + command + ' - ' + bodyString);
+        this.request.post(options, this._postCallback);        
+    }
+
     setValue(command, args, value) {
         if (args !== '' && args[0] != ' ') {
             args = ' ' + args;
         }
         var bodyString = '<' + command + args + '>' + value + '</' + command + '>';
-        var urlString = 'http://' + this.address + ':8090/';
-        this.request.post( {
-            baseUrl:    urlString,
-            uri:        command,
-            body:       bodyString
-        },
-        function(error/*, response, body*/) {
-            //log(' ----  response: ' + response.statusCode + ' --- body: ' + body, 'info');
-            if (error) {
-                this.adapter.error(error, 'error');
-            }
-        });
-        this.adapter.log.debug('setValue: ' + urlString + command + ' - ' + bodyString);
+        this._post(command, bodyString);
     }
 
     createZone(master, slaves)
@@ -296,7 +303,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             members = members + format(member, slave.ip, slave.mac);
         });
         var str = format(body, master.mac, members);
-        this.adapter.log.debug('createZone: ' + str);
+        this._post('setZone', str);
+        //this.adapter.log.debug('createZone: ' + str);
     }
 
     get(value) {
