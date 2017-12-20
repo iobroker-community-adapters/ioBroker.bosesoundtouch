@@ -4,8 +4,8 @@
         "version": "0.1.1",
         "news": {
             "0.1.1": {
-                "en": "now playing: added state 'art' (URL to cover image if available)\nmerged pull request from Apollon77 (basic config files for testing)",
-                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)\nMerged: Pull reqeust von Apollon77 (Testkonfiguration)"
+                "en": "now playing: added state 'art' (URL to cover image if available)\nmerged pull request from Apollon77 (basic config files for testing)\nrenamed repo to 'ioBroker.bosesoundtouch'",
+                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)\nMerged: Pull reqeust von Apollon77 (Testkonfiguration)\nRepo umbenannt auf 'ioBroker.bosesoundtouch'"
             },
             "0.1.0": {
                 "en": "objectChange/stateChange: log level 'debug'\nadded 'STORED_MUSIC' to now playing info.",
@@ -36,9 +36,9 @@
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
         "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/SwedishChef1/iobroker.bosesoundtouch/master/admin/template.png",
+        "extIcon": "https://raw.githubusercontent.com/SwedishChef1/ioBroker.bosesoundtouch/master/admin/template.png",
         "keywords": ["bose", "soundtouch"],
-        "readme": "https://github.com/SwedishChef1/iobroker.bosesoundtouch/blob/master/README.md",
+        "readme": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
         "type": "multimedia",
         "restartAdapters": []

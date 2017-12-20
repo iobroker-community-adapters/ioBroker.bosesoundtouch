@@ -7,7 +7,7 @@
     "email": "harald.wick@gmx.at"
   },
   "contributors": [],
-  "homepage": "https://github.com/SwedishChef1/iobroker.bosesoundtouch",
+  "homepage": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SwedishChef1/iobroker.bosesoundtouch"
+    "url": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch"
   },
   "dependencies": {
     "es6-promise": "^4.1.1",
@@ -41,7 +41,7 @@
     "test": "node node_modules/mocha/bin/mocha"
   },
   "bugs": {
-    "url": "https://github.com/SwedishChef1/iobroker.bosesoundtouch/issues"
+    "url": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch/issues"
   },
   "readmeFilename": "README.md"
 }
