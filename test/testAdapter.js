@@ -83,7 +83,7 @@ describe('Test ' + adapterShortName + ' adapter', function() {
             config.common.enabled  = true;
             config.common.loglevel = 'debug';
 
-            //config.native.dbtype   = 'sqlite';
+            config.native.address   = '127.0.0.1';
 
             setup.setAdapterConfig(config.common, config.native);
 
