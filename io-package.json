@@ -4,8 +4,8 @@
         "version": "0.1.1",
         "news": {
             "0.1.1": {
-                "en": "now playing: added state 'art' (URL to cover image if available)",
-                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)"
+                "en": "now playing: added state 'art' (URL to cover image if available)\nmerged pull request from Apollon77 (basic config files for testing)",
+                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)\nMerged: Pull reqeust von Apollon77 (Testkonfiguration)"
             },
             "0.1.0": {
                 "en": "objectChange/stateChange: log level 'debug'\nadded 'STORED_MUSIC' to now playing info.",
@@ -30,7 +30,7 @@
             "nl": "ioBroker Template Adapter"
         },
         "authors": [
-            "my Name <my@email.com>"
+            "Harald Wick <harald.wick@gmx.at>"
         ],
         "platform": "Javascript/Node.js",
         "mode": "daemon",

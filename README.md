@@ -52,6 +52,10 @@ Power on or off the device.
 Change device volume between 0 and 100.
 
 ## changelog
+### 0.1.1 (20.12.2017)
+* now playing: added state 'art' (URL to cover image if available)
+* merged pull request from Apollon77 (basic config files for testing)
+
 ### 0.1.0 (26.11.2017)
 * objectChange/stateChange: log level 'debug'
 * added 'STORED_MUSIC' to now playing info.
