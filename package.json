@@ -1,6 +1,6 @@
 {
-  "name": "iobroker.bosesoundtouch",
-  "version": "0.1.1",
+  "name": "ioBroker.bosesoundtouch",
+  "version": "0.1.2",
   "description": "Bose SoundTouch Adapter",
   "author": {
     "name": "Harald Wick",

@@ -1,8 +1,11 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.1",
+        "version": "0.1.2",
         "news": {
+            "0.1.2": {
+                "en": "fixed typos for 'ioBroker.bosesoundtouch'",
+            },
             "0.1.1": {
                 "en": "now playing: added state 'art' (URL to cover image if available)\nmerged pull request from Apollon77 (basic config files for testing)\nrenamed repo to 'ioBroker.bosesoundtouch'",
                 "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)\nMerged: Pull reqeust von Apollon77 (Testkonfiguration)\nRepo umbenannt auf 'ioBroker.bosesoundtouch'"
