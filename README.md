@@ -1,4 +1,4 @@
-# iobroker.bosesoundtouch
+# ioBroker.bosesoundtouch
 Bose SoundTouch adapter for iobroker
 
 ## Usage
