@@ -52,6 +52,9 @@ Power on or off the device.
 Change device volume between 0 and 100.
 
 ## changelog
+### 0.1.3 (22.12.2017)
+* revert last change
+
 ### 0.1.2 (22.12.2017)
 * fixed typo in package.json
 
