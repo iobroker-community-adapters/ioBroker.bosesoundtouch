@@ -3,8 +3,8 @@
   "version": "0.1.3",
   "description": "Bose SoundTouch Adapter",
   "author": {
-    "name": "Harald Wick",
-    "email": "harald.wick@gmx.at"
+    "name": "SwedishChef",
+    "email": "swedish.chef@gmx.at"
   },
   "contributors": [],
   "homepage": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch",
