@@ -161,8 +161,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.emit('nowPlaying', object);
     }
 
-    _handleZone(data) {
-
+    _handleZone(/*data*/) {
     }
 
     _onJsData(jsData) {
@@ -277,7 +276,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             body:       bodyString
         };
         this.adapter.log.debug('_post: ' + options.baseUrl + command + ' - ' + bodyString);
-        this.request.post(options, this._postCallback);        
+        this.request.post(options, this._postCallback);
     }
 
     setValue(command, args, value) {

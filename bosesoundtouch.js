@@ -289,7 +289,7 @@ class boseSoundTouch {
 
         this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
     }
-    
+
     setPresets(obj) {
         //var presets = JSON.parse(data);
         for (var i = 0; i < 6; i++) {
@@ -301,7 +301,7 @@ class boseSoundTouch {
             if (obj[i]) {
                 preset = obj[i];
             }
-            
+
             this.adapter.setState(format(BOSE_ID_PRESET_SOURCE, i+1), {val: preset.source, ack: true});
             this.adapter.setState(format(BOSE_ID_PRESET_NAME, i+1), {val: preset.name, ack: true});
             this.adapter.setState(format(BOSE_ID_PRESET_ICON, i+1), {val: preset.iconUrl, ack: true});
@@ -332,11 +332,11 @@ class boseSoundTouch {
 
         }
     }
-    
+
     _collectPlayEverywhereFinished(instance) {
         var slaveList = [];
         var items = instance.masterSlaveData.slave;
-        for (let index = 0; index < items.length; index += 2) {  
+        for (let index = 0; index < items.length; index += 2) {
             var type = items[index].id.split('.');
             type = type[type.length - 1];
             if (type === 'ipAddress') {
@@ -351,7 +351,7 @@ class boseSoundTouch {
             instance.socket.createZone(instance.masterSlaveData.master, slaveList);
         }
     }
-    
+
     playEverywhere() {
         var instance = this;
         instance.masterSlaveData = {
@@ -363,7 +363,7 @@ class boseSoundTouch {
         };
         this.adapter.objects.getObjectView(
             'system', 'instance', {
-                startkey: 'system.adapter.bosesoundtouch.', 
+                startkey: 'system.adapter.bosesoundtouch.',
                 endkey: 'system.adapter.bosesoundtouch.\u9999' },
             function (err, doc) {
                 if (doc && doc.rows && doc.rows.length) {
@@ -374,7 +374,7 @@ class boseSoundTouch {
                         if (obj.native.address != instance.adapter.ipAddress) {
                             var systemId  = doc.rows[i].id.split('.');
                             var index = systemId[systemId.length - 1];
-                            var namespace = systemId[systemId.length - 2] + '.' + index + '.';                           
+                            var namespace = systemId[systemId.length - 2] + '.' + index + '.';
                             toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS);
                             toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS);
                         }
