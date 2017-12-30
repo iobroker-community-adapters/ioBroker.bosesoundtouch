@@ -5,6 +5,8 @@
 
 'use strict';
 
+var format = require('string-format');
+
 module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     constructor(adapter) {
@@ -159,6 +161,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.emit('nowPlaying', object);
     }
 
+    _handleZone(data) {
+
+    }
+
     _onJsData(jsData) {
         this.adapter.log.debug(JSON.stringify(jsData));
         for (var infoItem in jsData) {
@@ -229,6 +235,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                                     break;
                                 }
 
+                                case 'zoneUpdated': {
+                                    break;
+                                }
+
                             }
                         }
                     }
@@ -251,24 +261,45 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         });
     }
 
+    _postCallback(error /*, response, body*/) {
+        if (error) {
+            this.adapter.error(error, 'error');
+        }
+        /*else {
+            this.adapter.log.debug('_post: ' + body);//options.baseUrl + command + ' - ' + bodyString);
+        }*/
+    }
+
+    _post(command, bodyString) {
+        var options = {
+            baseUrl:    'http://' + this.address + ':8090/',
+            uri:        command,
+            body:       bodyString
+        };
+        this.adapter.log.debug('_post: ' + options.baseUrl + command + ' - ' + bodyString);
+        this.request.post(options, this._postCallback);        
+    }
+
     setValue(command, args, value) {
         if (args !== '' && args[0] != ' ') {
             args = ' ' + args;
         }
         var bodyString = '<' + command + args + '>' + value + '</' + command + '>';
-        var urlString = 'http://' + this.address + ':8090/';
-        this.request.post( {
-            baseUrl:    urlString,
-            uri:        command,
-            body:       bodyString
-        },
-        function(error/*, response, body*/) {
-            //log(' ----  response: ' + response.statusCode + ' --- body: ' + body, 'info');
-            if (error) {
-                this.adapter.error(error, 'error');
-            }
+        this._post(command, bodyString);
+    }
+
+    createZone(master, slaves)
+    {
+        const body = '<zone master="{}"> {} </zone>';
+        const member = '<member ipaddress="{}">{}</member>';
+
+        var members = '';
+        slaves.forEach(slave => {
+            members = members + format(member, slave.ip, slave.mac);
         });
-        this.adapter.log.debug('setValue: ' + urlString + command + ' - ' + bodyString);
+        var str = format(body, master.mac, members);
+        this._post('setZone', str);
+        //this.adapter.log.debug('createZone: ' + str);
     }
 
     get(value) {
@@ -301,6 +332,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.get('volume');
     }
 
+    getZone() {
+        this.get('getZone');
+    }
+
     updateAll() {
         this.adapter.log.debug('updateAll');
         var instance = this;
@@ -312,7 +347,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             //_instance.getBassInfo(),
             instance.getVolume(),
             //_instance.getSources(),
-            //_instance.getZone(),
+            instance.getZone(),
             //_instance.getTrackInfo()
         ]);
     }

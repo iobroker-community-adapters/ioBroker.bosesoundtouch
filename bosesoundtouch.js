@@ -5,10 +5,11 @@
 
 'use strict';
 
-const BOSE_ID_ON     = 'on';
-const BOSE_ID_KEY    = 'key';
-const BOSE_ID_VOLUME = 'volume';
-const BOSE_ID_MUTED  = 'muted';
+const BOSE_ID_ON                   = 'on';
+const BOSE_ID_KEY                  = 'key';
+const BOSE_ID_VOLUME               = 'volume';
+const BOSE_ID_MUTED                = 'muted';
+const BOSE_ID_ZONE_PLAY_EVERYWHERE = 'playEverywhere';
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying.';
 const BOSE_ID_NOW_PLAYING_SOURCE  = BOSE_ID_NOW_PLAYING + 'source';
@@ -27,7 +28,7 @@ const BOSE_ID_DEVICE_INFO = 'deviceInfo.';
 const BOSE_ID_INFO_NAME = BOSE_ID_DEVICE_INFO + 'name';
 const BOSE_ID_INFO_TYPE = BOSE_ID_DEVICE_INFO + 'type';
 const BOSE_ID_INFO_MAC_ADDRESS = BOSE_ID_DEVICE_INFO + 'macAddress';
-
+const BOSE_ID_INFO_IP_ADDRESS = BOSE_ID_DEVICE_INFO + 'ipAddress';
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
@@ -100,6 +101,12 @@ class boseSoundTouch {
 
                 case namespace + BOSE_ID_MUTED:
                     this.adapter.setState(BOSE_ID_KEY, 'MUTE');
+                    break;
+
+                case namespace + BOSE_ID_ZONE_PLAY_EVERYWHERE:
+                    if (state.val) {
+                        this.playEverywhere();
+                    }
                     break;
             }
             this.adapter.log.debug('ack is not set!');
@@ -191,6 +198,17 @@ class boseSoundTouch {
             native: {}
         });
 
+        this.adapter.setObjectNotExists(BOSE_ID_ZONE_PLAY_EVERYWHERE, {
+            type: 'state',
+            common: {
+                name: 'play everywhere',
+                type: 'boolean',
+                read: true,
+                write: true
+            },
+            native: {}
+        });
+
         const presetsConfig = {
             type: 'state',
             common: {
@@ -242,13 +260,16 @@ class boseSoundTouch {
         this.adapter.setObjectNotExists(BOSE_ID_INFO_NAME, deviceInfoConfig);
         this.adapter.setObjectNotExists(BOSE_ID_INFO_TYPE, deviceInfoConfig);
         this.adapter.setObjectNotExists(BOSE_ID_INFO_MAC_ADDRESS, deviceInfoConfig);
+        this.adapter.setObjectNotExists(BOSE_ID_INFO_IP_ADDRESS, deviceInfoConfig);
     }
 
     setDeviceInfo(obj) {
         this.adapter.setState(BOSE_ID_INFO_NAME, {val: obj.name, ack: true});
         this.adapter.setState(BOSE_ID_INFO_TYPE, {val: obj.type, ack: true});
         this.adapter.setState(BOSE_ID_INFO_MAC_ADDRESS, {val: obj.macAddress, ack: true});
-        this.macAddress = obj.macAddress;
+        this.adapter.setState(BOSE_ID_INFO_IP_ADDRESS, {val: this.adapter.config.address, ack:true});
+        this.adapter.ipAddress = this.adapter.config.address;
+        this.adapter.macAddress = obj.macAddress;
     }
 
     setVolume(obj) {
@@ -268,7 +289,7 @@ class boseSoundTouch {
 
         this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
     }
-
+    
     setPresets(obj) {
         //var presets = JSON.parse(data);
         for (var i = 0; i < 6; i++) {
@@ -280,12 +301,94 @@ class boseSoundTouch {
             if (obj[i]) {
                 preset = obj[i];
             }
-
+            
             this.adapter.setState(format(BOSE_ID_PRESET_SOURCE, i+1), {val: preset.source, ack: true});
             this.adapter.setState(format(BOSE_ID_PRESET_NAME, i+1), {val: preset.name, ack: true});
             this.adapter.setState(format(BOSE_ID_PRESET_ICON, i+1), {val: preset.iconUrl, ack: true});
         }
     }
+
+    _collectPlayEverywhereData(data, callback) {
+        var instance = this;
+        if (data) {
+            if (data.length == 0) {
+                callback(instance);
+            }
+            else {
+                var id = data.shift();
+                var slave = {};
+                slave.id = id;
+                this.adapter.getForeignState(id, function(err, state) {
+                    if (err) {
+                        instance.adapter.log.error(err);
+                    }
+                    else {
+                        slave.value = state.val;
+                        instance.masterSlaveData.slave.push(slave);
+                        instance._collectPlayEverywhereData(data, callback);
+                    }
+                });
+            }
+
+        }
+    }
+    
+    _collectPlayEverywhereFinished(instance) {
+        var slaveList = [];
+        var items = instance.masterSlaveData.slave;
+        for (let index = 0; index < items.length; index += 2) {  
+            var type = items[index].id.split('.');
+            type = type[type.length - 1];
+            if (type === 'ipAddress') {
+                var slave = {
+                    ip: items[index].value,
+                    mac: items[index +1].value
+                };
+                slaveList.push(slave);
+            }
+        }
+        if (slaveList.length > 0) {
+            instance.socket.createZone(instance.masterSlaveData.master, slaveList);
+        }
+    }
+    
+    playEverywhere() {
+        var instance = this;
+        instance.masterSlaveData = {
+            master: {
+                ip: this.adapter.ipAddress,
+                mac: this.adapter.macAddress
+            },
+            slave: []
+        };
+        this.adapter.objects.getObjectView(
+            'system', 'instance', {
+                startkey: 'system.adapter.bosesoundtouch.', 
+                endkey: 'system.adapter.bosesoundtouch.\u9999' },
+            function (err, doc) {
+                if (doc && doc.rows && doc.rows.length) {
+                    var toDoList = [];
+                    for (var i = 0; i < doc.rows.length; i++) {
+                        var obj = doc.rows[i].value;
+                        //instance.adapter.log.debug('Found ' + id + ': ' + JSON.stringify(obj));
+                        if (obj.native.address != instance.adapter.ipAddress) {
+                            var systemId  = doc.rows[i].id.split('.');
+                            var index = systemId[systemId.length - 1];
+                            var namespace = systemId[systemId.length - 2] + '.' + index + '.';                           
+                            toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS);
+                            toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS);
+                        }
+                    }
+
+                    instance._collectPlayEverywhereData(toDoList, instance._collectPlayEverywhereFinished);
+                }
+                else {
+                    instance.adapter.log.debug('No objects found: ' + err);
+                }
+            }
+        );
+    }
+
 }
 
 var adapter = new(boseSoundTouch);

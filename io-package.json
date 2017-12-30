@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.3",
+        "version": "0.1.4",
         "news": {
+            "0.1.4": {
+                "en": "playEverywhere: support multi room (zones) to define one speaker as master for all others.",
+                "de": "playEverywhere: Erste Unterstützung von Zonen, Musik eines Lautsprechers auf allen anderen abspielen."
+            },
             "0.1.3": {
                 "en": "revert last change"
             },
