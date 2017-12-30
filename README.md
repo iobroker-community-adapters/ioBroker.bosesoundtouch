@@ -52,6 +52,9 @@ Power on or off the device.
 Change device volume between 0 and 100.
 
 ## changelog
+### 0.1.4 (30.12.2017)
+* playEverywhere: support multi room (zones) to define one speaker as master for all others
+
 ### 0.1.3 (22.12.2017)
 * revert last change
 
