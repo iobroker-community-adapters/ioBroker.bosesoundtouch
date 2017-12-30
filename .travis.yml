@@ -19,7 +19,7 @@ addons:
       - g++-4.8
 deploy:
   provider: npm
-  email: "swedish.chef@gmx.at"
-  secure: MvCA0dX8IM2MBFhqPSvsEm8fbo586L3clb2380pft4Az1JgcEwqaezczyLZu/e5MRPufwxCq0lcGPbTbXy1oJV3YawsdxMEos9pYKMlUo8EzbfOmA6DKCEfSyWxAmCzlCJgi7IH62KSvsQs9wR0SBmxbG1EgF1dDq+s4U/1DR2Bh9ttfvifV8cA+UxyEtNKxDYqxRuTlu80fd4UbAqeMRvorYFyKIR+onKxgfzaA+P26xkzF2zS64vXtveJ7tA1scjIfeo5MUSt0cLsSHrIyWLxTqJXZEkFf3JL8bKyp8E8PKm7NMg0MXNOhLb3yX0ZXb1yVBveY1acx1s5UM6gbnejhohVLuNmo5bs7cbfj6j9QAZFGd/5y9MnQmPCE4BBkhij+f24S9YEp20K8RMeuPk9eq8EICyzBjE+7TAesAmFqLf5BoGJC1OQrwbKSd0adzULPVENA7eqnzc0h1p+tsdiU0epO12ZbqtoC5QguKOU5fW3NN82CglsYh7aRbBBN6kwYOlCi8Y1nEAQl9PoiSkF3QD2jtMLsyp+/Pyxhrb9Q9UO1k5UAeHM3aefbHcXz9wXXRblRQTyxwWYz6f1dTOGyaoyrHpETuiS/DqBd+cvb7J43DJ8qYGvhyYmMXvjxJn2YXO9QegJDpLLcMIyZlBHkIsfEspAoI4xmOMUbcXI=
+  email: swedish.chef@gmx.at
+  api_key: $NPM_TOKEN
   on:
     tags: true
