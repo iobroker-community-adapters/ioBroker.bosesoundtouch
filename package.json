@@ -20,10 +20,10 @@
     "url": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch"
   },
   "dependencies": {
-    "es6-promise": "^4.1.1",
+    "es6-promise": "^4.2.2",
     "request": "^2.83.0",
     "string-format": "^0.5.0",
-    "ws": "^3.3.0",
+    "ws": "^3.3.3",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
