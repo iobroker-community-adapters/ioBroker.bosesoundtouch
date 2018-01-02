@@ -43,7 +43,7 @@ class boseSoundTouch {
     constructor() {
         var instance = this;
 
-        this.adapter = utils.adapter('bosesoundtouch');
+        this.adapter = utils.Adapter('bosesoundtouch');
 
         // is called when adapter shuts down - callback has to be called under any circumstances!
         this.adapter.on('unload', function(callback) { instance.onUnload(callback); });
