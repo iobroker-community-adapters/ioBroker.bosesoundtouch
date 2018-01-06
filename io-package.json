@@ -36,12 +36,8 @@
         },
         "title": "Bose SoundTouch Adapter",
         "desc": {
-            "en": "ioBroker template Adapter",
-            "de": "ioBroker Template Adapter",
-            "ru": "ioBroker Template драйвер как образец",
-            "pt": "Modelo de adaptador para o ioBroker",
-            "fr": "ioBroker adaptateur modèle",
-            "nl": "ioBroker Template Adapter"
+            "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
+            "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen."
         },
         "authors": [
             "SwedishChef <swedish.chef@gmx.at>"
