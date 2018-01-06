@@ -106,6 +106,7 @@ class boseSoundTouch {
                 case namespace + BOSE_ID_ZONE_PLAY_EVERYWHERE:
                     if (state.val) {
                         this.playEverywhere();
+                        this.adapter.setState(BOSE_ID_ZONE_PLAY_EVERYWHERE, false);
                     }
                     break;
             }

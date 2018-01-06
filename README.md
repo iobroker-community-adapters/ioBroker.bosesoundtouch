@@ -47,11 +47,19 @@ Mute or unmute the device.
 
 Power on or off the device.
 
+### playEverywhere
+
+Define speaker as zone master and play its content on all other speakers.
+
 ### volume
 
 Change device volume between 0 and 100.
 
 ## changelog
+### 0.1.5 (06.01.2018)
+* added 'TUNEIN' to now playing info
+* state playEverywhere falls back to false after activation
+
 ### 0.1.4 (30.12.2017)
 * playEverywhere: support multi room (zones) to define one speaker as master for all others
 
