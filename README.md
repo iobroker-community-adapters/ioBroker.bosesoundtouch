@@ -59,6 +59,8 @@ Change device volume between 0 and 100.
 ### 0.1.5 (06.01.2018)
 * added 'TUNEIN' to now playing info
 * state playEverywhere falls back to false after activation
+* admin/bose.png renamed to admin/bosesoundtouch.png to be shown corretly in adapter list
+* added short adapter description in io-package.json
 
 ### 0.1.4 (30.12.2017)
 * playEverywhere: support multi room (zones) to define one speaker as master for all others
