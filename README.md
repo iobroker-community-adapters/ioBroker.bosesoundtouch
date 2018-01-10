@@ -15,7 +15,8 @@ To control your speaker, the following objects can be written:
 
 ## Info States
 The following information is collected from your speaker (read-only states):
-* **Device Info**
+
+### Device Info
 
 | State      | Description |
 | :---       | :---        |
@@ -24,7 +25,7 @@ The following information is collected from your speaker (read-only states):
 | macAddress | The device MAC address |
 | ipAddress  | The device IP address, usually the same that you configured in adapter settings. |
 
-* **Now Playing**
+### Now Playing
 
 | State      | Description |
 | :---       | :---        |
@@ -35,7 +36,7 @@ The following information is collected from your speaker (read-only states):
 | station    | The station or playlist name. |
 | art        | The URL of the source art. |
 
-* **Presets**
+### Presets
 
 The following states are present for each of the 6 available presets:
 
