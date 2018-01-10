@@ -1,59 +1,17 @@
-# ioBroker.bosesoundtouch
-Bose SoundTouch adapter for iobroker
+# ioBroker.bosesoundtouch ![Logo](admin/bosesoundtouch.png) 
+
+Bose SoundTouch adapter for ioBroker IoT platform
 
 ## Usage
-
 The following objects can be written:
-### key
 
-One of the following keys to send:
-
-```
-PLAY 
-PAUSE 
-STOP 
-PREV_TRACK 
-NEXT_TRACK 
-THUMBS_UP 
-THUMBS_DOWN 
-BOOKMARK 
-POWER 
-MUTE 
-VOLUME_UP 
-VOLUME_DOWN 
-PRESET_1 
-PRESET_2 
-PRESET_3 
-PRESET_4 
-PRESET_5 
-PRESET_6 
-AUX_INPUT 
-SHUFFLE_OFF 
-SHUFFLE_ON 
-REPEAT_OFF 
-REPEAT_ONE 
-REPEAT_ALL 
-PLAY_PAUSE 
-ADD_FAVORITE 
-REMOVE_FAVORITE 
-INVALID_KEY
-```
-
-### muted
-
-Mute or unmute the device.
-
-### on
-
-Power on or off the device.
-
-### playEverywhere
-
-Define speaker as zone master and play its content on all other speakers.
-
-### volume
-
-Change device volume between 0 and 100.
+| State          | Description |
+| :---           | :---        |
+| key            | One of the following keys to send: <br><br> PLAY <br> PAUSE <br> STOP <br> PREV_TRACK <br> NEXT_TRACK <br> THUMBS_UP <br> THUMBS_DOWN <br> BOOKMARK <br> POWER <br> MUTE <br> VOLUME_UP <br> VOLUME_DOWN <br> PRESET_1 <br> PRESET_2 <br> PRESET_3 <br> PRESET_4  <br> PRESET_5 <br> PRESET_6 <br> AUX_INPUT <br> SHUFFLE_OFF <br> SHUFFLE_ON <br> REPEAT_OFF <br> REPEAT_ONE <br> REPEAT_ALL <br> PLAY_PAUSE <br> ADD_FAVORITE <br> REMOVE_FAVORITE <br> INVALID_KEY |
+| muted          | Mute or unmute the device. |
+| on             | Power on or off the device. |
+| playEverywhere | Define speaker as zone master and play its content on all other speakers. |
+| volume         | Change device volume between 0 and 100. |
 
 ## changelog
 ### 0.1.5 (06.01.2018)
