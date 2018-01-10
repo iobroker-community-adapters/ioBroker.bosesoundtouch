@@ -2,8 +2,8 @@
 
 Bose SoundTouch adapter for ioBroker IoT platform
 
-## Usage
-The following objects can be written:
+## Control States
+To control your speaker, the following objects can be written:
 
 | State          | Description |
 | :---           | :---        |
@@ -13,7 +13,39 @@ The following objects can be written:
 | playEverywhere | Define speaker as zone master and play its content on all other speakers. |
 | volume         | Change device volume between 0 and 100. |
 
-## changelog
+## Info States
+The following information is collected from your speaker (read-only states):
+* **Device Info**
+
+| State      | Description |
+| :---       | :---        |
+| name       | The name you configured with your SoundTouch App. |
+| type       | The device type (e.g. SoundTouch 300). |
+| macAddress | The device MAC address |
+| ipAddress  | The device IP address, usually the same that you configured in adapter settings. |
+
+* **Now Playing**
+
+| State      | Description |
+| :---       | :---        |
+| source     | The type or name of the service playing. To determine if the product is in standby mode, check if source == STANDBY. |
+| track      | The currently playing track. |
+| artist     | The currently playing artist. |
+| album      | The currently playing album. |
+| station    | The station or playlist name. |
+| art        | The URL of the source art. |
+
+* **Presets**
+
+The following states are present for each of the 6 available presets:
+
+| State      | Description |
+| :---       | :---        |
+| source     | The type or name of the service. |
+| name       | The album, station, playlist, song, phone, etc. name depending on the source. |
+| iconUrl    | The URL of the source art. |
+
+## Changelog
 ### 0.1.5 (06.01.2018)
 * added 'TUNEIN' to now playing info
 * state playEverywhere falls back to false after activation
