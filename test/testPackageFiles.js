@@ -2,8 +2,10 @@
 /* jshint strict:false */
 /* jslint node: true */
 /* jshint expr: true */
+/* eslint no-console:off */
+
 var expect = require('chai').expect;
-var fs        = require('fs');
+var fs = require('fs');
 
 describe('Test package.json and io-package.json', function() {
     it('Test package files', function (done) {

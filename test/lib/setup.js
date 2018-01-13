@@ -1,5 +1,7 @@
 /* jshint -W097 */// jshint strict:false
-/*jslint node: true */
+/* jslint node: true */
+/* eslint no-console:off */
+
 // check if tmp directory exists
 var fs            = require('fs');
 var path          = require('path');
@@ -132,11 +134,13 @@ function checkIsAdapterInstalled(cb, counter, customName) {
                 if (cb) cb();
             }, 100);
             return;
-        } else {
+        }
+        else {
             console.warn('checkIsAdapterInstalled: still not ready');
         }
-    } catch (err) {
-
+    }
+    catch (err) {
+        // do nothing
     }
 
     if (counter > 20) {
@@ -165,8 +169,9 @@ function checkIsControllerInstalled(cb, counter) {
             }, 100);
             return;
         }
-    } catch (err) {
-
+    }
+    catch (err) {
+        // do nothing
     }
 
     if (counter > 20) {
@@ -321,7 +326,7 @@ function installJsController(cb) {
                     });
                 } else {
                     console.log('Setup js-controller...');
-                    var __pid;
+                    //var __pid;
                     if (debug) {
                         // start controller
                         child_process.exec('node ' + appName + '.js setup first', {
@@ -506,13 +511,13 @@ function startController(isStartAdapter, onObjectChange, onStateChange, callback
         var Objects = require(rootDir + 'tmp/node_modules/' + appName + '.js-controller/lib/objects/objectsInMemServer');
         objects = new Objects({
             connection: {
-                "type" : "file",
-                "host" : "127.0.0.1",
-                "port" : 19001,
-                "user" : "",
-                "pass" : "",
-                "noFileCache": false,
-                "connectTimeout": 2000
+                'type' : 'file',
+                'host' : '127.0.0.1',
+                'port' : 19001,
+                'user' : '',
+                'pass' : '',
+                'noFileCache': false,
+                'connectTimeout': 2000
             },
             logger: {
                 silly: function (msg) {
@@ -604,7 +609,7 @@ function stopAdapter(cb) {
             }
         });
 
-        pid.on('close', function (code, signal) {
+        pid.on('close', function (/*code, signal*/) {
             if (pid) {
                 if (cb) cb();
                 pid = null;
