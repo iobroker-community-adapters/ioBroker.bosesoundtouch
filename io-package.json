@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.5",
+        "version": "0.1.6",
         "news": {
+            "0.1.6": {
+                "en": "fixed crash if socket connection fails",
+                "de": "Behoben: Absturz bei fehlerhafter Socket-Verbindung"
+            },
             "0.1.5": {
                 "en": "Update now playing info for source TuneIn\nState playEverywhere falls back to false after activation.",
                 "de": "Daten für nowPlaying werden für die Quelle TuneIn jetzt richtig befüllt.\nStatus playEverywhere wechselt automatisch wieder auf AUS,"

@@ -47,6 +47,9 @@ The following states are present for each of the 6 available presets:
 | iconUrl    | The URL of the source art. |
 
 ## Changelog
+### 0.1.6 (13.01.2018)
+* fixed crash if socket connection fails
+
 ### 0.1.5 (06.01.2018)
 * added 'TUNEIN' to now playing info
 * state playEverywhere falls back to false after activation
