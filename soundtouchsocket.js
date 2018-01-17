@@ -75,6 +75,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _onError(error, reject) {
         this.adapter.log.error('websocket error ' + error);
+        this.emit('error', error);
         reject();
     }
 

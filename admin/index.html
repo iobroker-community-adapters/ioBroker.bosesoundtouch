@@ -71,15 +71,23 @@
 
 <!-- you have to put your config page in a div with id adapter-container -->
 <div id="adapter-container">
-
-    <table><tr>
-        <td><img src="bosesoundtouch.png"/></td>
-        <td><h3 class="translate">Bose Soundtouch adapter settings</h3></td>
-    </tr></table>
-    <p>
-        <span><label for="address" class="translate">IP address</label></span><input class="value" id="address"/><br>
-    </p>
-
+    <table>
+        <tr>        
+            <td><img src="bosesoundtouch.png"/></td>
+            <td><h3 class="translate">Bose Soundtouch adapter settings</h3></td>
+        </tr>
+    </table>
+    <table>
+        <tr>
+            <td><label for="address" class="translate">IP address or host name:</label></td>
+            <td><input class="value" id="address" title="Enter an IP address or a valid host name for your SoundTouch device."/></td>
+        </tr>
+        <tr>
+            <td><label for="reconnectTime" class="translate">Time to reconnect in seconds:</label></td>
+            <td><input class="value" id="reconnectTime" title="On socket connection error the adpter tries to reconnect after that given time, 0 to disable."/></td>
+        </tr>
+    </table>
+    
     <p class="translate">on save adapter restarts with new config immediately</p>
 
 </div>

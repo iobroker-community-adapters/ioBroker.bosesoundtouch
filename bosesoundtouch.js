@@ -128,14 +128,31 @@ class boseSoundTouch {
         }
     }
 
+    onError() {
+        //this.adapter.log.error('error' + obj);
+        var instance = this;
+        var interval = this.adapter.config.reconnectTime * 1000;
+        if (interval > 0) {
+            this.reconnectInterval = setInterval(function() { instance._connect(); }, interval);
+        }
+    }
+
     onReady() {
         this.initObjects();
         this.adapter.subscribeStates('*');
 
         // in this template all states changes inside the adapters namespace are subscribed
         this.socket = new soundtouchsocket(this.adapter);
+        this._connect();
+    }
 
+    _connect() {
+        this.adapter.log.debug('connect...');
+        clearInterval(this.reconnectInterval);
         var instance = this;
+
+        this.socket.removeAllListeners();
+        this.socket.addListener('error', function() { instance.onError(); });
 
         this.socket.connect().then( function(server) {
             instance.socket.addListener('deviceInfo', function(obj) { instance.setDeviceInfo(obj); });
@@ -147,6 +164,7 @@ class boseSoundTouch {
             // error here
             instance.adapter.error(err);
         });
+
     }
 
     initObjects() {

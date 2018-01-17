@@ -4,8 +4,8 @@
         "version": "0.1.6",
         "news": {
             "0.1.6": {
-                "en": "fixed crash if socket connection fails",
-                "de": "Behoben: Absturz bei fehlerhafter Socket-Verbindung"
+                "en": "fixed crash if socket connection fails\nadded setting: time to reconnect in seconds",
+                "de": "Behoben: Absturz bei fehlerhafter Socket-Verbindung\nNeuer Konfigurationsparameter: Zeit für neuerlichen Verbindungsaufbau in Sekunden."
             },
             "0.1.5": {
                 "en": "Update now playing info for source TuneIn\nState playEverywhere falls back to false after activation.",
@@ -58,7 +58,8 @@
         "restartAdapters": []
     },
     "native": {
-        "address": ""
+        "address": "",
+        "reconnectTime": 60
     },
     "objects": [
 
