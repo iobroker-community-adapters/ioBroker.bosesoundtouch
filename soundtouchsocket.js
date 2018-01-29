@@ -106,18 +106,22 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _handlePresets(data) {
-        this.adapter.log.debug('presets:' + JSON.stringify(data.presets));
-        var preset = data.presets.preset;
-        var object = [];
-        for (var i in preset) {
-            var contentItem = preset[i].ContentItem;
-            object[preset[i].id - 1] = {
-                source:     contentItem.source,
-                name:        contentItem.itemName,
-                iconUrl:    contentItem.containerArt
-            };
+        if (data.presets) {
+            this.adapter.log.debug('presets:' + JSON.stringify(data.presets));
+            if (data.presets.preset) {
+                var preset = data.presets.preset;
+                var object = [];
+                for (var i in preset) {
+                    var contentItem = preset[i].ContentItem;
+                    object[preset[i].id - 1] = {
+                        source:     contentItem.source,
+                        name:        contentItem.itemName,
+                        iconUrl:    contentItem.containerArt
+                    };
+                }
+                this.emit('presets', object);
+            }
         }
-        this.emit('presets', object);
     }
 
     _handleDeviceInfo(data) {
