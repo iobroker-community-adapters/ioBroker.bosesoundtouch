@@ -47,6 +47,9 @@ The following states are present for each of the 6 available presets:
 | iconUrl    | The URL of the source art. |
 
 ## Changelog
+### 0.1.7 (29.01.2018)
+* fixed crash if no presets are defined
+
 ### 0.1.6 (17.01.2018)
 * fixed crash if socket connection fails
 * added setting: time to reconnect in seconds
