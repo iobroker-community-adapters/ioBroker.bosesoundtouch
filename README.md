@@ -47,7 +47,11 @@ The following states are present for each of the 6 available presets:
 | iconUrl    | The URL of the source art. |
 
 ## Changelog
-### 0.1.7 (29.01.2018)
+### 0.1.8 (04.02.2018)
+* Update now playing info for source Spotify
+* now playing: added state 'genre'
+
+### 0.1.7 (04.02.2018)
 * fixed crash if no presets are defined
 
 ### 0.1.6 (17.01.2018)

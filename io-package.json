@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.7",
+        "version": "0.1.8",
         "news": {
+            "0.1.8": {
+                "en": "Update now playing info for source Spotify\nnow playing: added state 'genre'",
+                "de": "Daten für nowPlaying werden für die Quelle Spotify jetzt richtig befüllt.\nnow playing: neuer Status 'genre'"
+            },
             "0.1.7": {
                 "en": "fixed crash if no presets are defined",
                 "de": "Behoben: Absturz bei fehlenden Presets."

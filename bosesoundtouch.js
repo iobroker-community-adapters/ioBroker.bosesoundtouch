@@ -18,6 +18,7 @@ const BOSE_ID_NOW_PLAYING_ARTIST  = BOSE_ID_NOW_PLAYING + 'artist';
 const BOSE_ID_NOW_PLAYING_ALBUM   = BOSE_ID_NOW_PLAYING + 'album';
 const BOSE_ID_NOW_PLAYING_STATION = BOSE_ID_NOW_PLAYING + 'station';
 const BOSE_ID_NOW_PLAYING_ART     = BOSE_ID_NOW_PLAYING + 'art';
+const BOSE_ID_NOW_PLAYING_GENRE   = BOSE_ID_NOW_PLAYING + 'genre';
 
 const BOSE_ID_PRESETS = 'presets.';
 const BOSE_ID_PRESET_SOURCE = BOSE_ID_PRESETS + '{}.source';
@@ -264,6 +265,7 @@ class boseSoundTouch {
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ALBUM,   nowPlayingConfig);
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_STATION, nowPlayingConfig);
         this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ART,     nowPlayingConfig);
+        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_GENRE,   nowPlayingConfig);
 
         const deviceInfoConfig = {
             type: 'state',
@@ -305,6 +307,7 @@ class boseSoundTouch {
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ALBUM, {val: obj.album, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_STATION, {val: obj.station, ack: true});
         this.adapter.setState(BOSE_ID_NOW_PLAYING_ART, {val: obj.art, ack: true});
+        this.adapter.setState(BOSE_ID_NOW_PLAYING_GENRE, {val: obj.genre, ack: true});
 
         this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
     }

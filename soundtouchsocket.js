@@ -159,11 +159,13 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             artist:  '',
             album:   '',
             station: '',
-            art:     ''
+            art:     '',
+            genre:   ''
         };
         switch (data.source) {
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
+            case 'SPOTIFY':
             case 'STORED_MUSIC':
             case 'TUNEIN':
                 object.track = data.track;
@@ -172,6 +174,9 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 object.station = data.stationName;
                 if (data.art && data.art._) {
                     object.art = data.art._;
+                }
+                if (data.genre) {
+                    object.genre = data.genre;
                 }
                 break;
 
