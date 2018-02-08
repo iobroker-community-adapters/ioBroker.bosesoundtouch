@@ -20,21 +20,22 @@ The following information is collected from your speaker (read-only states):
 
 | State      | Description |
 | :---       | :---        |
+| ipAddress  | The device IP address, usually the same that you configured in adapter settings. |
+| macAddress | The device MAC address |
 | name       | The name you configured with your SoundTouch App. |
 | type       | The device type (e.g. SoundTouch 300). |
-| macAddress | The device MAC address |
-| ipAddress  | The device IP address, usually the same that you configured in adapter settings. |
 
 ### Now Playing
 
 | State      | Description |
 | :---       | :---        |
-| source     | The type or name of the service playing. To determine if the product is in standby mode, check if source == STANDBY. |
-| track      | The currently playing track. |
-| artist     | The currently playing artist. |
 | album      | The currently playing album. |
-| station    | The station or playlist name. |
 | art        | The URL of the source art. |
+| artist     | The currently playing artist. |
+| genre      | The genre of current playing track. |
+| source     | The type or name of the service playing. To determine if the product is in standby mode, check if source == STANDBY. |
+| station    | The station or playlist name. |
+| track      | The currently playing track. |
 
 ### Presets
 
@@ -42,12 +43,12 @@ The following states are present for each of the 6 available presets:
 
 | State      | Description |
 | :---       | :---        |
-| source     | The type or name of the service. |
-| name       | The album, station, playlist, song, phone, etc. name depending on the source. |
 | iconUrl    | The URL of the source art. |
+| name       | The album, station, playlist, song, phone, etc. name depending on the source. |
+| source     | The type or name of the service. |
 
 ## Changelog
-### 0.1.8 (04.02.2018)
+### 0.1.8 (08.02.2018)
 * Update now playing info for source Spotify
 * now playing: added state 'genre'
 
