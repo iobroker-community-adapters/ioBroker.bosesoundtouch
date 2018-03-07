@@ -107,7 +107,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handlePresets(data) {
         var object = [];
-        for (i = 0; i < 6; i++) {
+        for (var i = 0; i < 6; i++) {
             object[i] = {
                 source:  '',
                 name:    '',
@@ -121,7 +121,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 var contentItem;
                 var id;
                 if (Array.isArray(presets)) {
-                    for (var i in presets) {
+                    for (i in presets) {
                         contentItem = presets[i].ContentItem;
                         id = presets[i].id - 1;
                         object[id].source  = contentItem.source;
@@ -163,6 +163,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             genre:   ''
         };
         switch (data.source) {
+            case 'AMAZON':
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
             case 'SPOTIFY':

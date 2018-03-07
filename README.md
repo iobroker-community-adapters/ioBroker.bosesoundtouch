@@ -48,6 +48,9 @@ The following states are present for each of the 6 available presets:
 | source     | The type or name of the service. |
 
 ## Changelog
+### 0.1.9 (07.03.2018)
+* Update now playing info for source Amazon
+
 ### 0.1.8 (08.02.2018)
 * Update now playing info for source Spotify
 * now playing: added state 'genre'
