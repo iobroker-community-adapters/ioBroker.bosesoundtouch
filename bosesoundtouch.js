@@ -11,6 +11,8 @@ const BOSE_ID_VOLUME               = 'volume';
 const BOSE_ID_MUTED                = 'muted';
 const BOSE_ID_MEMBER_OF            = 'memberOf';
 const BOSE_ID_MASTER_OF            = 'masterOf';
+const BOSE_ID_ADD_MASTER_OF        = 'AddMasterOf';
+const BOSE_ID_REMOVE_MASTER_OF     = 'RemoveMasterOf';
 const BOSE_ID_ZONE_PLAY_EVERYWHERE = 'playEverywhere';
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying.';
@@ -106,17 +108,19 @@ class boseSoundTouch {
                     this.adapter.setState(BOSE_ID_KEY, 'MUTE');
                     break;
 
-                case namespace + BOSE_ID_MEMBER_OF:
-                    this.setMemberOf(state.val);
+                case namespace + BOSE_ID_ADD_MASTER_OF:
+                    this.handleMasterOf(state.val, this.socket.addZoneSlave, true);
+                    this.adapter.setState(BOSE_ID_ADD_MASTER_OF, {val: '', ack: true});
                     break;
 
-                case namespace + BOSE_ID_MASTER_OF:
-                    this.setMasterOf(state.val);
+                case namespace + BOSE_ID_REMOVE_MASTER_OF:
+                    this.handleMasterOf(state.val, this.socket.removeZoneSlave);
+                    this.adapter.setState(BOSE_ID_REMOVE_MASTER_OF, {val: '', ack: true});
                     break;
 
                 case namespace + BOSE_ID_ZONE_PLAY_EVERYWHERE:
                     if (state.val) {
-                        this.playEverywhere();
+                        this.setMasterOf();
                         this.adapter.setState(BOSE_ID_ZONE_PLAY_EVERYWHERE, false);
                     }
                     break;
@@ -236,7 +240,7 @@ class boseSoundTouch {
                 type: 'string',
                 role: 'text',
                 read: true,
-                write: true
+                write: false
             },
             native: {}
         });
@@ -245,6 +249,30 @@ class boseSoundTouch {
             type: 'state',
             common: {
                 name: 'master of',
+                type: 'string',
+                role: 'text',
+                read: true,
+                write: false
+            },
+            native: {}
+        });
+
+        this.adapter.setObjectNotExists(BOSE_ID_ADD_MASTER_OF, {
+            type: 'state',
+            common: {
+                name: 'add master of',
+                type: 'string',
+                role: 'text',
+                read: true,
+                write: true
+            },
+            native: {}
+        });
+
+        this.adapter.setObjectNotExists(BOSE_ID_REMOVE_MASTER_OF, {
+            type: 'state',
+            common: {
+                name: 'remove master of',
                 type: 'string',
                 role: 'text',
                 read: true,
@@ -388,11 +416,11 @@ class boseSoundTouch {
         }
     }
 
-    _collectPlayEverywhereData(data, callback) {
+    _collectPlayEverywhereData(data, callback, filterList) {
         var instance = this;
         if (data) {
             if (data.length == 0) {
-                callback(instance);
+                callback(instance, filterList);
             }
             else {
                 var id = data.shift();
@@ -405,7 +433,7 @@ class boseSoundTouch {
                     else {
                         slave.value = state.val;
                         instance.masterSlaveData.slave.push(slave);
-                        instance._collectPlayEverywhereData(data, callback);
+                        instance._collectPlayEverywhereData(data, callback, filterList);
                     }
                 });
             }
@@ -413,7 +441,7 @@ class boseSoundTouch {
         }
     }
 
-    _collectPlayEverywhereFinished(instance) {
+    _collectPlayEverywhereFinished(instance, filterList) {
         var slaveList = [];
         var items = instance.masterSlaveData.slave;
         for (let index = 0; index < items.length; index += 2) {
@@ -424,23 +452,84 @@ class boseSoundTouch {
                     ip: items[index].value,
                     mac: items[index +1].value
                 };
-                slaveList.push(slave);
+                if (!filterList || filterList.find(filterMac => filterMac === slave.mac)) {
+                    slaveList.push(slave);
+                }
             }
         }
-        if (slaveList.length > 0) {
-            instance.socket.createZone(instance.masterSlaveData.master, slaveList);
-        }
+        instance.socket.createZone(instance.masterSlaveData.master, slaveList);
     }
 
-    setMemberOf(value) {
-        this.adapter.log.info(value + 'set member of: ' + this.adapter.ipAddress);
+    handleMasterOf(setMacAddresses, setZoneFunction, add) {
+        var instance = this;
+        instance.adapter.getState(BOSE_ID_MASTER_OF, function(err, stateMasterOf) {
+            if (err) {
+                instance.adapter.log.error(err);
+            } else {
+                if (stateMasterOf.val === '') {
+                    if (add) {
+                        instance.setMasterOf(setMacAddresses)
+                    }
+                    return;
+                } else {
+                    const masterOf = stateMasterOf.val.split(';')
+                    if (add) {
+                        const setSlaves = setMacAddresses.split(';').filter(setSlave => !masterOf.some(masterOfSlave => setSlave === masterOfSlave));
+                        setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
+                    } else {
+                        const setSlaves = setMacAddresses.split(';').filter(setSlave => masterOf.some(masterOfSlave => setSlave === masterOfSlave));
+                        setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
+                    }
+                }
+            }
+        });        
     }
 
-    setMasterOf(value) {
-        this.adapter.log.info(value + 'set master of: ' + this.adapter.ipAddress);
+    _setZoneSlave(slaveMacAddress, setZoneFunction) {
+        var instance = this;
+        instance.masterSlaveData = {
+            master: {
+                ip: this.adapter.ipAddress,
+                mac: this.adapter.macAddress
+            },
+            slave: []
+        };
+        this.adapter.objects.getObjectView(
+            'system', 'instance', {
+                startkey: 'system.adapter.bosesoundtouch.',
+                endkey: 'system.adapter.bosesoundtouch.\u9999' },
+            function (err, doc) {
+                if (doc && doc.rows && doc.rows.length) {
+                    doc.rows.forEach(row => {                        
+                        if (row.value.native.address != instance.adapter.ipAddress) {
+                            const systemId  = row.id.split('.');
+                            const index = systemId[systemId.length - 1];
+                            const namespace = systemId[systemId.length - 2] + '.' + index + '.';
+
+                            instance.adapter.getForeignState(namespace + BOSE_ID_INFO_MAC_ADDRESS, function(err, stateMacAddress) {
+                                if (err) {
+                                    instance.adapter.log.error(err);
+                                } else {
+                                    if (stateMacAddress.val === slaveMacAddress) {
+                                        instance.adapter.getForeignState(namespace + BOSE_ID_INFO_IP_ADDRESS, function(err, stateIpAddress) {
+                                            if (err) {
+                                                instance.adapter.log.error(err);
+                                            } else {
+                                                setZoneFunction({mac: instance.adapter.macAddress}, {ip: stateIpAddress.val, mac: stateMacAddress.val}, instance.socket)
+                                            }
+                                        });
+                                    }
+                                }
+                            });
+                        }
+                    })                    
+                } else {
+                    instance.adapter.log.debug('No objects found: ' + err);
+                }
+            })
     }
-    
-    playEverywhere() {
+
+    setMasterOf(setMasterOf) {
         var instance = this;
         instance.masterSlaveData = {
             master: {
@@ -458,25 +547,23 @@ class boseSoundTouch {
                     var toDoList = [];
                     for (var i = 0; i < doc.rows.length; i++) {
                         var obj = doc.rows[i].value;
-                        //instance.adapter.log.debug('Found ' + id + ': ' + JSON.stringify(obj));
                         if (obj.native.address != instance.adapter.ipAddress) {
                             var systemId  = doc.rows[i].id.split('.');
                             var index = systemId[systemId.length - 1];
                             var namespace = systemId[systemId.length - 2] + '.' + index + '.';
                             toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS);
                             toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS);
-                        }
+                        }    
                     }
 
-                    instance._collectPlayEverywhereData(toDoList, instance._collectPlayEverywhereFinished);
+                    instance._collectPlayEverywhereData(toDoList, instance._collectPlayEverywhereFinished, setMasterOf !== undefined ? setMasterOf.split(';') : undefined);
                 }
                 else {
                     instance.adapter.log.debug('No objects found: ' + err);
                 }
             }
-        );
+        );  
     }
-
 }
 
 var adapter = new(boseSoundTouch);

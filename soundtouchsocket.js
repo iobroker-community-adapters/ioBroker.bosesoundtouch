@@ -328,23 +328,22 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         });
         var str = format(body, master.mac, members);
         this._post('setZone', str);
-        //this.adapter.log.debug('createZone: ' + str);
     }
 
-    addZoneSlave(master, slave)
+    addZoneSlave(master, slave, socket)
     {
         const body = '<zone master="{}"> {} </zone>';
         const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
         var str = format(body, master.mac, member);
-        this._post('addZoneSlave', str);
+        socket._post('addZoneSlave', str);
     }
 
-    removeZoneSlave(master, slave)
+    removeZoneSlave(master, slave, socket)
     {
         const body = '<zone master="{}"> {} </zone>';
         const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
         var str = format(body, master.mac, member);
-        this._post('removeZoneSlave', str);
+        socket._post('removeZoneSlave', str);
     }
 
     get(value) {
