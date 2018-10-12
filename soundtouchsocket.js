@@ -152,7 +152,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _handleNowPlaying(data) {
-        this.adapter.log.debug('received [now_playing] ' + JSON.stringify(data));
+        this.adapter.log.info('received [now_playing] ' + JSON.stringify(data));
         var object = {
             source:  data.source,
             track:   '',
@@ -167,6 +167,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
             case 'SPOTIFY':
+            case 'DEEZER':
             case 'STORED_MUSIC':
             case 'TUNEIN':
                 object.track = data.track;
