@@ -152,7 +152,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _handleNowPlaying(data) {
-        this.adapter.log.debug('received [now_playing] ' + JSON.stringify(data));
+        this.adapter.log.info('received [now_playing] ' + JSON.stringify(data));
         var object = {
             source:  data.source,
             track:   '',
@@ -167,6 +167,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
             case 'SPOTIFY':
+            case 'DEEZER':
             case 'STORED_MUSIC':
             case 'TUNEIN':
                 object.track = data.track;
@@ -189,7 +190,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.emit('nowPlaying', object);
     }
 
-    _handleZone(/*data*/) {
+    _handleZone(data) {
+        this.emit('zones', data);
     }
 
     _onJsData(jsData) {
@@ -263,6 +265,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                                 }
 
                                 case 'zoneUpdated': {
+                                    this._handleZone(jsData.updates.zoneUpdated.zone);
                                     break;
                                 }
 
@@ -326,7 +329,22 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         });
         var str = format(body, master.mac, members);
         this._post('setZone', str);
-        //this.adapter.log.debug('createZone: ' + str);
+    }
+
+    addZoneSlave(master, slave, socket)
+    {
+        const body = '<zone master="{}"> {} </zone>';
+        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
+        var str = format(body, master.mac, member);
+        socket._post('addZoneSlave', str);
+    }
+
+    removeZoneSlave(master, slave, socket)
+    {
+        const body = '<zone master="{}"> {} </zone>';
+        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
+        var str = format(body, master.mac, member);
+        socket._post('removeZoneSlave', str);
     }
 
     get(value) {
