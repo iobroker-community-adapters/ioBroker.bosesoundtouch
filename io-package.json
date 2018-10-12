@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.1.9",
+        "version": "0.2.0",
         "news": {
+            "0.2.0": {
+                "en": "Add support for zones",
+                "de": "Unterstützung von Zonen hinzugefügt."
+            },
             "0.1.9": {
                 "en": "Update now playing info for source Amazon",
                 "de": "Daten für nowPlaying werden für die Quelle Amazon jetzt richtig befüllt."
