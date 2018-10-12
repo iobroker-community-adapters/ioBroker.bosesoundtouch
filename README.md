@@ -48,6 +48,9 @@ The following states are present for each of the 6 available presets:
 | source     | The type or name of the service. |
 
 ## Changelog
+### 0.2.1 (12.10.2018)
+* Update now playing info for source Deezer
+
 ### 0.1.9 (07.03.2018)
 * Update now playing info for source Amazon
 
