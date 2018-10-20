@@ -333,7 +333,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     addZoneSlave(master, slave, socket)
     {
         const body = '<zone master="{}"> {} </zone>';
-        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
+        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;
         var str = format(body, master.mac, member);
         socket._post('addZoneSlave', str);
     }
@@ -341,7 +341,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     removeZoneSlave(master, slave, socket)
     {
         const body = '<zone master="{}"> {} </zone>';
-        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;    
+        const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;
         var str = format(body, master.mac, member);
         socket._post('removeZoneSlave', str);
     }
