@@ -167,6 +167,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
             case 'SPOTIFY':
+            case 'DEEZER':
             case 'STORED_MUSIC':
             case 'TUNEIN':
                 object.track = data.track;

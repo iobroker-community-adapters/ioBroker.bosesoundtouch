@@ -60,6 +60,9 @@ The following description will help you to create groups with you multiroom syst
 
 ## Changelog
 
+### 0.2.1 (12.10.2018)
+* Update now playing info for source Deezer
+
 ### 0.2.0 (27.09.2018)
 * Add support for zones
 
