@@ -47,9 +47,24 @@ The following states are present for each of the 6 available presets:
 | name       | The album, station, playlist, song, phone, etc. name depending on the source. |
 | source     | The type or name of the service. |
 
+### Zones
+
+The following description will help you to create groups with you multiroom system. The readonly field are automaticly updated by the soundtouch devices, also if you change the groups by the Soundtouch Application itself.
+
+| State      | Description |
+| :---       | :---        |
+| masterOf   | Display the MAC addresses of the slaves of a speaker (splitted by ";") (readonly)
+| memberOf   | Display the MAC address of the master of this speaker (readonly)
+| addMasterOf| Add MAC address of the speaker you would like to add to this master speaker. Also possible to put more then one speaker (split by ";").
+| removeMasterOf| Add MAC address of the speaker you would like to remove from this master speaker. Also possible to put more then one speaker (split by ";").
+
 ## Changelog
+
 ### 0.2.1 (12.10.2018)
 * Update now playing info for source Deezer
+
+### 0.2.0 (27.09.2018)
+* Add support for zones
 
 ### 0.1.9 (07.03.2018)
 * Update now playing info for source Amazon

@@ -7,6 +7,10 @@
                 "en": "Update now playing info for source Deezer",
                 "de": "Daten für nowPlaying werden für die Quelle Deezer jetzt richtig befüllt."
             },
+            "0.2.0": {
+                "en": "Add support for zones",
+                "de": "Unterstützung von Zonen hinzugefügt."
+            },
             "0.1.9": {
                 "en": "Update now playing info for source Amazon",
                 "de": "Daten für nowPlaying werden für die Quelle Amazon jetzt richtig befüllt."
