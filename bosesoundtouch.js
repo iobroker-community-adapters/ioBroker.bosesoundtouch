@@ -120,10 +120,10 @@ class boseSoundTouch {
                     this.adapter.setState(BOSE_ID_ZONES_REMOVE_MASTER_OF, {val: '', ack: true});
                     break;
 
-                case namespace + BOSE_ID_ZONE_PLAY_EVERYWHERE:
+                case namespace + BOSE_ID_ZONES_PLAY_EVERYWHERE:
                     if (state.val) {
                         this.setMasterOf();
-                        this.adapter.setState(BOSE_ID_ZONE_PLAY_EVERYWHERE, false);
+                        this.adapter.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false);
                     }
                     break;
             }
@@ -467,7 +467,7 @@ class boseSoundTouch {
 
     handleMasterOf(setMacAddresses, setZoneFunction, add) {
         var instance = this;
-        instance.adapter.getState(BOSE_ID_MASTER_OF, function(err, stateMasterOf) {
+        instance.adapter.getState(BOSE_ID_ZONES_MASTER_OF, function(err, stateMasterOf) {
             if (err) {
                 instance.adapter.log.error(err);
             }
