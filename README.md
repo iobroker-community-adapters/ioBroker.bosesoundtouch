@@ -60,6 +60,9 @@ The following description will help you to create groups with you multiroom syst
 
 ## Changelog
 
+### 0.2.2 (03.11.2018)
+* Zones: objects moved to sub folder 'zones'
+
 ### 0.2.1 (12.10.2018)
 * Update now playing info for source Deezer
 

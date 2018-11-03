@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.2.1",
+        "version": "0.2.2",
         "news": {
+            "0.2.2": {
+                "en": "Zones: objects moved to sub folder 'zones'",
+                "de": "Zonen: Objekte in Unterverzeichnis 'zones' verschoben."
+            },
             "0.2.1": {
                 "en": "Update now playing info for source Deezer",
                 "de": "Daten für nowPlaying werden für die Quelle Deezer jetzt richtig befüllt."

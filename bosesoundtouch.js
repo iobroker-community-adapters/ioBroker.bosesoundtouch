@@ -9,11 +9,6 @@ const BOSE_ID_ON                   = 'on';
 const BOSE_ID_KEY                  = 'key';
 const BOSE_ID_VOLUME               = 'volume';
 const BOSE_ID_MUTED                = 'muted';
-const BOSE_ID_MEMBER_OF            = 'memberOf';
-const BOSE_ID_MASTER_OF            = 'masterOf';
-const BOSE_ID_ADD_MASTER_OF        = 'AddMasterOf';
-const BOSE_ID_REMOVE_MASTER_OF     = 'RemoveMasterOf';
-const BOSE_ID_ZONE_PLAY_EVERYWHERE = 'playEverywhere';
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying.';
 const BOSE_ID_NOW_PLAYING_SOURCE  = BOSE_ID_NOW_PLAYING + 'source';
@@ -28,6 +23,13 @@ const BOSE_ID_PRESETS = 'presets.';
 const BOSE_ID_PRESET_SOURCE = BOSE_ID_PRESETS + '{}.source';
 const BOSE_ID_PRESET_NAME   = BOSE_ID_PRESETS + '{}.name';
 const BOSE_ID_PRESET_ICON   = BOSE_ID_PRESETS + '{}.iconUrl';
+
+const BOSE_ID_ZONES = 'zones.';
+const BOSE_ID_ZONES_MEMBER_OF        = BOSE_ID_ZONES + 'memberOf';
+const BOSE_ID_ZONES_MASTER_OF        = BOSE_ID_ZONES + 'masterOf';
+const BOSE_ID_ZONES_ADD_MASTER_OF    = BOSE_ID_ZONES + 'addMasterOf';
+const BOSE_ID_ZONES_REMOVE_MASTER_OF = BOSE_ID_ZONES + 'removeMasterOf';
+const BOSE_ID_ZONES_PLAY_EVERYWHERE  = BOSE_ID_ZONES + 'playEverywhere';
 
 const BOSE_ID_DEVICE_INFO = 'deviceInfo.';
 const BOSE_ID_INFO_NAME = BOSE_ID_DEVICE_INFO + 'name';
@@ -108,14 +110,14 @@ class boseSoundTouch {
                     this.adapter.setState(BOSE_ID_KEY, 'MUTE');
                     break;
 
-                case namespace + BOSE_ID_ADD_MASTER_OF:
+                case namespace + BOSE_ID_ZONES_ADD_MASTER_OF:
                     this.handleMasterOf(state.val, this.socket.addZoneSlave, true);
-                    this.adapter.setState(BOSE_ID_ADD_MASTER_OF, {val: '', ack: true});
+                    this.adapter.setState(BOSE_ID_ZONES_ADD_MASTER_OF, {val: '', ack: true});
                     break;
 
-                case namespace + BOSE_ID_REMOVE_MASTER_OF:
+                case namespace + BOSE_ID_ZONES_REMOVE_MASTER_OF:
                     this.handleMasterOf(state.val, this.socket.removeZoneSlave);
-                    this.adapter.setState(BOSE_ID_REMOVE_MASTER_OF, {val: '', ack: true});
+                    this.adapter.setState(BOSE_ID_ZONES_REMOVE_MASTER_OF, {val: '', ack: true});
                     break;
 
                 case namespace + BOSE_ID_ZONE_PLAY_EVERYWHERE:
@@ -233,7 +235,7 @@ class boseSoundTouch {
             native: {}
         });
 
-        this.adapter.setObjectNotExists(BOSE_ID_MEMBER_OF, {
+        this.adapter.setObjectNotExists(BOSE_ID_ZONES_MEMBER_OF, {
             type: 'state',
             common: {
                 name: 'member of',
@@ -245,7 +247,7 @@ class boseSoundTouch {
             native: {}
         });
 
-        this.adapter.setObjectNotExists(BOSE_ID_MASTER_OF, {
+        this.adapter.setObjectNotExists(BOSE_ID_ZONES_MASTER_OF, {
             type: 'state',
             common: {
                 name: 'master of',
@@ -257,7 +259,7 @@ class boseSoundTouch {
             native: {}
         });
 
-        this.adapter.setObjectNotExists(BOSE_ID_ADD_MASTER_OF, {
+        this.adapter.setObjectNotExists(BOSE_ID_ZONES_ADD_MASTER_OF, {
             type: 'state',
             common: {
                 name: 'add master of',
@@ -269,7 +271,7 @@ class boseSoundTouch {
             native: {}
         });
 
-        this.adapter.setObjectNotExists(BOSE_ID_REMOVE_MASTER_OF, {
+        this.adapter.setObjectNotExists(BOSE_ID_ZONES_REMOVE_MASTER_OF, {
             type: 'state',
             common: {
                 name: 'remove master of',
@@ -281,7 +283,7 @@ class boseSoundTouch {
             native: {}
         });
 
-        this.adapter.setObjectNotExists(BOSE_ID_ZONE_PLAY_EVERYWHERE, {
+        this.adapter.setObjectNotExists(BOSE_ID_ZONES_PLAY_EVERYWHERE, {
             type: 'state',
             common: {
                 name: 'play everywhere',
@@ -395,8 +397,8 @@ class boseSoundTouch {
 
     setZone(obj) {
         if (!obj || obj === '') {
-            this.adapter.setState(BOSE_ID_MEMBER_OF, {val: '', ack: true});
-            this.adapter.setState(BOSE_ID_MASTER_OF, {val: '', ack: true});
+            this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: '', ack: true});
+            this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: '', ack: true});
         }
         else {
             if (obj.master === this.adapter.macAddress) {
@@ -409,12 +411,12 @@ class boseSoundTouch {
                 else {
                     members.push(obj.member._);
                 }
-                this.adapter.setState(BOSE_ID_MASTER_OF, {val: members.join(';'), ack: true});
-                this.adapter.setState(BOSE_ID_MEMBER_OF, {val: '', ack: true});
+                this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: members.join(';'), ack: true});
+                this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: '', ack: true});
             }
             else {
-                this.adapter.setState(BOSE_ID_MASTER_OF, {val: '', ack: true});
-                this.adapter.setState(BOSE_ID_MEMBER_OF, {val: obj.master, ack: true});
+                this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: '', ack: true});
+                this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: obj.master, ack: true});
             }
         }
     }
