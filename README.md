@@ -60,6 +60,9 @@ The following description will help you to create groups with you multiroom syst
 
 ## Changelog
 
+### 0.2.3 (11.11.2018)
+* fixed issue #24 "does not start"
+ 
 ### 0.2.2 (03.11.2018)
 * Zones: objects moved to sub folder 'zones'
 
