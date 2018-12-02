@@ -87,7 +87,8 @@
     },
     "native": {
         "address": "",
-        "reconnectTime": 60
+        "reconnectTime": 60,
+        "autoSync": false
     },
     "objects": [
 
