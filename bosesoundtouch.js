@@ -10,39 +10,41 @@ const BOSE_ID_KEY                  = { id: 'key',            type: 'string',  wr
 const BOSE_ID_VOLUME               = { id: 'volume',         type: 'integer', write: true };
 const BOSE_ID_MUTED                = { id: 'muted',          type: 'boolean', write: true };
 
-const BOSE_ID_NOW_PLAYING = 'nowPlaying.';
-const BOSE_ID_NOW_PLAYING_SOURCE  = { id: BOSE_ID_NOW_PLAYING + 'source',  type: 'string' };
-const BOSE_ID_NOW_PLAYING_TRACK   = { id: BOSE_ID_NOW_PLAYING + 'track',   type: 'string' };
-const BOSE_ID_NOW_PLAYING_ARTIST  = { id: BOSE_ID_NOW_PLAYING + 'artist',  type: 'string' };
-const BOSE_ID_NOW_PLAYING_ALBUM   = { id: BOSE_ID_NOW_PLAYING + 'album',   type: 'string' };
-const BOSE_ID_NOW_PLAYING_STATION = { id: BOSE_ID_NOW_PLAYING + 'station', type: 'string' };
-const BOSE_ID_NOW_PLAYING_ART     = { id: BOSE_ID_NOW_PLAYING + 'art',     type: 'string' };
-const BOSE_ID_NOW_PLAYING_GENRE   = { id: BOSE_ID_NOW_PLAYING + 'genre',   type: 'string' };
+const BOSE_ID_NOW_PLAYING = 'nowPlaying';
+const BOSE_ID_NOW_PLAYING_SOURCE  = { id: BOSE_ID_NOW_PLAYING + '.source',  type: 'string' };
+const BOSE_ID_NOW_PLAYING_TRACK   = { id: BOSE_ID_NOW_PLAYING + '.track',   type: 'string' };
+const BOSE_ID_NOW_PLAYING_ARTIST  = { id: BOSE_ID_NOW_PLAYING + '.artist',  type: 'string' };
+const BOSE_ID_NOW_PLAYING_ALBUM   = { id: BOSE_ID_NOW_PLAYING + '.album',   type: 'string' };
+const BOSE_ID_NOW_PLAYING_STATION = { id: BOSE_ID_NOW_PLAYING + '.station', type: 'string' };
+const BOSE_ID_NOW_PLAYING_ART     = { id: BOSE_ID_NOW_PLAYING + '.art',     type: 'string' };
+const BOSE_ID_NOW_PLAYING_GENRE   = { id: BOSE_ID_NOW_PLAYING + '.genre',   type: 'string' };
 
-const BOSE_ID_PRESETS = 'presets.';
-const BOSE_ID_PRESET_SOURCE = { id: BOSE_ID_PRESETS + '{}.source',  type:'string' };
-const BOSE_ID_PRESET_NAME   = { id: BOSE_ID_PRESETS + '{}.name',    type:'string' };
-const BOSE_ID_PRESET_ICON   = { id: BOSE_ID_PRESETS + '{}.iconUrl', type:'url' };
+const BOSE_ID_PRESETS = 'presets';
+const BOSE_ID_PRESET_SOURCE = { id: BOSE_ID_PRESETS + '.{}.source',  type:'string' };
+const BOSE_ID_PRESET_NAME   = { id: BOSE_ID_PRESETS + '.{}.name',    type:'string' };
+const BOSE_ID_PRESET_ICON   = { id: BOSE_ID_PRESETS + '.{}.iconUrl', type:'url' };
 
-const BOSE_ID_ZONES = 'zones.';
-const BOSE_ID_ZONES_MEMBER_OF        = { id: BOSE_ID_ZONES + 'memberOf',       type: 'string' };
-const BOSE_ID_ZONES_MASTER_OF        = { id: BOSE_ID_ZONES + 'masterOf',       type: 'string' };
-const BOSE_ID_ZONES_ADD_MASTER_OF    = { id: BOSE_ID_ZONES + 'addMasterOf',    type: 'string', write: true };
-const BOSE_ID_ZONES_REMOVE_MASTER_OF = { id: BOSE_ID_ZONES + 'removeMasterOf', type: 'string', write: true};
-const BOSE_ID_ZONES_PLAY_EVERYWHERE  = { id: BOSE_ID_ZONES + 'playEverywhere', type: 'boolean', write: true };
+const BOSE_ID_ZONES = 'zones';
+const BOSE_ID_ZONES_MEMBER_OF        = { id: BOSE_ID_ZONES + '.memberOf',       type: 'string' };
+const BOSE_ID_ZONES_MASTER_OF        = { id: BOSE_ID_ZONES + '.masterOf',       type: 'string' };
+const BOSE_ID_ZONES_ADD_MASTER_OF    = { id: BOSE_ID_ZONES + '.addMasterOf',    type: 'string', write: true };
+const BOSE_ID_ZONES_REMOVE_MASTER_OF = { id: BOSE_ID_ZONES + '.removeMasterOf', type: 'string', write: true};
+const BOSE_ID_ZONES_PLAY_EVERYWHERE  = { id: BOSE_ID_ZONES + '.playEverywhere', type: 'boolean', write: true };
 
-const BOSE_ID_DEVICE_INFO = 'deviceInfo.';
-const BOSE_ID_INFO_NAME        = { id: BOSE_ID_DEVICE_INFO + 'name',       type:'string' };
-const BOSE_ID_INFO_TYPE        = { id: BOSE_ID_DEVICE_INFO + 'type',       type:'string' };
-const BOSE_ID_INFO_MAC_ADDRESS = { id: BOSE_ID_DEVICE_INFO + 'macAddress', type:'string' };
-const BOSE_ID_INFO_IP_ADDRESS  = { id: BOSE_ID_DEVICE_INFO + 'ipAddress',  type:'string' };
+const BOSE_ID_DEVICE_INFO = 'deviceInfo';
+const BOSE_ID_INFO_NAME        = { id: BOSE_ID_DEVICE_INFO + '.name',       type:'string' };
+const BOSE_ID_INFO_TYPE        = { id: BOSE_ID_DEVICE_INFO + '.type',       type:'string' };
+const BOSE_ID_INFO_MAC_ADDRESS = { id: BOSE_ID_DEVICE_INFO + '.macAddress', type:'string' };
+const BOSE_ID_INFO_IP_ADDRESS  = { id: BOSE_ID_DEVICE_INFO + '.ipAddress',  type:'string' };
 
-const BOSE_ID_SOURCES = 'sources.';
-const BOSE_ID_SOURCE_NAME               = { id: BOSE_ID_SOURCES + '{}.name',             type:'string' };
+const BOSE_ID_SOURCES = 'sources';
+const BOSE_ID_SOURCES_SOURCE = { id: BOSE_ID_SOURCES + '.{}', type: 'playButton', write: true };
+/*const BOSE_ID_SOURCE_NAME               = { id: BOSE_ID_SOURCES + '{}.name',             type:'string' };
 const BOSE_ID_SOURCE_SOURCE             = { id: BOSE_ID_SOURCES + '{}.source',           type:'string' };
 const BOSE_ID_SOURCE_IS_LOCAL           = { id: BOSE_ID_SOURCES + '{}.isLocal',          type:'boolean' };
 const BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED = { id: BOSE_ID_SOURCES + '{}.multiRoomAllowed', type:'boolean' };
 const BOSE_ID_SOURCE_STATUS             = { id: BOSE_ID_SOURCES + '{}.status',           type:'string' };
+const BOSE_ID_SOURCE_PLAY               = { id: BOSE_ID_SOURCES + '{}.play',             type:'boolean' };*/
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
@@ -100,37 +102,44 @@ class boseSoundTouch {
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
             switch (id) {
-                case namespace + BOSE_ID_ON:
-                    this.adapter.setState(BOSE_ID_KEY, 'POWER');
+                case namespace + BOSE_ID_ON.id:
+                    this.setState(BOSE_ID_KEY, 'POWER', {ack: false});
                     break;
 
-                case namespace + BOSE_ID_VOLUME:
+                case namespace + BOSE_ID_VOLUME.id:
                     this.socket.setValue('volume', '', state.val);
                     break;
 
-                case namespace + BOSE_ID_KEY:
+                case namespace + BOSE_ID_KEY.id:
                     this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
                     this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
                     break;
 
-                case namespace + BOSE_ID_MUTED:
-                    this.adapter.setState(BOSE_ID_KEY, 'MUTE');
+                case namespace + BOSE_ID_MUTED.id:
+                    this.setState(BOSE_ID_KEY, 'MUTE', {ack: false});
                     break;
 
-                case namespace + BOSE_ID_ZONES_ADD_MASTER_OF:
+                case namespace + BOSE_ID_ZONES_ADD_MASTER_OF.id:
                     this.handleMasterOf(state.val, this.socket.addZoneSlave, true);
-                    this.adapter.setState(BOSE_ID_ZONES_ADD_MASTER_OF, {val: '', ack: true});
+                    this.setState(BOSE_ID_ZONES_ADD_MASTER_OF, '', {ack: true});
                     break;
 
-                case namespace + BOSE_ID_ZONES_REMOVE_MASTER_OF:
+                case namespace + BOSE_ID_ZONES_REMOVE_MASTER_OF.id:
                     this.handleMasterOf(state.val, this.socket.removeZoneSlave);
-                    this.adapter.setState(BOSE_ID_ZONES_REMOVE_MASTER_OF, {val: '', ack: true});
+                    this.setState(BOSE_ID_ZONES_REMOVE_MASTER_OF, '', {ack: true});
                     break;
 
-                case namespace + BOSE_ID_ZONES_PLAY_EVERYWHERE:
+                case namespace + BOSE_ID_ZONES_PLAY_EVERYWHERE.id:
                     if (state.val) {
                         this.setMasterOf();
-                        this.adapter.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false);
+                        this.setState(BOSE_ID_ZONE_PLAY_EVERYWHERE, false, {ack: false});
+                    }
+                    break;
+
+                default:
+                    if (id.includes(namespace + BOSE_ID_SOURCES) && state.val) {
+                        this.playSource(id);
+                        this.setState(id, false, {ack: false});
                     }
                     break;
             }
@@ -229,6 +238,11 @@ class boseSoundTouch {
                 config.common.role = 'text.url';
                 break;
 
+            case 'playButton':
+                config.common.type = 'boolean';
+                config.common.role = 'button.play';
+                break;
+
             default:
                 break;
         }
@@ -240,200 +254,71 @@ class boseSoundTouch {
         this.adapter.setObjectNotExists(this._getId(obj, arg), config);
     }
 
-    setState(obj, arg, value) {
-        this.adapter.setState(this._getId(obj, arg), {val: value, ack: true});
+    setState(obj, value, optional) {
+        var arg = (optional && optional.arg != null) ? optional.arg : null;
+        var ack = (optional && optional.ack != null) ? optional.ack : true;
+        this.adapter.setState(this._getId(obj, arg), {val: value, ack: ack});
     }
 
     initObjects() {
-        this.adapter.setObjectNotExists(BOSE_ID_KEY, {
-            type: 'state',
-            common: {
-                name: 'key',
-                type: 'string',
-                role: 'text',
-                read: false,
-                write: true
-            },
-            native: {}
-        });
+        this.setObject(BOSE_ID_KEY);
+        this.setObject(BOSE_ID_VOLUME);
+        this.setObject(BOSE_ID_MUTED);
+        this.setObject(BOSE_ID_ON);
+        this.setObject(BOSE_ID_ZONES_MEMBER_OF);
 
-        this.adapter.setObjectNotExists(BOSE_ID_VOLUME, {
-            type: 'state',
-            common: {
-                name: 'volume',
-                type: 'number',
-                role: 'level',
-                read: true,
-                write: true
+        this.setObject(BOSE_ID_ZONES_MASTER_OF);
 
-            },
-            native: {}
-        });
+        this.setObject(BOSE_ID_ZONES_ADD_MASTER_OF);
 
-        this.adapter.setObjectNotExists(BOSE_ID_MUTED, {
-            type: 'state',
-            common: {
-                name: 'muted',
-                type: 'boolean',
-                role: 'indicator',
-                read: true,
-                write: true
-            },
-            native: {}
-        });
+        this.setObject(BOSE_ID_ZONES_REMOVE_MASTER_OF);
 
-        this.adapter.setObjectNotExists(BOSE_ID_ON, {
-            type: 'state',
-            common: {
-                name: 'on',
-                type: 'boolean',
-                role: 'indicator',
-                read: true,
-                write: true
-            },
-            native: {}
-        });
-
-        this.adapter.setObjectNotExists(BOSE_ID_ZONES_MEMBER_OF, {
-            type: 'state',
-            common: {
-                name: 'member of',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: false
-            },
-            native: {}
-        });
-
-        this.adapter.setObjectNotExists(BOSE_ID_ZONES_MASTER_OF, {
-            type: 'state',
-            common: {
-                name: 'master of',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: false
-            },
-            native: {}
-        });
-
-        this.adapter.setObjectNotExists(BOSE_ID_ZONES_ADD_MASTER_OF, {
-            type: 'state',
-            common: {
-                name: 'add master of',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: true
-            },
-            native: {}
-        });
-
-        this.adapter.setObjectNotExists(BOSE_ID_ZONES_REMOVE_MASTER_OF, {
-            type: 'state',
-            common: {
-                name: 'remove master of',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: true
-            },
-            native: {}
-        });
-
-        this.adapter.setObjectNotExists(BOSE_ID_ZONES_PLAY_EVERYWHERE, {
-            type: 'state',
-            common: {
-                name: 'play everywhere',
-                type: 'boolean',
-                read: true,
-                write: true
-            },
-            native: {}
-        });
-
-        const presetsConfig = {
-            type: 'state',
-            common: {
-                name: '',
-                type: 'string',
-                read: true,
-                write: false
-            },
-            native: {}
-        };
+        this.setObject(BOSE_ID_ZONES_PLAY_EVERYWHERE);
 
         for (var i = 1; i <= 6; i++) {
-            presetsConfig.common.role = 'text';
-            this.adapter.setObjectNotExists(format(BOSE_ID_PRESET_SOURCE.id, i), presetsConfig);
-            this.adapter.setObjectNotExists(format(BOSE_ID_PRESET_NAME.id, i),   presetsConfig);
-            presetsConfig.common.role = 'text.url';
-            this.adapter.setObjectNotExists(format(BOSE_ID_PRESET_ICON.id, i),   presetsConfig);
+            this.setObject(BOSE_ID_PRESET_SOURCE, i);
+            this.setObject(BOSE_ID_PRESET_NAME, i);
+            this.setObject(BOSE_ID_PRESET_ICON, i);
         }
 
-        const nowPlayingConfig = {
-            type: 'state',
-            common: {
-                name: '',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: false
-            },
-            native: {}
-        };
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_SOURCE,  nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_TRACK,   nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ARTIST,  nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ALBUM,   nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_STATION, nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_ART,     nowPlayingConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_NOW_PLAYING_GENRE,   nowPlayingConfig);
+        this.setObject(BOSE_ID_NOW_PLAYING_SOURCE);
+        this.setObject(BOSE_ID_NOW_PLAYING_TRACK);
+        this.setObject(BOSE_ID_NOW_PLAYING_ARTIST);
+        this.setObject(BOSE_ID_NOW_PLAYING_ALBUM);
+        this.setObject(BOSE_ID_NOW_PLAYING_STATION);
+        this.setObject(BOSE_ID_NOW_PLAYING_ART);
+        this.setObject(BOSE_ID_NOW_PLAYING_GENRE);
 
-        const deviceInfoConfig = {
-            type: 'state',
-            common: {
-                name: '',
-                type: 'string',
-                role: 'text',
-                read: true,
-                write: false
-            },
-            native: {}
-        };
-        this.adapter.setObjectNotExists(BOSE_ID_INFO_NAME, deviceInfoConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_INFO_TYPE, deviceInfoConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_INFO_MAC_ADDRESS, deviceInfoConfig);
-        this.adapter.setObjectNotExists(BOSE_ID_INFO_IP_ADDRESS, deviceInfoConfig);
+        this.setObject(BOSE_ID_INFO_NAME);
+        this.setObject(BOSE_ID_INFO_TYPE);
+        this.setObject(BOSE_ID_INFO_MAC_ADDRESS);
+        this.setObject(BOSE_ID_INFO_IP_ADDRESS);
     }
 
     setDeviceInfo(obj) {
-        this.adapter.setState(BOSE_ID_INFO_NAME, {val: obj.name, ack: true});
-        this.adapter.setState(BOSE_ID_INFO_TYPE, {val: obj.type, ack: true});
-        this.adapter.setState(BOSE_ID_INFO_MAC_ADDRESS, {val: obj.macAddress, ack: true});
-        this.adapter.setState(BOSE_ID_INFO_IP_ADDRESS, {val: this.adapter.config.address, ack:true});
-        this.adapter.ipAddress = this.adapter.config.address;
+        this.setState(BOSE_ID_INFO_NAME, obj.name);
+        this.setState(BOSE_ID_INFO_TYPE, obj.type);
+        this.setState(BOSE_ID_INFO_MAC_ADDRESS, obj.macAddress);
+        this.setState(BOSE_ID_INFO_IP_ADDRESS, obj.ipAddress);
+        this.adapter.ipAddress = obj.ipAddress;
         this.adapter.macAddress = obj.macAddress;
     }
 
     setVolume(obj) {
-        var actualVolume = obj.actualvolume;
-        var muted = (obj.muteenabled == 'true');
-        this.adapter.setState(BOSE_ID_VOLUME, {val: actualVolume, ack: true});
-        this.adapter.setState(BOSE_ID_MUTED, {val: muted, ack: true});
+        this.setState(BOSE_ID_VOLUME, obj.actualvolume);
+        this.setState(BOSE_ID_MUTED, (obj.muteenabled == 'true'));
     }
 
     setNowPlaying(obj) {
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_SOURCE, {val: obj.source, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_TRACK, {val: obj.track, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_ARTIST, {val: obj.artist, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_ALBUM, {val: obj.album, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_STATION, {val: obj.station, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_ART, {val: obj.art, ack: true});
-        this.adapter.setState(BOSE_ID_NOW_PLAYING_GENRE, {val: obj.genre, ack: true});
+        this.setState(BOSE_ID_NOW_PLAYING_SOURCE, obj.source);
+        this.setState(BOSE_ID_NOW_PLAYING_TRACK, obj.track);
+        this.setState(BOSE_ID_NOW_PLAYING_ARTIST, obj.artist);
+        this.setState(BOSE_ID_NOW_PLAYING_ALBUM, obj.album);
+        this.setState(BOSE_ID_NOW_PLAYING_STATION, obj.station);
+        this.setState(BOSE_ID_NOW_PLAYING_ART, obj.art);
+        this.setState(BOSE_ID_NOW_PLAYING_GENRE, obj.genre);
 
-        this.adapter.setState(BOSE_ID_ON, {val: (obj.source != 'STANDBY'), ack: true});
+        this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
     }
 
     setPresets(obj) {
@@ -448,16 +333,16 @@ class boseSoundTouch {
                 preset = obj[i];
             }
 
-            this.adapter.setState(format(BOSE_ID_PRESET_SOURCE.id, i+1), {val: preset.source, ack: true});
-            this.adapter.setState(format(BOSE_ID_PRESET_NAME.id, i+1), {val: preset.name, ack: true});
-            this.adapter.setState(format(BOSE_ID_PRESET_ICON.id, i+1), {val: preset.iconUrl, ack: true});
+            this.setState(BOSE_ID_PRESET_SOURCE, preset.source, {arg: i+1});
+            this.setState(BOSE_ID_PRESET_NAME, preset.name, {arg: i+1});
+            this.setState(BOSE_ID_PRESET_ICON, preset.iconUrl, {arg: i+1});
         }
     }
 
     setZone(obj) {
         if (!obj || obj === '') {
-            this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: '', ack: true});
-            this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: '', ack: true});
+            this.setState(BOSE_ID_ZONES_MEMBER_OF, '', {ack: true});
+            this.setState(BOSE_ID_ZONES_MASTER_OF, '', {ack: true});
         }
         else {
             if (obj.master === this.adapter.macAddress) {
@@ -470,63 +355,44 @@ class boseSoundTouch {
                 else {
                     members.push(obj.member._);
                 }
-                this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: members.join(';'), ack: true});
-                this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: '', ack: true});
+                this.setState(BOSE_ID_ZONES_MASTER_OF, members.join(';'), {ack: true});
+                this.setState(BOSE_ID_ZONES_MEMBER_OF, '', {ack: true});
             }
             else {
-                this.adapter.setState(BOSE_ID_ZONES_MASTER_OF, {val: '', ack: true});
-                this.adapter.setState(BOSE_ID_ZONES_MEMBER_OF, {val: obj.master, ack: true});
+                this.setState(BOSE_ID_ZONES_MASTER_OF, '', {ack: true});
+                this.setState(BOSE_ID_ZONES_MEMBER_OF, obj.master, {ack: true});
             }
         }
     }
 
     setSources(obj) {
-        /*const config = {
-            type: 'state',
-            common: {
-                //name: '',
-                type: '',
-                read: true,
-                write: false
-            },
-            native: {}
-        };*/
+        this.availableSources = [];
         for (var i in obj) {
             var source = obj[i];
 
-            /*config.common.type = 'string';
-            this.adapter.setObjectNotExists(format(BOSE_ID_SOURCE_NAME, i), config);
-            this.adapter.setState(format(BOSE_ID_SOURCE_NAME, i), {val: source.name, ack: true});
-
-            this.adapter.setObjectNotExists(format(BOSE_ID_SOURCE_SOURCE, i), config);
-            this.adapter.setState(format(BOSE_ID_SOURCE_SOURCE, i), {val: source.source, ack: true});
-
-            this.adapter.setObjectNotExists(format(BOSE_ID_SOURCE_STATUS, i), config);
-            this.adapter.setState(format(BOSE_ID_SOURCE_STATUS, i), {val: source.status, ack: true});
-
-            config.common.type = 'boolean';
-            this.adapter.setObjectNotExists(format(BOSE_ID_SOURCE_IS_LOCAL, i), config);
-            this.adapter.setState(format(BOSE_ID_SOURCE_IS_LOCAL, i), {val: source.isLocal, ack: true});
-            this.adapter.setObjectNotExists(format(BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED, i), config);
-            this.adapter.setState(format(BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED, i), {val: source.multiRoomAllowed, ack: true});*/
-
-            this.setObject(BOSE_ID_SOURCE_NAME, i);
-            this.setState(BOSE_ID_SOURCE_NAME, i, source.name);
-
-            this.setObject(BOSE_ID_SOURCE_SOURCE, i);
-            this.setState(BOSE_ID_SOURCE_SOURCE, i, source.source);
-
-            this.setObject(BOSE_ID_SOURCE_STATUS, i);
-            this.setState(BOSE_ID_SOURCE_STATUS, i, source.status);
-
-            this.setObject(BOSE_ID_SOURCE_IS_LOCAL, i);
-            this.setState(BOSE_ID_SOURCE_IS_LOCAL, i, source.isLocal);
-
-            this.setObject(BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED, i);
-            this.setState(BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED, i, source.multiRoomAllowed);
-
-            //this.adapter.log.debug('source:' + JSON.stringify(source));
+            if (source.status == 'READY') {
+                this.setObject(BOSE_ID_SOURCES_SOURCE, source.source);
+                this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: source.source});
+                // store source + sourceAccount in array, sourceAccount is needed to select source
+                this.availableSources.push({
+                    source: source.source,
+                    sourceAccount: source.sourceAccount
+                });
+            }
         }
+
+        // remove unavailable sources
+        var instance = this;
+        this.adapter.getStates(BOSE_ID_SOURCES + '.*', function(err, states) {
+            for (var id in states) {
+                var state = id.split('.');
+                state = state[state.length - 1];
+                var source = instance.availableSources.find(function (obj) { return obj.source === state; });
+                if (!source) {
+                    instance.adapter.deleteState('', instance.adapter.namespace + '.' + BOSE_ID_SOURCES, state);
+                }
+            }
+        });
     }
 
     _collectPlayEverywhereData(data, callback, filterList) {
@@ -682,6 +548,12 @@ class boseSoundTouch {
                 }
             }
         );
+    }
+    playSource(id) {
+        id = id.split('.');
+        id = id[id.length - 1];
+        var source = this.availableSources.find(function (obj) { return obj.source === id; });
+        this.socket.playSource(source.source, source.sourceAccount);
     }
 }
 

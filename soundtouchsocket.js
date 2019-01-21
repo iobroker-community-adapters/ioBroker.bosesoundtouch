@@ -149,6 +149,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             object.push({
                 name:             source._,
                 source:           source.source,
+                sourceAccount:    source.sourceAccount,
                 isLocal:          source.isLocal,
                 multiRoomAllowed: source.multiroomallowed,
                 status:           source.status
@@ -159,10 +160,18 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleDeviceInfo(data) {
         this.adapter.log.debug('received [info] ' + JSON.stringify(data));
+        var networkInfo;
+        if (Array.isArray(data.networkInfo)) {
+            networkInfo = data.networkInfo[0];
+        }
+        else {
+            networkInfo = data.networkInfo;
+        }
         var object = {
             name:       data.name,
             type:       data.type,
-            macAddress: data.deviceID
+            macAddress: data.deviceID,
+            ipAddress:  networkInfo.ipAddress
         };
         this.emit('deviceInfo', object);
     }
@@ -299,7 +308,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         var instance = this;
         this.xml2js.parseString(xml, {explicitArray: false, mergeAttrs: true}, function(err, jsData) {
             if (err) {
-                instance.adapter.error(err);
+                instance.adapter.log.error(err);
             }
             else {
                 instance._onJsData(jsData);
@@ -309,7 +318,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _postCallback(error /*, response, body*/) {
         if (error) {
-            this.adapter.error(error, 'error');
+            this.adapter.log.error(error, 'error');
         }
         /*else {
             this.adapter.log.debug('_post: ' + body);//options.baseUrl + command + ' - ' + bodyString);
@@ -334,8 +343,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this._post(command, bodyString);
     }
 
-    createZone(master, slaves)
-    {
+    createZone(master, slaves) {
         const body = '<zone master="{}"> {} </zone>';
         const member = '<member ipaddress="{}">{}</member>';
 
@@ -363,13 +371,19 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         socket._post('removeZoneSlave', str);
     }
 
+    playSource(source, sourceAccount) {
+        const body = '<ContentItem source="{}" sourceAccount="{}"></ContentItem>';
+        var str = format(body, source, sourceAccount);
+        this._post('select', str);
+    }
+
     get(value) {
         var instance = this;
         var command = 'http://' + this.address + ':8090/' + value;
         this.adapter.log.debug('request: ' + command);
         this.request.get(command, function(error, response, body) {
             if (error) {
-                instance.adapter.error(response.statusCode);
+                instance.adapter.log.error(response.statusCode);
             }
             else {
                 instance._parse(body);
