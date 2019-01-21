@@ -19,8 +19,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.request = require('request');
         this.promise = require('es6-promise');
         this.xml2js = require('xml2js');
-        //this.js2xml = require('json2xml');//.Js2Xml;
-        this.js2xml = new this.xml2js.Builder({ headless: true });
+        this.js2xml = new this.xml2js.Builder({ headless: true, rootName: 'ContentItem', renderOpts: { pretty: false }});
     }
 
     connect() {
@@ -103,8 +102,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleVolume(volume) {
         this.adapter.log.debug('received [volume]:' + volume.actualvolume);
-        //this.emit('volume', JSON.stringify(volume));
-        this.emit('volume', volume);
+        var obj = {
+            volume: volume.actualvolume,
+            muted: volume.muteenabled == 'true'
+        };
+        this.emit('volume', obj);
     }
 
     _handlePresets(data) {
@@ -125,16 +127,16 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 if (Array.isArray(presets)) {
                     for (i in presets) {
                         contentItem = presets[i].ContentItem;
-                        id = presets[i].id - 1;
-                        object[id].source  = contentItem.source;
+                        id = presets[i].$.id - 1;
+                        object[id].source  = contentItem.$.source;
                         object[id].name    = contentItem.itemName;
                         object[id].iconUrl = contentItem.containerArt;
                     }
                 }
                 else {
                     contentItem = presets.ContentItem;
-                    id = presets.id - 1;
-                    object[id].source  = contentItem.source;
+                    id = presets.$.id - 1;
+                    object[id].source  = contentItem.$.source;
                     object[id].name    = contentItem.itemName;
                     object[id].iconUrl = contentItem.containerArt;
                 }
@@ -147,10 +149,9 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.adapter.log.debug('received [sources]:' + JSON.stringify(data.sourceItem));
         var object = [];
         for (var i in data.sourceItem) {
-            var source = data.sourceItem[i];
+            var source = data.sourceItem[i].$;
             object.push({
-                name:             source._,
-                source:           source.source,
+                name:             source.source,
                 sourceAccount:    source.sourceAccount,
                 isLocal:          source.isLocal,
                 multiRoomAllowed: source.multiroomallowed,
@@ -172,7 +173,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         var object = {
             name:       data.name,
             type:       data.type,
-            macAddress: data.deviceID,
+            macAddress: data.$.deviceID,
             ipAddress:  networkInfo.ipAddress
         };
         this.emit('deviceInfo', object);
@@ -181,7 +182,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     _handleNowPlaying(data) {
         this.adapter.log.debug('received [now_playing] ' + JSON.stringify(data));
         var object = {
-            source:  data.source,
+            source:  data.$.source,
             track:   '',
             artist:  '',
             album:   '',
@@ -190,7 +191,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             genre:   '',
             contentItem: null
         };
-        switch (data.source) {
+        switch (data.$.source) {
             case 'AMAZON':
             case 'BLUETOOTH':
             case 'INTERNET_RADIO':
@@ -214,7 +215,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 break;
 
             case 'PRODUCT':
-                object.station = data.sourceAccount;
+                object.station = data.$.sourceAccount;
                 break;
         }
 
@@ -312,13 +313,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _parse(xml) {
         var instance = this;
-        this.xml2js.parseString(xml, {explicitArray: false/*, mergeAttrs: true*/}, function(err, jsData) {
+        this.xml2js.parseString(xml, { explicitArray: false }, function(err, jsData) {
             if (err) {
                 instance.adapter.log.error(err);
             }
             else {
-                //var j = JSON.parse(jsData);
-                var xml = instance.js2xml.buildObject(/*'Object',*/ jsData); //.toString();
                 instance._onJsData(jsData);
             }
         });
@@ -380,13 +379,14 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     playSource(source, sourceAccount, contentItem) {
+        var str;
         if (contentItem) {
-            var xml = new this.js2xml('ContentItem', contentItem);
-            var string = xml.toString();
-            this.adapter.log.debug(string);
+            str = this.js2xml.buildObject(contentItem);
         }
-        const body = '<ContentItem source="{}" sourceAccount="{}"></ContentItem>';
-        var str = format(body, source, sourceAccount);
+        else {
+            const body = '<ContentItem source="{}" sourceAccount="{}"></ContentItem>';
+            str = format(body, source, sourceAccount);
+        }
         this._post('select', str);
     }
 
