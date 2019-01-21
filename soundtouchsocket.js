@@ -19,6 +19,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.request = require('request');
         this.promise = require('es6-promise');
         this.xml2js = require('xml2js');
+        //this.js2xml = require('json2xml');//.Js2Xml;
+        this.js2xml = new this.xml2js.Builder({ headless: true });
     }
 
     connect() {
@@ -185,7 +187,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             album:   '',
             station: '',
             art:     '',
-            genre:   ''
+            genre:   '',
+            contentItem: null
         };
         switch (data.source) {
             case 'AMAZON':
@@ -204,6 +207,9 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 }
                 if (data.genre) {
                     object.genre = data.genre;
+                }
+                if (data.ContentItem) {
+                    object.contentItem = data.ContentItem;
                 }
                 break;
 
@@ -306,11 +312,13 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _parse(xml) {
         var instance = this;
-        this.xml2js.parseString(xml, {explicitArray: false, mergeAttrs: true}, function(err, jsData) {
+        this.xml2js.parseString(xml, {explicitArray: false/*, mergeAttrs: true*/}, function(err, jsData) {
             if (err) {
                 instance.adapter.log.error(err);
             }
             else {
+                //var j = JSON.parse(jsData);
+                var xml = instance.js2xml.buildObject(/*'Object',*/ jsData); //.toString();
                 instance._onJsData(jsData);
             }
         });
@@ -371,7 +379,12 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         socket._post('removeZoneSlave', str);
     }
 
-    playSource(source, sourceAccount) {
+    playSource(source, sourceAccount, contentItem) {
+        if (contentItem) {
+            var xml = new this.js2xml('ContentItem', contentItem);
+            var string = xml.toString();
+            this.adapter.log.debug(string);
+        }
         const body = '<ContentItem source="{}" sourceAccount="{}"></ContentItem>';
         var str = format(body, source, sourceAccount);
         this._post('select', str);
