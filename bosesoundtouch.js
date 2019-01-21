@@ -132,7 +132,7 @@ class boseSoundTouch {
                 case namespace + BOSE_ID_ZONES_PLAY_EVERYWHERE.id:
                     if (state.val) {
                         this.setMasterOf();
-                        this.setState(BOSE_ID_ZONE_PLAY_EVERYWHERE, false, {ack: false});
+                        this.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false, {ack: false});
                     }
                     break;
 
@@ -304,8 +304,8 @@ class boseSoundTouch {
     }
 
     setVolume(obj) {
-        this.setState(BOSE_ID_VOLUME, obj.actualvolume);
-        this.setState(BOSE_ID_MUTED, (obj.muteenabled == 'true'));
+        this.setState(BOSE_ID_VOLUME, obj.volume);
+        this.setState(BOSE_ID_MUTED, obj.muted);
     }
 
     setNowPlaying(obj) {
@@ -377,11 +377,11 @@ class boseSoundTouch {
             var source = obj[i];
 
             if (source.status == 'READY') {
-                this.setObject(BOSE_ID_SOURCES_SOURCE, source.source);
-                this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: source.source});
+                this.setObject(BOSE_ID_SOURCES_SOURCE, source.name);
+                this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: source.name});
                 // store source + sourceAccount in array, sourceAccount is needed to select source
                 this.availableSources.push({
-                    source: source.source,
+                    source: source.name,
                     sourceAccount: source.sourceAccount
                 });
             }
