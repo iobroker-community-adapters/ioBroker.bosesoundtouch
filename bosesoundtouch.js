@@ -139,7 +139,6 @@ class boseSoundTouch {
                 default:
                     if (id.includes(namespace + BOSE_ID_SOURCES) && state.val) {
                         this.playSource(id);
-                        this.setState(id, false, {ack: false});
                     }
                     break;
             }
@@ -319,6 +318,13 @@ class boseSoundTouch {
         this.setState(BOSE_ID_NOW_PLAYING_GENRE, obj.genre);
 
         this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
+
+        if (obj.contentItem) {
+            var source = this.availableSources.find(function (source) { return source.source === obj.source; });
+            if (source) {
+                source.contentItem = obj.contentItem;
+            }
+        }
     }
 
     setPresets(obj) {
@@ -553,7 +559,8 @@ class boseSoundTouch {
         id = id.split('.');
         id = id[id.length - 1];
         var source = this.availableSources.find(function (obj) { return obj.source === id; });
-        this.socket.playSource(source.source, source.sourceAccount);
+        this.socket.playSource(source.source, source.sourceAccount, source.contentItem);
+        this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: id});
     }
 }
 
