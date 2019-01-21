@@ -115,7 +115,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             };
         }
         if (data.presets) {
-            this.adapter.log.debug('presets:' + JSON.stringify(data.presets));
+            this.adapter.log.debug('received [presets]:' + JSON.stringify(data.presets));
             if (data.presets.preset) {
                 var presets = data.presets.preset;
                 var contentItem;
@@ -139,6 +139,22 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             }
         }
         this.emit('presets', object);
+    }
+
+    _handleSources(data) {
+        this.adapter.log.debug('received [sources]:' + JSON.stringify(data.sourceItem));
+        var object = [];
+        for (var i in data.sourceItem) {
+            var source = data.sourceItem[i];
+            object.push({
+                name:             source._,
+                source:           source.source,
+                isLocal:          source.isLocal,
+                multiRoomAllowed: source.multiroomallowed,
+                status:           source.status
+            });
+        }
+        this.emit('sources', object);
     }
 
     _handleDeviceInfo(data) {
@@ -377,6 +393,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.get('volume');
     }
 
+    getSources() {
+        this.get('sources');
+    }
+
     getZone() {
         this.get('getZone');
     }
@@ -391,7 +411,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             //_instance.getBassCapabilities(),
             //_instance.getBassInfo(),
             instance.getVolume(),
-            //_instance.getSources(),
+            instance.getSources(),
             instance.getZone(),
             //_instance.getTrackInfo()
         ]);
