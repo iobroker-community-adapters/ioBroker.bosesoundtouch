@@ -382,7 +382,8 @@ class boseSoundTouch {
                 // store source + sourceAccount in array, sourceAccount is needed to select source
                 this.availableSources.push({
                     source: source.name,
-                    sourceAccount: source.sourceAccount
+                    sourceAccount: source.sourceAccount,
+                    isLocal: source.isLocal,
                 });
             }
         }
@@ -391,9 +392,8 @@ class boseSoundTouch {
         var instance = this;
         this.adapter.getStates(BOSE_ID_SOURCES + '.*', function(err, states) {
             for (var id in states) {
-                var state = id.split('.');
-                state = state[state.length - 1];
-                var source = instance.availableSources.find(function (obj) { return obj.source === state; });
+                let state = id.split('.').pop();
+                var source = instance.availableSources.find(function (element) { return element.source === state; });
                 if (!source) {
                     instance.adapter.deleteState('', instance.adapter.namespace + '.' + BOSE_ID_SOURCES, state);
                 }
@@ -559,9 +559,13 @@ class boseSoundTouch {
         id = id.split('.');
         id = id[id.length - 1];
         var source = this.availableSources.find(function (obj) { return obj.source === id; });
-        this.socket.playSource(source.source, source.sourceAccount, source.contentItem);
+        // don't switch to on-local source as long as contentItem object (sent with now playing info) has received
+        // TODO: persist contentItem objects
+        if (source && (source.isLocal || source.contentItem)) {
+            this.socket.playSource(source.source, source.sourceAccount, source.contentItem);
+        }
         this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: id});
     }
 }
 
-var adapter = new(boseSoundTouch);
+var adapter = new boseSoundTouch();

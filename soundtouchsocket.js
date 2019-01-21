@@ -153,7 +153,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             object.push({
                 name:             source.source,
                 sourceAccount:    source.sourceAccount,
-                isLocal:          source.isLocal,
+                isLocal:          source.isLocal == 'true',
                 multiRoomAllowed: source.multiroomallowed,
                 status:           source.status
             });
