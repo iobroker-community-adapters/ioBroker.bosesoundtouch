@@ -1,6 +1,6 @@
 {
   "name": "iobroker.bosesoundtouch",
-  "version": "0.2.3",
+  "version": "0.9.0",
   "description": "Bose SoundTouch Adapter",
   "author": {
     "name": "SwedishChef",
