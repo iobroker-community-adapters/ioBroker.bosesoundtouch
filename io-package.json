@@ -3,6 +3,10 @@
         "name": "bosesoundtouch",
         "version": "0.2.4",
         "news": {
+            "0.9.0": {
+                "en": "Added possibility to change the source. \nAll available sources are listed as states in folder sources and can be used as play buttons.",
+                "de": "Die Quellen können jetzt geändert werden. \nAlle verfügbaren Quellen werden als State im Unterverzeichnis 'sources' gelistet und können als Play-Button verwendet werden."
+            },
             "0.2.4": {
                 "en": "Core Files/Testing Update and introduce adapter-core",
                 "de": "Kern-Dateien/Tests aktualisiert und Einführung des adapter-core"

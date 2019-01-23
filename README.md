@@ -59,6 +59,9 @@ The following description will help you to create groups with you multiroom syst
 | removeMasterOf| Add MAC address of the speaker you would like to remove from this master speaker. Also possible to put more then one speaker (split by ";").
 
 ## Changelog
+### 0.9.0 (23.01.2019)
+* Added possibility to change the source. <br>
+All available sources are listed as states in folder sources and can be used as lay buttons.
 
 ### 0.2.4 (05.05.2019)
 * Core Files/Testing Update and introduce adapter-core
