@@ -39,7 +39,7 @@ const BOSE_ID_INFO_IP_ADDRESS = BOSE_ID_DEVICE_INFO + 'ipAddress';
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
-var utils = require(__dirname + '/lib/utils'); // Get common adapter utils
+var utils = require('@iobroker/adapter-core'); // Get common adapter utils
 var soundtouchsocket = require(__dirname + '/soundtouchsocket');
 //var bosestates = require(__dirname + '/bosestates');
 
