@@ -24,7 +24,8 @@
     "request": "^2.88.0",
     "string-format": "^2.0.0",
     "ws": "^6.1.0",
-    "xml2js": "^0.4.19"
+    "xml2js": "^0.4.19",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
     "gulp": "^3.9.1",
@@ -36,8 +37,7 @@
     "grunt-jscs": "^3.0.1",
     "grunt-replace": "^1.0.1",
     "mocha": "^6.0.2",
-    "eslint": "^5.8.0",
-    "@iobroker/adapter-core": "^1.0.3"
+    "eslint": "^5.8.0"
   },
   "main": "bosesoundtouch.js",
   "scripts": {
