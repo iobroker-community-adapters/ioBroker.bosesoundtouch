@@ -74,6 +74,7 @@
         "authors": [
             "SwedishChef <swedish.chef@gmx.at>"
         ],
+        "license": "MIT",
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
