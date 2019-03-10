@@ -1,5 +1,5 @@
 # ioBroker.bosesoundtouch ![Logo](admin/bosesoundtouch.png) 
-
+![Number of Installations](http://iobroker.live/badges/bosesoundtouch-installed.svg) ![Number of Installations](http://iobroker.live/badges/bosesoundtouch-stable.svg) 
 Bose SoundTouch adapter for ioBroker IoT platform
 
 ## Control States
