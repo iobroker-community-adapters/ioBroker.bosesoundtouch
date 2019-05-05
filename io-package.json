@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.2.3",
+        "version": "0.2.4",
         "news": {
+            "0.2.4": {
+                "en": "Core Files/Testing Update and introduce adapter-core",
+                "de": "Kern-Dateien/Tests aktualisiert und Einführung des adapter-core"
+            },
             "0.2.3": {
                 "en": "Fixed issue #24 'does not start'",
                 "de": "Behoben: Problem #24 'startet nicht'"
