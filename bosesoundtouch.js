@@ -319,7 +319,7 @@ class boseSoundTouch {
 
         this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
 
-        if (obj.contentItem) {
+        if (obj.contentItem && this.availableSources) {
             var source = this.availableSources.find(function (source) { return source.source === obj.source; });
             if (source) {
                 source.contentItem = obj.contentItem;

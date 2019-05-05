@@ -61,7 +61,7 @@ The following description will help you to create groups with you multiroom syst
 ## Changelog
 ### 0.9.0 (23.01.2019)
 * Added possibility to change the source. <br>
-All available sources are listed as states in folder sources and can be used as lay buttons.
+All available sources are listed as states in folder sources and can be used as play buttons.
 
 ### 0.2.4 (05.05.2019)
 * Core Files/Testing Update and introduce adapter-core
