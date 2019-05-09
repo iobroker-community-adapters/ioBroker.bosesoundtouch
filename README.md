@@ -68,8 +68,8 @@ Soundtouch Application itself.
 
 ### 0.9.0 (23.01.2019)
 
-* Added possibility to change the source. <br>
-All available sources are listed as states in folder sources and can be used as play buttons.
+* Added possibility to change the source.  
+  All available sources are listed as states in folder sources and can be used as play buttons.
 
 ### 0.2.4 (05.05.2019)
 
