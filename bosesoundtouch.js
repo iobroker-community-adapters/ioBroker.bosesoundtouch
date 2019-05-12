@@ -48,7 +48,7 @@ const BOSE_ID_SOURCE_PLAY               = { id: BOSE_ID_SOURCES + '{}.play',    
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
-var utils = require('D:/Harald/Documents/iobroker/node_modules/@iobroker/adapter-core'); // Get common adapter utils
+var utils = require('@iobroker/adapter-core'); // Get common adapter utils
 var soundtouchsocket = require(__dirname + '/soundtouchsocket');
 //var bosestates = require(__dirname + '/bosestates');
 const adapterName = require('./package.json').name.split('.').pop();
