@@ -1,9 +1,8 @@
-# ioBroker.bosesoundtouch
+# ioBroker.bosesoundtouch ![Logo](admin/bosesoundtouch.png)
 
-![Number of Installations](http://iobroker.live/badges/bosesoundtouch-installed.svg)
 ![Number of Installations](http://iobroker.live/badges/bosesoundtouch-stable.svg)
-
-![Logo](admin/bosesoundtouch.png)
+![Number of Installations](http://iobroker.live/badges/bosesoundtouch-installed.svg)  
+[![NPM](https://nodei.co/npm/iobroker.bosesoundtouch.png?downloads=true)](https://nodei.co/npm/iobroker.bosesoundtouch/)
 
 Bose SoundTouch adapter for ioBroker IoT platform
 
@@ -68,6 +67,11 @@ Soundtouch Application itself.
 | removeMasterOf| Add MAC address of the speaker you would like to remove from this master speaker. Also possible to put more then one speaker (split by ";").
 
 ## Changelog
+
+### 0.9.1 (12.05.2019)
+
+* Support for compact mode.
+* Fixed bugs found by adapter checker.
 
 ### 0.9.0 (23.01.2019)
 
@@ -164,3 +168,9 @@ Soundtouch Application itself.
 ### 0.0.5 and earlier (01.11.2017)
 
 * Initial versions
+
+## License
+
+[The MIT License (MIT)](LICENSE)
+
+Copyright (c) 2019 SwedishChef <swedish.chef@gmx.at>

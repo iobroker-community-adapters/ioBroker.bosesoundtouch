@@ -48,34 +48,35 @@ const BOSE_ID_SOURCE_PLAY               = { id: BOSE_ID_SOURCES + '{}.play',    
 
 // you have to require the utils module and call adapter function
 var format = require('string-format');
-var utils = require('@iobroker/adapter-core'); // Get common adapter utils
+var utils = require('D:/Harald/Documents/iobroker/node_modules/@iobroker/adapter-core'); // Get common adapter utils
 var soundtouchsocket = require(__dirname + '/soundtouchsocket');
 //var bosestates = require(__dirname + '/bosestates');
+const adapterName = require('./package.json').name.split('.').pop();
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 class boseSoundTouch {
-    constructor() {
+    constructor(options) {
         var instance = this;
 
-        this.adapter = utils.Adapter('bosesoundtouch');
+        options = options || {};
+        Object.assign(options, {
+            name: adapterName,
+            // is called when adapter shuts down - callback has to be called under any circumstances!
+            unload: function(callback) { instance.onUnload(callback); },
+            // is called if a subscribed object changes
+            objectChange: function(id, obj) { instance.onObjectChange(id, obj); },
+            // is called if a subscribed state changes
+            stateChange: function (id, state) { instance.onStateChange(id, state); },
+            // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
+            message: function(obj) { instance.onMessage(obj); },
+            // is called when databases are connected and adapter received configuration.
+            // start here!
+            ready: function() { instance.onReady(); }
+        });
 
-        // is called when adapter shuts down - callback has to be called under any circumstances!
-        this.adapter.on('unload', function(callback) { instance.onUnload(callback); });
-
-        // is called if a subscribed object changes
-        this.adapter.on('objectChange', function(id, obj) { instance.onObjectChange(id, obj); });
-
-        // is called if a subscribed state changes
-        this.adapter.on('stateChange', function (id, state) { instance.onStateChange(id, state); });
-
-        // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-        this.adapter.on('message', function(obj) { instance.onMessage(obj); });
-
-        // is called when databases are connected and adapter received configuration.
-        // start here!
-        this.adapter.on('ready', function() { instance.onReady(); });
+        this.adapter = utils.Adapter(options);
     }
 
     onUnload(callback) {
@@ -150,7 +151,7 @@ class boseSoundTouch {
         if (typeof obj == 'object' && obj.message) {
             if (obj.command == 'send') {
                 // e.g. send email or pushover or whatever
-                adapter.log.debug('send command');
+                this.adapter.log.debug('send command');
 
                 // Send response in callback if required
                 if (obj.callback) {
@@ -568,4 +569,14 @@ class boseSoundTouch {
     }
 }
 
-var adapter = new boseSoundTouch();
+function startAdapter(options) {
+    return new boseSoundTouch(options);
+}
+
+// If started as allInOne/compact mode => return function to create instance
+if (module && module.parent) {
+    module.exports = startAdapter;
+} else {
+    // or start the instance directly
+    startAdapter();
+}

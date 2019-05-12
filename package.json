@@ -1,13 +1,13 @@
 {
   "name": "iobroker.bosesoundtouch",
-  "version": "0.9.0",
-  "description": "Bose SoundTouch Adapter",
+  "version": "0.9.1",
+  "description": "Integration for Bose SoundTouch speakers",
   "author": {
     "name": "SwedishChef",
     "email": "swedish.chef@gmx.at"
   },
   "contributors": [],
-  "homepage": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch",
+  "homepage": "https://github.com/SwedishChef/ioBroker.bosesoundtouch",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch"
+    "url": "https://github.com/SwedishChef/ioBroker.bosesoundtouch"
   },
   "dependencies": {
     "es6-promise": "^4.2.5",
@@ -44,7 +44,7 @@
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch/issues"
+    "url": "https://github.com/SwedishChef/ioBroker.bosesoundtouch/issues"
   },
   "readmeFilename": "README.md"
 }

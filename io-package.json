@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.9.0",
+        "version": "0.9.1",
         "news": {
+            "0.9.1": {
+                "en": "Support for compact mode. \nFixed bugs found by adapter checker.",
+                "de": "Unterstützung für compact mode. \nGefundene Fehler vom adapter checker behoben."
+            },
             "0.9.0": {
                 "en": "Added possibility to change the source. \nAll available sources are listed as states in folder sources and can be used as play buttons.",
                 "de": "Die Quellen können jetzt geändert werden. \nAlle verfügbaren Quellen werden als State im Unterverzeichnis 'sources' gelistet und können als Play-Button verwendet werden."
@@ -74,7 +78,7 @@
                 "nl": "Eerste release"
             }
         },
-        "title": "Bose SoundTouch Adapter",
+        "title": "Bose SoundTouch",
         "desc": {
             "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
             "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen."
@@ -87,11 +91,12 @@
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
         "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/SwedishChef1/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
+        "extIcon": "https://raw.githubusercontent.com/SwedishChef/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
         "keywords": ["bose", "soundtouch"],
-        "readme": "https://github.com/SwedishChef1/ioBroker.bosesoundtouch/blob/master/README.md",
+        "readme": "https://github.com/SwedishChef/ioBroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
         "type": "multimedia",
+        "compact": true,
         "restartAdapters": []
     },
     "native": {
