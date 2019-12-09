@@ -483,7 +483,7 @@ class boseSoundTouch {
             },
             slave: []
         };
-        this.adapter.objects.getObjectView(
+        this.adapter.getObjectView(
             'system', 'instance', {
                 startkey: 'system.adapter.bosesoundtouch.',
                 endkey: 'system.adapter.bosesoundtouch.\u9999' },
@@ -530,7 +530,7 @@ class boseSoundTouch {
             },
             slave: []
         };
-        this.adapter.objects.getObjectView(
+        this.adapter.getObjectView(
             'system', 'instance', {
                 startkey: 'system.adapter.bosesoundtouch.',
                 endkey: 'system.adapter.bosesoundtouch.\u9999' },
