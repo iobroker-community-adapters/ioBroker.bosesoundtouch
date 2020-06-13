@@ -7,17 +7,20 @@
 
 const BOSE_ID_ON                   = { id: 'on',             type: 'boolean', write: true };
 const BOSE_ID_KEY                  = { id: 'key',            type: 'string',  write: true };
-const BOSE_ID_VOLUME               = { id: 'volume',         type: 'integer', write: true };
-const BOSE_ID_MUTED                = { id: 'muted',          type: 'boolean', write: true };
+const BOSE_ID_VOLUME               = { id: 'volume',         type: 'integer', write: true, role: 'level.volume' };
+const BOSE_ID_MUTED                = { id: 'muted',          type: 'boolean', write: true, role: 'media.mute' };
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying';
-const BOSE_ID_NOW_PLAYING_SOURCE  = { id: BOSE_ID_NOW_PLAYING + '.source',  type: 'string' };
-const BOSE_ID_NOW_PLAYING_TRACK   = { id: BOSE_ID_NOW_PLAYING + '.track',   type: 'string' };
-const BOSE_ID_NOW_PLAYING_ARTIST  = { id: BOSE_ID_NOW_PLAYING + '.artist',  type: 'string' };
-const BOSE_ID_NOW_PLAYING_ALBUM   = { id: BOSE_ID_NOW_PLAYING + '.album',   type: 'string' };
+const BOSE_ID_NOW_PLAYING_SOURCE  = { id: BOSE_ID_NOW_PLAYING + '.source',  type: 'string',  role: 'media.input' };
+const BOSE_ID_NOW_PLAYING_TRACK   = { id: BOSE_ID_NOW_PLAYING + '.track',   type: 'string',  role: 'media.title' };
+const BOSE_ID_NOW_PLAYING_ARTIST  = { id: BOSE_ID_NOW_PLAYING + '.artist',  type: 'string',  role: 'media.artist' };
+const BOSE_ID_NOW_PLAYING_ALBUM   = { id: BOSE_ID_NOW_PLAYING + '.album',   type: 'string',  role: 'media.album' };
 const BOSE_ID_NOW_PLAYING_STATION = { id: BOSE_ID_NOW_PLAYING + '.station', type: 'string' };
-const BOSE_ID_NOW_PLAYING_ART     = { id: BOSE_ID_NOW_PLAYING + '.art',     type: 'string' };
-const BOSE_ID_NOW_PLAYING_GENRE   = { id: BOSE_ID_NOW_PLAYING + '.genre',   type: 'string' };
+const BOSE_ID_NOW_PLAYING_ART     = { id: BOSE_ID_NOW_PLAYING + '.art',     type: 'string',  role: 'media.cover' };
+const BOSE_ID_NOW_PLAYING_GENRE   = { id: BOSE_ID_NOW_PLAYING + '.genre',   type: 'string' , role: 'media.genre' };
+const BOSE_ID_NOW_PLAYING_TIME    = { id: BOSE_ID_NOW_PLAYING + '.time',    type: 'integer', role: 'media.elapsed' };
+const BOSE_ID_NOW_PLAYING_TOTAL   = { id: BOSE_ID_NOW_PLAYING + '.total',   type: 'integer', role: 'media.duration' };
+const BOSE_ID_NOW_PLAYING_STATUS  = { id: BOSE_ID_NOW_PLAYING + '.status',  type: 'string',  role: 'media.state' };
 
 const BOSE_ID_PRESETS = 'presets';
 const BOSE_ID_PRESET_SOURCE = { id: BOSE_ID_PRESETS + '.{}.source',  type:'string' };
@@ -27,8 +30,8 @@ const BOSE_ID_PRESET_ICON   = { id: BOSE_ID_PRESETS + '.{}.iconUrl', type:'url' 
 const BOSE_ID_ZONES = 'zones';
 const BOSE_ID_ZONES_MEMBER_OF        = { id: BOSE_ID_ZONES + '.memberOf',       type: 'string' };
 const BOSE_ID_ZONES_MASTER_OF        = { id: BOSE_ID_ZONES + '.masterOf',       type: 'string' };
-const BOSE_ID_ZONES_ADD_MASTER_OF    = { id: BOSE_ID_ZONES + '.addMasterOf',    type: 'string', write: true };
-const BOSE_ID_ZONES_REMOVE_MASTER_OF = { id: BOSE_ID_ZONES + '.removeMasterOf', type: 'string', write: true};
+const BOSE_ID_ZONES_ADD_MASTER_OF    = { id: BOSE_ID_ZONES + '.addMasterOf',    type: 'string',  write: true };
+const BOSE_ID_ZONES_REMOVE_MASTER_OF = { id: BOSE_ID_ZONES + '.removeMasterOf', type: 'string',  write: true};
 const BOSE_ID_ZONES_PLAY_EVERYWHERE  = { id: BOSE_ID_ZONES + '.playEverywhere', type: 'boolean', write: true };
 
 const BOSE_ID_DEVICE_INFO = 'deviceInfo';
@@ -46,12 +49,42 @@ const BOSE_ID_SOURCE_MULTI_ROOM_ALLOWED = { id: BOSE_ID_SOURCES + '{}.multiRoomA
 const BOSE_ID_SOURCE_STATUS             = { id: BOSE_ID_SOURCES + '{}.status',           type:'string' };
 const BOSE_ID_SOURCE_PLAY               = { id: BOSE_ID_SOURCES + '{}.play',             type:'boolean' };*/
 
+const BOSE_ID_KEYS = 'keys';
+const BOSE_ID_KEYS_PLAY 			= { id: BOSE_ID_KEYS + '.PLAY', 			type: 'playButton', write: true, role: 'button.play' };
+const BOSE_ID_KEYS_PAUSE 			= { id: BOSE_ID_KEYS + '.PAUSE', 			type: 'playButton', write: true, role: 'button.pause' };
+const BOSE_ID_KEYS_STOP 			= { id: BOSE_ID_KEYS + '.STOP', 			type: 'playButton', write: true, role: 'button.stop' };
+const BOSE_ID_KEYS_PREV_TRACK 		= { id: BOSE_ID_KEYS + '.PREV_TRACK', 	 	type: 'playButton', write: true, role: 'button.prev' };
+const BOSE_ID_KEYS_NEXT_TRACK 		= { id: BOSE_ID_KEYS + '.NEXT_TRACK', 	 	type: 'playButton', write: true, role: 'button.next' };
+const BOSE_ID_KEYS_THUMBS_UP 		= { id: BOSE_ID_KEYS + '.THUMBS_UP', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_THUMBS_DOWN 		= { id: BOSE_ID_KEYS + '.THUMBS_DOWN', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_BOOKMARK 		= { id: BOSE_ID_KEYS + '.BOOKMARK', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_POWER 			= { id: BOSE_ID_KEYS + '.POWER', 			type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_VOLUME_UP 		= { id: BOSE_ID_KEYS + '.VOLUME_UP', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_VOLUME_DOWN 		= { id: BOSE_ID_KEYS + '.VOLUME_DOWN', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_1 		= { id: BOSE_ID_KEYS + '.PRESET_1', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_2 		= { id: BOSE_ID_KEYS + '.PRESET_2', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_3 		= { id: BOSE_ID_KEYS + '.PRESET_3', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_4 		= { id: BOSE_ID_KEYS + '.PRESET_4', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_5 		= { id: BOSE_ID_KEYS + '.PRESET_5', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PRESET_6 		= { id: BOSE_ID_KEYS + '.PRESET_6', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_AUX_INPUT 		= { id: BOSE_ID_KEYS + '.AUX_INPUT', 		type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_SHUFFLE_OFF 		= { id: BOSE_ID_KEYS + '.SHUFFLE_OFF', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_SHUFFLE_ON 		= { id: BOSE_ID_KEYS + '.SHUFFLE_ON', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_REPEAT_OFF 		= { id: BOSE_ID_KEYS + '.REPEAT_OFF', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_REPEAT_ONE 		= { id: BOSE_ID_KEYS + '.REPEAT_ONE', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_REPEAT_ALL 		= { id: BOSE_ID_KEYS + '.REPEAT_ALL', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_PLAY_PAUSE 		= { id: BOSE_ID_KEYS + '.PLAY_PAUSE', 	 	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_ADD_FAVORITE 	= { id: BOSE_ID_KEYS + '.ADD_FAVORITE',   	type: 'playButton', write: true, role: 'button' };
+const BOSE_ID_KEYS_REMOVE_FAVORITE 	= { id: BOSE_ID_KEYS + '.REMOVE_FAVORITE', 	type: 'playButton', write: true, role: 'button' };
+
+
 // you have to require the utils module and call adapter function
 var format = require('string-format');
 var utils = require('@iobroker/adapter-core'); // Get common adapter utils
 var soundtouchsocket = require(__dirname + '/soundtouchsocket');
 //var bosestates = require(__dirname + '/bosestates');
 const adapterName = require('./package.json').name.split('.').pop();
+var playTimer, playTimerTime;
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
@@ -135,6 +168,110 @@ class boseSoundTouch {
                         this.setMasterOf();
                         this.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false, {ack: false});
                     }
+                    break;
+
+                case namespace + BOSE_ID_KEYS_PLAY.id:
+                    this.setState(BOSE_ID_KEY, 'PLAY', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_PAUSE.id:
+                    this.setState(BOSE_ID_KEY, 'PAUSE', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_STOP.id:
+                    this.setState(BOSE_ID_KEY, 'STOP', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_PREV_TRACK.id:
+                    this.setState(BOSE_ID_KEY, 'PREV_TRACK', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_NEXT_TRACK.id:
+                    this.setState(BOSE_ID_KEY, 'NEXT_TRACK', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_THUMBS_UP.id:
+                    this.setState(BOSE_ID_KEY, 'THUMBS_UP', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_THUMBS_DOWN.id:
+                    this.setState(BOSE_ID_KEY, 'THUMBS_DOWN', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_BOOKMARK.id:
+                    this.setState(BOSE_ID_KEY, 'BOOKMARK', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_POWER.id:
+                    this.setState(BOSE_ID_KEY, 'POWER', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_VOLUME_UP.id:
+                    this.setState(BOSE_ID_KEY, 'VOLUME_UP', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_VOLUME_DOWN.id:
+                    this.setState(BOSE_ID_KEY, 'VOLUME_DOWN', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_PRESET_1.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_1', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_PRESET_2.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_2', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_PRESET_3.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_3', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_PRESET_4.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_4', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_PRESET_5.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_5', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_PRESET_6.id:
+                    this.setState(BOSE_ID_KEY, 'PRESET_6', {ack: false});
+                    break;
+					
+                case namespace + BOSE_ID_KEYS_AUX_INPUT.id:
+                    this.setState(BOSE_ID_KEY, 'AUX_INPUT', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_SHUFFLE_OFF.id:
+                    this.setState(BOSE_ID_KEY, 'SHUFFLE_OFF', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_SHUFFLE_ON.id:
+                    this.setState(BOSE_ID_KEY, 'SHUFFLE_ON', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_REPEAT_OFF.id:
+                    this.setState(BOSE_ID_KEY, 'REPEAT_OFF', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_REPEAT_ONE.id:
+                    this.setState(BOSE_ID_KEY, 'REPEAT_ONE', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_REPEAT_ALL.id:
+                    this.setState(BOSE_ID_KEY, 'REPEAT_ALL', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_PLAY_PAUSE.id:
+                    this.setState(BOSE_ID_KEY, 'PLAY_PAUSE', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_ADD_FAVORITE.id:
+                    this.setState(BOSE_ID_KEY, 'ADD_FAVORITE', {ack: false});
+                    break;
+
+                case namespace + BOSE_ID_KEYS_REMOVE_FAVORITE.id:
+                    this.setState(BOSE_ID_KEY, 'REMOVE_FAVORITE', {ack: false});
                     break;
 
                 default:
@@ -251,6 +388,10 @@ class boseSoundTouch {
             config.common.write = true;
         }
 
+        if (obj.role) {
+            config.common.role = obj.role;
+        }
+
         this.adapter.setObjectNotExists(this._getId(obj, arg), config);
     }
 
@@ -288,11 +429,41 @@ class boseSoundTouch {
         this.setObject(BOSE_ID_NOW_PLAYING_STATION);
         this.setObject(BOSE_ID_NOW_PLAYING_ART);
         this.setObject(BOSE_ID_NOW_PLAYING_GENRE);
+        this.setObject(BOSE_ID_NOW_PLAYING_TIME);
+        this.setObject(BOSE_ID_NOW_PLAYING_TOTAL);
+        this.setObject(BOSE_ID_NOW_PLAYING_STATUS);
 
         this.setObject(BOSE_ID_INFO_NAME);
         this.setObject(BOSE_ID_INFO_TYPE);
         this.setObject(BOSE_ID_INFO_MAC_ADDRESS);
         this.setObject(BOSE_ID_INFO_IP_ADDRESS);
+
+		this.setObject(BOSE_ID_KEYS_PLAY);
+		this.setObject(BOSE_ID_KEYS_PAUSE);
+		this.setObject(BOSE_ID_KEYS_STOP);
+		this.setObject(BOSE_ID_KEYS_PREV_TRACK);
+		this.setObject(BOSE_ID_KEYS_NEXT_TRACK);
+		this.setObject(BOSE_ID_KEYS_THUMBS_UP);
+		this.setObject(BOSE_ID_KEYS_THUMBS_DOWN);
+		this.setObject(BOSE_ID_KEYS_BOOKMARK);
+		this.setObject(BOSE_ID_KEYS_POWER);
+		this.setObject(BOSE_ID_KEYS_VOLUME_UP);
+		this.setObject(BOSE_ID_KEYS_VOLUME_DOWN);
+		this.setObject(BOSE_ID_KEYS_PRESET_1);
+		this.setObject(BOSE_ID_KEYS_PRESET_2);
+		this.setObject(BOSE_ID_KEYS_PRESET_3);
+		this.setObject(BOSE_ID_KEYS_PRESET_4);
+		this.setObject(BOSE_ID_KEYS_PRESET_5);
+		this.setObject(BOSE_ID_KEYS_PRESET_6);
+		this.setObject(BOSE_ID_KEYS_AUX_INPUT);
+		this.setObject(BOSE_ID_KEYS_SHUFFLE_OFF);
+		this.setObject(BOSE_ID_KEYS_SHUFFLE_ON);
+		this.setObject(BOSE_ID_KEYS_REPEAT_OFF);
+		this.setObject(BOSE_ID_KEYS_REPEAT_ONE);
+		this.setObject(BOSE_ID_KEYS_REPEAT_ALL);
+		this.setObject(BOSE_ID_KEYS_PLAY_PAUSE);
+		this.setObject(BOSE_ID_KEYS_ADD_FAVORITE);
+		this.setObject(BOSE_ID_KEYS_REMOVE_FAVORITE);
     }
 
     setDeviceInfo(obj) {
@@ -317,7 +488,9 @@ class boseSoundTouch {
         this.setState(BOSE_ID_NOW_PLAYING_STATION, obj.station);
         this.setState(BOSE_ID_NOW_PLAYING_ART, obj.art);
         this.setState(BOSE_ID_NOW_PLAYING_GENRE, obj.genre);
-
+        this.setState(BOSE_ID_NOW_PLAYING_TOTAL, obj.total);
+        this.setState(BOSE_ID_NOW_PLAYING_STATUS, obj.playStatus);
+		if (obj.time && obj.time != "" && obj.playStatus == "PLAY_STATE") startPlayTimer(this, obj.time); else stopPlayTimer(this, obj.time);
         this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
 
         if (obj.contentItem && this.availableSources) {
@@ -326,6 +499,23 @@ class boseSoundTouch {
                 source.contentItem = obj.contentItem;
             }
         }
+
+		function startPlayTimer(instance, time) {
+			if (playTimer) clearInterval(playTimer);
+			playTimerTime = time;
+			instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime);		
+			playTimer = setInterval(function(){
+				playTimerTime = parseInt(playTimerTime) + 1;
+				instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime.toString());
+			}, 1000);			
+		}
+		
+		function stopPlayTimer(instance, time) {
+			if (playTimer) clearInterval(playTimer);
+			playTimer = false;
+			playTimerTime = time;
+			instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime);		
+		}
     }
 
     setPresets(obj) {
