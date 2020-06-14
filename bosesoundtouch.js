@@ -145,8 +145,16 @@ class boseSoundTouch {
                     break;
 
                 case namespace + BOSE_ID_KEY.id:
-                    this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
-                    this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
+					switch (state.val){
+						case "PRESET_1": case "PRESET_2": case "PRESET_3": case "PRESET_4": case "PRESET_5": case "PRESET_6":
+							this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
+							break;
+							
+						default:
+							this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
+							this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
+							break;
+					}
                     break;
 
                 case namespace + BOSE_ID_MUTED.id:
