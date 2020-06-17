@@ -21,6 +21,8 @@ const BOSE_ID_NOW_PLAYING_GENRE   = { id: BOSE_ID_NOW_PLAYING + '.genre',   type
 const BOSE_ID_NOW_PLAYING_TIME    = { id: BOSE_ID_NOW_PLAYING + '.time',    type: 'integer', role: 'media.elapsed' };
 const BOSE_ID_NOW_PLAYING_TOTAL   = { id: BOSE_ID_NOW_PLAYING + '.total',   type: 'integer', role: 'media.duration' };
 const BOSE_ID_NOW_PLAYING_STATUS  = { id: BOSE_ID_NOW_PLAYING + '.status',  type: 'string',  role: 'media.state' };
+const BOSE_ID_NOW_PLAYING_REPEAT  = { id: BOSE_ID_NOW_PLAYING + '.repeat',  type: 'string',  role: 'media.mode.repeat' };
+const BOSE_ID_NOW_PLAYING_SHUFFLE = { id: BOSE_ID_NOW_PLAYING + '.shuffle', type: 'string',  role: 'media.mode.shuffle' };
 
 const BOSE_ID_PRESETS = 'presets';
 const BOSE_ID_PRESET_SOURCE = { id: BOSE_ID_PRESETS + '.{}.source',  type:'string' };
@@ -440,6 +442,8 @@ class boseSoundTouch {
         this.setObject(BOSE_ID_NOW_PLAYING_TIME);
         this.setObject(BOSE_ID_NOW_PLAYING_TOTAL);
         this.setObject(BOSE_ID_NOW_PLAYING_STATUS);
+        this.setObject(BOSE_ID_NOW_PLAYING_REPEAT);
+        this.setObject(BOSE_ID_NOW_PLAYING_SHUFFLE);
 
         this.setObject(BOSE_ID_INFO_NAME);
         this.setObject(BOSE_ID_INFO_TYPE);
@@ -498,6 +502,15 @@ class boseSoundTouch {
         this.setState(BOSE_ID_NOW_PLAYING_GENRE, obj.genre);
         this.setState(BOSE_ID_NOW_PLAYING_TOTAL, obj.total);
         this.setState(BOSE_ID_NOW_PLAYING_STATUS, obj.playStatus);
+        this.setState(BOSE_ID_NOW_PLAYING_REPEAT, obj.repeatSetting);
+		if (obj.shuffleSetting) { //Convert Shuffle to bool
+			if (obj.shuffleSetting == "SHUFFLE_ON") {
+				obj.shuffleSetting = true;
+			} else {
+				obj.shuffleSetting = false;
+			}
+		}
+        this.setState(BOSE_ID_NOW_PLAYING_SHUFFLE, obj.shuffleSetting);
 		if (obj.time && obj.time != "" && obj.playStatus == "PLAY_STATE") startPlayTimer(this, obj.time); else stopPlayTimer(this, obj.time);
         this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
 
