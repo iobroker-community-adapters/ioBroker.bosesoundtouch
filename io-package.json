@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.9.2",
+        "version": "0.9.3",
         "news": {
+            "0.9.3": {
+                "en": "add auto sync feature'",
+                "de": "Auto Sync Funktion hinzugefügt'"
+            },
             "0.9.2": {
                 "en": "we dont use adapter.objects anymore",
                 "de": "Wir verwenden keine adapter.objects mehr",
@@ -110,7 +114,8 @@
     },
     "native": {
         "address": "",
-        "reconnectTime": 60
+        "reconnectTime": 60,
+        "autoSync": false
     },
     "objects": [
 

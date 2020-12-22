@@ -59,6 +59,8 @@ The following description will help you to create groups with you multi room sys
 field are automatically updated by the soundtouch devices, also if you change the groups by the
 Soundtouch Application itself.
 
+When you activate the "autoSync" Feature, the speakers will automatically set up the zones, when you play the same source. For example, you start in the kitchen and the living room with the remote the preset 3, then the system will create the zone for you and the speakers are synced.
+
 | State      | Description |
 | :---       | :---        |
 | masterOf   | Display the MAC addresses of the slaves of a speaker (split by ";") (read-only)

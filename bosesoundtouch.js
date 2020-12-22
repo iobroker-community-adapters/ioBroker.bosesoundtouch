@@ -83,7 +83,7 @@ class boseSoundTouch {
         try {
             this.adapter.log.info('cleaned everything up...');
             callback();
-        }
+        } 
         catch (e) {
             callback();
         }
@@ -325,6 +325,98 @@ class boseSoundTouch {
             if (source) {
                 source.contentItem = obj.contentItem;
             }
+        }        
+        
+        if (this.adapter.config.autoSync) {
+            this._checkSyncZones(obj);
+        }
+    }
+
+    _collectCheckSyncData(syncData, namespaceList, originNowPlaying) {
+        var instance = this;
+        if (syncData) {
+            if (syncData.length == 0) {
+                instance._collectCheckSyncFinished(namespaceList, originNowPlaying);
+            } else {
+                var namespace = syncData.shift();
+
+                this.adapter.getForeignStates(namespace + "*", function (err, deviceInfoData) {
+                    if (err) {
+                        instance.adapter.log.error(err);
+                    } else {
+                        namespaceList[namespace] = deviceInfoData
+                        instance._collectCheckSyncData(syncData, namespaceList, originNowPlaying);
+                    }
+                });
+            }
+        }
+    }
+
+    _sameStation(obj1, obj2) {
+        return (obj1.source === obj2.source && obj1.station === obj2.station);
+    }
+
+    _sameTrack(obj1, obj2) {
+        return (obj1.source === obj2.source && obj1.artist === obj2.artist && obj1.track === obj2.track);
+    }
+
+    _collectCheckSyncFinished(namespaceList, originNowPlaying) {
+        var instance = this;
+        let setMasterOf = [];
+        let existMaster = false;
+        Object.keys(namespaceList).forEach(key => {
+            const dataFromKey = namespaceList[key];
+            const syncNowPlaying = {
+                source: dataFromKey[key + BOSE_ID_NOW_PLAYING_SOURCE].val,
+                track: dataFromKey[key + BOSE_ID_NOW_PLAYING_TRACK].val,
+                artist: dataFromKey[key + BOSE_ID_NOW_PLAYING_ARTIST].val,
+                album: dataFromKey[key + BOSE_ID_NOW_PLAYING_ALBUM].val,
+                station: dataFromKey[key + BOSE_ID_NOW_PLAYING_STATION].val,
+                art: dataFromKey[key + BOSE_ID_NOW_PLAYING_ART].val,
+                genre: dataFromKey[key + BOSE_ID_NOW_PLAYING_GENRE].val
+            }
+
+            if (instance._sameStation(syncNowPlaying, originNowPlaying) | instance._sameTrack(syncNowPlaying, originNowPlaying)) {
+                const syncMasterOf = dataFromKey[key + BOSE_ID_ZONES_MASTER_OF].val;
+                if (!(syncMasterOf.split(';').some(masterData => masterData === instance.adapter.macAddress))) {
+                    setMasterOf.push(dataFromKey[key + BOSE_ID_INFO_MAC_ADDRESS].val)
+                } else {
+                    existMaster = true;
+                }
+            }
+        })
+
+        if (setMasterOf.length > 0 && !existMaster) {
+            instance.setMasterOf(setMasterOf.join(';'))
+        }
+    }
+
+    _checkSyncZones(originNowPlaying) {
+        if (originNowPlaying.source !== 'STANDBY') {
+            var instance = this;
+            this.adapter.objects.getObjectView(
+                'system', 'instance', {
+                    startkey: 'system.adapter.bosesoundtouch.',
+                    endkey: 'system.adapter.bosesoundtouch.\u9999'
+                },
+                function (err, doc) {
+                    if (doc && doc.rows && doc.rows.length) {
+                        var toDoList = [];
+                        for (var i = 0; i < doc.rows.length; i++) {
+                            var obj = doc.rows[i].value;
+                            if (obj.native.address != instance.adapter.ipAddress) {
+                                const systemId = doc.rows[i].id.split('.');
+                                const index = systemId[systemId.length - 1];
+                                const namespace = systemId[systemId.length - 2] + '.' + index + '.';
+                                toDoList.push(namespace);
+                            }
+                        }
+
+                        instance._collectCheckSyncData(toDoList, {}, originNowPlaying);
+                    } else {
+                        instance.adapter.log.debug('No objects found: ' + err);
+                    }
+                });
         }
     }
 
