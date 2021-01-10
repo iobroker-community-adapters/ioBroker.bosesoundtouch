@@ -1,10 +1,22 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.9.2",
+        "version": "0.9.3",
         "news": {
+            "0.9.3": {
+                "en": "Added elapsed time, duration, status, keys and roles",
+                "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
+                "ru": "Добавлено прошедшее время, продолжительность, статус, ключи и роли",
+                "pt": "Adicionado tempo decorrido, duração, status, chaves e funções",
+                "nl": "Verstreken tijd, duur, status, sleutels en rollen toegevoegd",
+                "fr": "Ajout du temps écoulé, de la durée, du statut, des clés et des rôles",
+                "it": "Aggiunto tempo trascorso, durata, stato, chiavi e ruoli",
+                "es": "Se agregó tiempo transcurrido, duración, estado, claves y roles.",
+                "pl": "Dodano upływający czas, czas trwania, status, klucze i role",
+                "zh-cn": "增加了经过时间，持续时间，状态，键和角色"
+            },
             "0.9.2": {
-                "en": "we dont use adapter.objects anymore",
+                "en": "We don't use adapter.objects anymore",
                 "de": "Wir verwenden keine adapter.objects mehr",
                 "ru": "мы больше не используем адаптер.объекты",
                 "pt": "não usamos mais adapter.objects",
