@@ -189,6 +189,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             station: '',
             art:     '',
             genre:   '',
+			time:	 '',
+			total:	 '',
+			playStatus: '',
+			repeatStatus: '',
+			shuffleStatus: '',
             contentItem: null
         };
         switch (data.$.source) {
@@ -212,6 +217,19 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 if (data.ContentItem) {
                     object.contentItem = data.ContentItem;
                 }
+                if (data.time && data.time._) {
+                    object.time = data.time._;
+                }				
+                if (data.time && data.time.$ && data.time.$.total) {
+                    object.total = data.time.$.total;
+                }
+				object.playStatus = data.playStatus;
+				if (data.repeatSetting) {
+					object.repeatSetting = data.repeatSetting;
+				}
+				if (data.shuffleSetting) {
+					object.shuffleSetting = data.shuffleSetting;
+				}
                 break;
 
             case 'PRODUCT':
