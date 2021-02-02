@@ -7,7 +7,7 @@
     "email": "sven_s_ter@icloud.com"
   },
   "contributors": [],
-  "homepage": "https://github.com/sven-s-ter/ioBroker.bosesoundtouch",
+  "homepage": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch",
   "license": "MIT",
   "keywords": [
     "ioBroker",
@@ -17,7 +17,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/sven-s-ter/ioBroker.bosesoundtouch"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch"
   },
   "dependencies": {
     "es6-promise": "^4.2.5",
@@ -44,7 +44,7 @@
     "test": "node node_modules/mocha/bin/mocha --exit"
   },
   "bugs": {
-    "url": "https://github.com/sven-s-ter/ioBroker.bosesoundtouch/issues"
+    "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/issues"
   },
   "readmeFilename": "README.md"
 }

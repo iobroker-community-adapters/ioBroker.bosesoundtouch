@@ -100,16 +100,16 @@
             "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen."
         },
         "authors": [
-            "SwedishChef <swedish.chef@gmx.at>"
+            "sven-s-ter <sven-s-ter@icloud.com>"
         ],
         "license": "MIT",
         "platform": "Javascript/Node.js",
         "mode": "daemon",
         "icon": "bosesoundtouch.png",
         "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/SwedishChef/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
+        "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
         "keywords": ["bose", "soundtouch"],
-        "readme": "https://github.com/SwedishChef/ioBroker.bosesoundtouch/blob/master/README.md",
+        "readme": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
         "type": "multimedia",
         "compact": true,
