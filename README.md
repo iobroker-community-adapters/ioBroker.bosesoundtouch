@@ -70,7 +70,7 @@ Soundtouch Application itself.
 
 ### 0.9.3 (02.02.2021)
 
-*transfer of adapter to iobroker-community-adapters
+*transfer of adapter to iobroker-community-adapters git 
 
 ### 0.9.3 (10.01.2021)
 
