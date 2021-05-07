@@ -1,8 +1,12 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.9.3",
+        "version": "0.9.4",
         "news": {
+            "0.9.4": {
+                "en": "Update of NPM",
+                "de": "NPM Update"
+            },
             "0.9.3": {
                 "en": "Added elapsed time, duration, status, keys and roles",
                 "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
