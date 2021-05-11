@@ -1,6 +1,6 @@
 {
   "name": "iobroker.bosesoundtouch",
-  "version": "0.9.4",
+  "version": "0.9.3",
   "description": "Integration for Bose SoundTouch speakers",
   "author": {
     "name": "sven_s_ter",
@@ -20,24 +20,24 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch"
   },
   "dependencies": {
-    "es6-promise": "^4.2.8",
+    "es6-promise": "^4.2.5",
     "request": "^2.88.0",
     "string-format": "^2.0.0",
-    "ws": "^7.4.5",
-    "xml2js": "^0.4.23",
-    "@iobroker/adapter-core": "^2.4.0"
+    "ws": "^6.1.0",
+    "xml2js": "^0.4.19",
+    "@iobroker/adapter-core": "^1.0.3"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
-    "chai": "^4.3.4",
-    "eslint-config-google": "^0.14.0",
-    "grunt": "^1.4.0",
-    "grunt-contrib-jshint": "^3.0.0",
-    "grunt-http": "^2.3.3",
+    "gulp": "^3.9.1",
+    "chai": "^4.2.0",
+    "eslint-config-google": "^0.11.0",
+    "grunt": "^1.0.1",
+    "grunt-contrib-jshint": "^1.1.0",
+    "grunt-http": "^2.2.0",
     "grunt-jscs": "^3.0.1",
-    "grunt-replace": "^2.0.2",
-    "mocha": "^8.4.0",
-    "eslint": "^7.25.0"
+    "grunt-replace": "^1.0.1",
+    "mocha": "^6.0.2",
+    "eslint": "^5.8.0"
   },
   "main": "bosesoundtouch.js",
   "scripts": {
