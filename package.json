@@ -6,7 +6,11 @@
     "name": "sven_s_ter",
     "email": "sven_s_ter@icloud.com"
   },
-  "contributors": [],
+  "contributors": [
+    "SwedishChef <swedish.chef@gmx.at>",
+    "sven_s_ter <sven_s_ter@icloud.com>",
+    "Apollon77"
+  ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch",
   "license": "MIT",
   "keywords": [
@@ -20,28 +24,25 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch"
   },
   "dependencies": {
-    "es6-promise": "^4.2.5",
-    "request": "^2.88.0",
+    "es6-promise": "^4.2.8",
+    "request": "^2.88.2",
     "string-format": "^2.0.0",
-    "ws": "^6.1.0",
-    "xml2js": "^0.4.19",
-    "@iobroker/adapter-core": "^1.0.3"
+    "ws": "^7.5.3",
+    "xml2js": "^0.4.23",
+    "@iobroker/adapter-core": "^2.5.1"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "chai": "^4.2.0",
-    "eslint-config-google": "^0.11.0",
-    "grunt": "^1.0.1",
-    "grunt-contrib-jshint": "^1.1.0",
-    "grunt-http": "^2.2.0",
-    "grunt-jscs": "^3.0.1",
-    "grunt-replace": "^1.0.1",
-    "mocha": "^6.0.2",
-    "eslint": "^5.8.0"
+    "@alcalzone/release-script": "^2.2.1",
+    "gulp": "^4.0.2",
+    "chai": "^4.3.4",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^9.0.3",
+    "eslint": "^7.31.0"
   },
   "main": "bosesoundtouch.js",
   "scripts": {
-    "test": "node node_modules/mocha/bin/mocha --exit"
+    "test": "node node_modules/mocha/bin/mocha --exit",
+    "release": "release-script"
   },
   "bugs": {
     "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/issues"
