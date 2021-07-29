@@ -95,6 +95,18 @@
             }
         },
         "title": "Bose SoundTouch",
+        "titleLang": {
+            "en": "Bose SoundTouch",
+            "de": "Bose SoundTouch",
+            "ru": "Bose SoundTouch",
+            "pt": "Bose SoundTouch",
+            "nl": "Bose SoundTouch",
+            "fr": "Bose SoundTouch",
+            "it": "Bose SoundTouch",
+            "es": "Bose SoundTouch",
+            "pl": "Bose SoundTouch",
+            "zh-cn": "Bose SoundTouch"
+        },
         "desc": {
             "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
             "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen."
@@ -118,7 +130,10 @@
             {
                 "js-controller": ">=2.0.0"
             }
-        ]
+        ],
+        "connectionType": "local",
+        "dataSource": "push",
+        "tier": 2
     },
     "native": {
         "address": "",

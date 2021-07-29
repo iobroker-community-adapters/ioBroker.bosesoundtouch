@@ -105,7 +105,7 @@ class boseSoundTouch {
             // is called if a subscribed state changes
             stateChange: function (id, state) { instance.onStateChange(id, state); },
             // Some message was sent to adapter instance over message box. Used by email, pushover, text2speech, ...
-         // message: function(obj) { instance.onMessage(obj); },
+            // message: function(obj) { instance.onMessage(obj); },
             // is called when databases are connected and adapter received configuration.
             // start here!
             ready: function() { instance.onReady(); }
@@ -147,16 +147,16 @@ class boseSoundTouch {
                     break;
 
                 case namespace + BOSE_ID_KEY.id:
-					switch (state.val){
-						case "PRESET_1": case "PRESET_2": case "PRESET_3": case "PRESET_4": case "PRESET_5": case "PRESET_6":
-							this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
-							break;
-							
-						default:
-							this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
-							this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
-							break;
-					}
+                    switch (state.val){
+                        case 'PRESET_1': case 'PRESET_2': case 'PRESET_3': case 'PRESET_4': case 'PRESET_5': case 'PRESET_6':
+                            this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
+                            break;
+
+                        default:
+                            this.socket.setValue('key', 'state="press" sender="Gabbo"', state.val);
+                            this.socket.setValue('key', 'state="release" sender="Gabbo"', state.val);
+                            break;
+                    }
                     break;
 
                 case namespace + BOSE_ID_MUTED.id:
@@ -177,10 +177,10 @@ class boseSoundTouch {
                     if (state.val) {
                         this.setMasterOf();
                         //this.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false, {ack: false});
-                    } 
-					else {
-						this.handleMasterOf('all', this.socket.removeZoneSlave);
-					}
+                    }
+                    else {
+                        this.handleMasterOf('all', this.socket.removeZoneSlave);
+                    }
                     break;
 
                 case namespace + BOSE_ID_KEYS_PLAY.id:
@@ -230,27 +230,27 @@ class boseSoundTouch {
                 case namespace + BOSE_ID_KEYS_PRESET_1.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_1', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_PRESET_2.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_2', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_PRESET_3.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_3', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_PRESET_4.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_4', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_PRESET_5.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_5', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_PRESET_6.id:
                     this.setState(BOSE_ID_KEY, 'PRESET_6', {ack: false});
                     break;
-					
+
                 case namespace + BOSE_ID_KEYS_AUX_INPUT.id:
                     this.setState(BOSE_ID_KEY, 'AUX_INPUT', {ack: false});
                     break;
@@ -299,7 +299,7 @@ class boseSoundTouch {
 
     onMessage(obj) {
         if (typeof obj == 'object' && obj.message) {
-            if (obj.command == 'send') {
+            if (obj.command === 'send') {
                 // e.g. send email or pushover or whatever
                 this.adapter.log.debug('send command');
 
@@ -320,8 +320,8 @@ class boseSoundTouch {
         }
     }
 
-    onReady() {
-        this.initObjects();
+    async onReady() {
+        await this.initObjects();
         this.adapter.subscribeStates('*');
 
         // in this template all states changes inside the adapters namespace are subscribed
@@ -405,7 +405,7 @@ class boseSoundTouch {
             config.common.role = obj.role;
         }
 
-        this.adapter.setObjectNotExists(this._getId(obj, arg), config);
+        return this.adapter.setObjectNotExistsAsync(this._getId(obj, arg), config);
     }
 
     setState(obj, value, optional) {
@@ -414,71 +414,71 @@ class boseSoundTouch {
         this.adapter.setState(this._getId(obj, arg), {val: value, ack: ack});
     }
 
-    initObjects() {
-        this.setObject(BOSE_ID_KEY);
-        this.setObject(BOSE_ID_VOLUME);
-        this.setObject(BOSE_ID_MUTED);
-        this.setObject(BOSE_ID_ON);
-        this.setObject(BOSE_ID_ZONES_MEMBER_OF);
+    async initObjects() {
+        await this.setObject(BOSE_ID_KEY);
+        await this.setObject(BOSE_ID_VOLUME);
+        await this.setObject(BOSE_ID_MUTED);
+        await this.setObject(BOSE_ID_ON);
+        await this.setObject(BOSE_ID_ZONES_MEMBER_OF);
 
-        this.setObject(BOSE_ID_ZONES_MASTER_OF);
+        await this.setObject(BOSE_ID_ZONES_MASTER_OF);
 
-        this.setObject(BOSE_ID_ZONES_ADD_MASTER_OF);
+        await this.setObject(BOSE_ID_ZONES_ADD_MASTER_OF);
 
-        this.setObject(BOSE_ID_ZONES_REMOVE_MASTER_OF);
+        await this.setObject(BOSE_ID_ZONES_REMOVE_MASTER_OF);
 
-        this.setObject(BOSE_ID_ZONES_PLAY_EVERYWHERE);
+        await this.setObject(BOSE_ID_ZONES_PLAY_EVERYWHERE);
 
         for (var i = 1; i <= 6; i++) {
-            this.setObject(BOSE_ID_PRESET_SOURCE, i);
-            this.setObject(BOSE_ID_PRESET_NAME, i);
-            this.setObject(BOSE_ID_PRESET_ICON, i);
+            await this.setObject(BOSE_ID_PRESET_SOURCE, i);
+            await this.setObject(BOSE_ID_PRESET_NAME, i);
+            await this.setObject(BOSE_ID_PRESET_ICON, i);
         }
 
-        this.setObject(BOSE_ID_NOW_PLAYING_SOURCE);
-        this.setObject(BOSE_ID_NOW_PLAYING_TRACK);
-        this.setObject(BOSE_ID_NOW_PLAYING_ARTIST);
-        this.setObject(BOSE_ID_NOW_PLAYING_ALBUM);
-        this.setObject(BOSE_ID_NOW_PLAYING_STATION);
-        this.setObject(BOSE_ID_NOW_PLAYING_ART);
-        this.setObject(BOSE_ID_NOW_PLAYING_GENRE);
-        this.setObject(BOSE_ID_NOW_PLAYING_TIME);
-        this.setObject(BOSE_ID_NOW_PLAYING_TOTAL);
-        this.setObject(BOSE_ID_NOW_PLAYING_STATUS);
-        this.setObject(BOSE_ID_NOW_PLAYING_REPEAT);
-        this.setObject(BOSE_ID_NOW_PLAYING_SHUFFLE);
+        await this.setObject(BOSE_ID_NOW_PLAYING_SOURCE);
+        await this.setObject(BOSE_ID_NOW_PLAYING_TRACK);
+        await this.setObject(BOSE_ID_NOW_PLAYING_ARTIST);
+        await this.setObject(BOSE_ID_NOW_PLAYING_ALBUM);
+        await this.setObject(BOSE_ID_NOW_PLAYING_STATION);
+        await this.setObject(BOSE_ID_NOW_PLAYING_ART);
+        await this.setObject(BOSE_ID_NOW_PLAYING_GENRE);
+        await this.setObject(BOSE_ID_NOW_PLAYING_TIME);
+        await this.setObject(BOSE_ID_NOW_PLAYING_TOTAL);
+        await this.setObject(BOSE_ID_NOW_PLAYING_STATUS);
+        await this.setObject(BOSE_ID_NOW_PLAYING_REPEAT);
+        await this.setObject(BOSE_ID_NOW_PLAYING_SHUFFLE);
 
-        this.setObject(BOSE_ID_INFO_NAME);
-        this.setObject(BOSE_ID_INFO_TYPE);
-        this.setObject(BOSE_ID_INFO_MAC_ADDRESS);
-        this.setObject(BOSE_ID_INFO_IP_ADDRESS);
+        await this.setObject(BOSE_ID_INFO_NAME);
+        await this.setObject(BOSE_ID_INFO_TYPE);
+        await this.setObject(BOSE_ID_INFO_MAC_ADDRESS);
+        await this.setObject(BOSE_ID_INFO_IP_ADDRESS);
 
-		this.setObject(BOSE_ID_KEYS_PLAY);
-		this.setObject(BOSE_ID_KEYS_PAUSE);
-		this.setObject(BOSE_ID_KEYS_STOP);
-		this.setObject(BOSE_ID_KEYS_PREV_TRACK);
-		this.setObject(BOSE_ID_KEYS_NEXT_TRACK);
-		this.setObject(BOSE_ID_KEYS_THUMBS_UP);
-		this.setObject(BOSE_ID_KEYS_THUMBS_DOWN);
-		this.setObject(BOSE_ID_KEYS_BOOKMARK);
-		this.setObject(BOSE_ID_KEYS_POWER);
-		this.setObject(BOSE_ID_KEYS_VOLUME_UP);
-		this.setObject(BOSE_ID_KEYS_VOLUME_DOWN);
-		this.setObject(BOSE_ID_KEYS_PRESET_1);
-		this.setObject(BOSE_ID_KEYS_PRESET_2);
-		this.setObject(BOSE_ID_KEYS_PRESET_3);
-		this.setObject(BOSE_ID_KEYS_PRESET_4);
-		this.setObject(BOSE_ID_KEYS_PRESET_5);
-		this.setObject(BOSE_ID_KEYS_PRESET_6);
-		this.setObject(BOSE_ID_KEYS_AUX_INPUT);
-		this.setObject(BOSE_ID_KEYS_SHUFFLE_OFF);
-		this.setObject(BOSE_ID_KEYS_SHUFFLE_ON);
-		this.setObject(BOSE_ID_KEYS_REPEAT_OFF);
-		this.setObject(BOSE_ID_KEYS_REPEAT_ONE);
-		this.setObject(BOSE_ID_KEYS_REPEAT_ALL);
-		this.setObject(BOSE_ID_KEYS_PLAY_PAUSE);
-		this.setObject(BOSE_ID_KEYS_ADD_FAVORITE);
-		this.setObject(BOSE_ID_KEYS_REMOVE_FAVORITE);
+        await this.setObject(BOSE_ID_KEYS_PLAY);
+        await this.setObject(BOSE_ID_KEYS_PAUSE);
+        await this.setObject(BOSE_ID_KEYS_STOP);
+        await this.setObject(BOSE_ID_KEYS_PREV_TRACK);
+        await this.setObject(BOSE_ID_KEYS_NEXT_TRACK);
+        await this.setObject(BOSE_ID_KEYS_THUMBS_UP);
+        await this.setObject(BOSE_ID_KEYS_THUMBS_DOWN);
+        await this.setObject(BOSE_ID_KEYS_BOOKMARK);
+        await this.setObject(BOSE_ID_KEYS_POWER);
+        await this.setObject(BOSE_ID_KEYS_VOLUME_UP);
+        await this.setObject(BOSE_ID_KEYS_VOLUME_DOWN);
+        await this.setObject(BOSE_ID_KEYS_PRESET_1);
+        await this.setObject(BOSE_ID_KEYS_PRESET_2);
+        await this.setObject(BOSE_ID_KEYS_PRESET_3);
+        await this.setObject(BOSE_ID_KEYS_PRESET_4);
+        await this.setObject(BOSE_ID_KEYS_PRESET_5);
+        await this.setObject(BOSE_ID_KEYS_PRESET_6);
+        await this.setObject(BOSE_ID_KEYS_AUX_INPUT);
+        await this.setObject(BOSE_ID_KEYS_SHUFFLE_OFF);
+        await this.setObject(BOSE_ID_KEYS_SHUFFLE_ON);
+        await this.setObject(BOSE_ID_KEYS_REPEAT_OFF);
+        await this.setObject(BOSE_ID_KEYS_REPEAT_ONE);
+        await this.setObject(BOSE_ID_KEYS_REPEAT_ALL);
+        await this.setObject(BOSE_ID_KEYS_PLAY_PAUSE);
+        await this.setObject(BOSE_ID_KEYS_ADD_FAVORITE);
+        await this.setObject(BOSE_ID_KEYS_REMOVE_FAVORITE);
     }
 
     setDeviceInfo(obj) {
@@ -491,8 +491,8 @@ class boseSoundTouch {
     }
 
     setVolume(obj) {
-        this.setState(BOSE_ID_VOLUME, obj.volume);
-        this.setState(BOSE_ID_MUTED, obj.muted);
+        this.setState(BOSE_ID_VOLUME, parseInt(obj.volume));
+        this.setState(BOSE_ID_MUTED, !!obj.muted);
     }
 
     setNowPlaying(obj) {
@@ -503,19 +503,15 @@ class boseSoundTouch {
         this.setState(BOSE_ID_NOW_PLAYING_STATION, obj.station);
         this.setState(BOSE_ID_NOW_PLAYING_ART, obj.art);
         this.setState(BOSE_ID_NOW_PLAYING_GENRE, obj.genre);
-        this.setState(BOSE_ID_NOW_PLAYING_TOTAL, obj.total);
+        this.setState(BOSE_ID_NOW_PLAYING_TOTAL, parseInt(obj.total));
         this.setState(BOSE_ID_NOW_PLAYING_STATUS, obj.playStatus);
         this.setState(BOSE_ID_NOW_PLAYING_REPEAT, obj.repeatSetting);
-		if (obj.shuffleSetting) { //Convert Shuffle to bool
-			if (obj.shuffleSetting == "SHUFFLE_ON") {
-				obj.shuffleSetting = true;
-			} else {
-				obj.shuffleSetting = false;
-			}
-		}
+        if (obj.shuffleSetting) { //Convert Shuffle to bool
+            obj.shuffleSetting = obj.shuffleSetting === 'SHUFFLE_ON';
+        }
         this.setState(BOSE_ID_NOW_PLAYING_SHUFFLE, obj.shuffleSetting);
-		if (obj.time && obj.time != "" && obj.playStatus == "PLAY_STATE") startPlayTimer(this, obj.time); else stopPlayTimer(this, obj.time);
-        this.setState(BOSE_ID_ON, (obj.source != 'STANDBY'));
+        if (obj.time && obj.time != '' && obj.playStatus === 'PLAY_STATE') startPlayTimer(this, obj.time); else stopPlayTimer(this, obj.time);
+        this.setState(BOSE_ID_ON, (obj.source !== 'STANDBY'));
 
         if (obj.contentItem && this.availableSources) {
             var source = this.availableSources.find(function (source) { return source.source === obj.source; });
@@ -524,22 +520,22 @@ class boseSoundTouch {
             }
         }
 
-		function startPlayTimer(instance, time) {
-			if (playTimer) clearInterval(playTimer);
-			playTimerTime = time;
-			instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime);		
-			playTimer = setInterval(function(){
-				playTimerTime = parseInt(playTimerTime) + 1;
-				instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime.toString());
-			}, 1000);			
-		}
-		
-		function stopPlayTimer(instance, time) {
-			if (playTimer) clearInterval(playTimer);
-			playTimer = false;
-			playTimerTime = time;
-			instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime);		
-		}
+        function startPlayTimer(instance, time) {
+            if (playTimer) clearInterval(playTimer);
+            playTimerTime = time;
+            instance.setState(BOSE_ID_NOW_PLAYING_TIME, parseInt(playTimerTime));
+            playTimer = setInterval(function(){
+                playTimerTime = parseInt(playTimerTime) + 1;
+                instance.setState(BOSE_ID_NOW_PLAYING_TIME, playTimerTime);
+            }, 1000);
+        }
+
+        function stopPlayTimer(instance, time) {
+            if (playTimer) clearInterval(playTimer);
+            playTimer = false;
+            playTimerTime = time;
+            instance.setState(BOSE_ID_NOW_PLAYING_TIME, parseInt(playTimerTime));
+        }
     }
 
     setPresets(obj) {
@@ -561,7 +557,7 @@ class boseSoundTouch {
     }
 
     setZone(obj) {
-		var instance = this;
+        var instance = this;
         instance.masterSlaveData = {
             master: {
                 ip: this.adapter.ipAddress,
@@ -587,67 +583,67 @@ class boseSoundTouch {
                 }
                 this.setState(BOSE_ID_ZONES_MASTER_OF, members.join(';'), {ack: true});
                 this.setState(BOSE_ID_ZONES_MEMBER_OF, '', {ack: true});
-				//Find out, if all speakers are members (playEverywhere)
-				this.adapter.getObjectView(
-					'system', 'instance', {
-						startkey: 'system.adapter.bosesoundtouch.',
-						endkey: 'system.adapter.bosesoundtouch.\u9999' },
-					function (err, doc) {
-						if (doc && doc.rows && doc.rows.length) {
-							var toDoList = [];
-							for (var i = 0; i < doc.rows.length; i++) {
-								var obj = doc.rows[i].value;
-								if (obj.native.address != instance.adapter.ipAddress) {
-									var systemId  = doc.rows[i].id.split('.');
-									var index = systemId[systemId.length - 1];
-									var namespace = systemId[systemId.length - 2] + '.' + index + '.';
-									toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS.id);
-									toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS.id);
-								}
-							}
-							instance._collectPlayEverywhereData(toDoList, instance._collectPlayEverywhereDataFinished_checkPlayEverywhere, members);
-						}
-						else {
-							instance.adapter.log.debug('No objects found: ' + err);
-						}
-					}
-				);
+                //Find out, if all speakers are members (playEverywhere)
+                this.adapter.getObjectView(
+                    'system', 'instance', {
+                        startkey: 'system.adapter.bosesoundtouch.',
+                        endkey: 'system.adapter.bosesoundtouch.\u9999' },
+                    function (err, doc) {
+                        if (doc && doc.rows && doc.rows.length) {
+                            var toDoList = [];
+                            for (var i = 0; i < doc.rows.length; i++) {
+                                var obj = doc.rows[i].value;
+                                if (obj.native.address !== instance.adapter.ipAddress) {
+                                    var systemId  = doc.rows[i].id.split('.');
+                                    var index = systemId[systemId.length - 1];
+                                    var namespace = systemId[systemId.length - 2] + '.' + index + '.';
+                                    toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS.id);
+                                    toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS.id);
+                                }
+                            }
+                            instance._collectPlayEverywhereData(toDoList, instance._collectPlayEverywhereDataFinished_checkPlayEverywhere, members);
+                        }
+                        else {
+                            instance.adapter.log.debug('No objects found: ' + err);
+                        }
+                    }
+                );
             }
             else {
                 this.setState(BOSE_ID_ZONES_MASTER_OF, '', {ack: true});
                 this.setState(BOSE_ID_ZONES_MEMBER_OF, obj.master, {ack: true});
-				this.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false, {ack: true});
+                this.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, false, {ack: true});
             }
         }
     }
 
-	_collectPlayEverywhereDataFinished_checkPlayEverywhere(instance, filterList){
+    _collectPlayEverywhereDataFinished_checkPlayEverywhere(instance, filterList){
         instance.adapter.log.warn('checkPlayEverywhere: ' + JSON.stringify(filterList));
         instance.adapter.log.warn('checkPlayEverywhere msd: ' + JSON.stringify(instance.masterSlaveData));
-		var playEverywhere = true;
+        var playEverywhere = true;
         var items = instance.masterSlaveData.slave;
         for (let index = 0; index < items.length; index += 2) {
             var type = items[index].id.split('.');
             type = type[type.length - 1];
             if (type === 'ipAddress') {
-				var slaveMac = items[index+1].value;
-                if (filterList.indexOf(slaveMac) == -1) {
-					playEverywhere = false;
-					break;
+                var slaveMac = items[index+1].value;
+                if (filterList.indexOf(slaveMac) === -1) {
+                    playEverywhere = false;
+                    break;
                 }
             }
         }
-		instance.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, playEverywhere, {ack: true});		
-	}
+        instance.setState(BOSE_ID_ZONES_PLAY_EVERYWHERE, playEverywhere, {ack: true});
+    }
 
 
-    setSources(obj) {
+    async setSources(obj) {
         this.availableSources = [];
         for (var i in obj) {
             var source = obj[i];
 
-            if (source.status == 'READY') {
-                this.setObject(BOSE_ID_SOURCES_SOURCE, source.name);
+            if (source.status === 'READY') {
+                await this.setObject(BOSE_ID_SOURCES_SOURCE, source.name);
                 this.setState(BOSE_ID_SOURCES_SOURCE, false, {arg: source.name});
                 // store source + sourceAccount in array, sourceAccount is needed to select source
                 this.availableSources.push({
@@ -674,7 +670,7 @@ class boseSoundTouch {
     _collectPlayEverywhereData(data, callback, filterList) {
         var instance = this;
         if (data) {
-            if (data.length == 0) {
+            if (!data.length) {
                 callback(instance, filterList);
             }
             else {
@@ -716,40 +712,40 @@ class boseSoundTouch {
 
     handleMasterOf(setMacAddresses, setZoneFunction, add) {
         var instance = this;
-        instance.adapter.getState(this.adapter.namespace + "." + BOSE_ID_ZONES_MASTER_OF.id, function(err, stateMasterOf) {
+        instance.adapter.getState(this.adapter.namespace + '.' + BOSE_ID_ZONES_MASTER_OF.id, function(err, stateMasterOf) {
             if (err) {
                 instance.adapter.log.error(err);
             }
             else {
-                if (typeof stateMasterOf == "undefined" || stateMasterOf === null || stateMasterOf.val === '') { //is not master
+                if (typeof stateMasterOf == 'undefined' || stateMasterOf === null || stateMasterOf.val === '') { //is not master
                     if (add) {
-						if(setMacAddresses == 'all'){
-							instance.setMasterOf();
-						}
-						else {
-							instance.setMasterOf(setMacAddresses);
-						}
+                        if(setMacAddresses === 'all'){
+                            instance.setMasterOf();
+                        }
+                        else {
+                            instance.setMasterOf(setMacAddresses);
+                        }
                     }
                 }
                 else { //is master
                     const masterOf = stateMasterOf.val.split(';');
                     if (add) {
-						if(setMacAddresses == 'all'){
-							instance.setMasterOf()
-						}
-						else {
-							const setSlaves = setMacAddresses.split(';').filter(setSlave => !masterOf.some(masterOfSlave => setSlave === masterOfSlave));
-							setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
-						}
+                        if(setMacAddresses === 'all'){
+                            instance.setMasterOf();
+                        }
+                        else {
+                            const setSlaves = setMacAddresses.split(';').filter(setSlave => !masterOf.some(masterOfSlave => setSlave === masterOfSlave));
+                            setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
+                        }
                     }
                     else {
-						if(setMacAddresses == 'all'){
-							masterOf.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
-						}
-						else {
-							const setSlaves = setMacAddresses.split(';').filter(setSlave => masterOf.some(masterOfSlave => setSlave === masterOfSlave));
-							setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
-						}
+                        if(setMacAddresses === 'all'){
+                            masterOf.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
+                        }
+                        else {
+                            const setSlaves = setMacAddresses.split(';').filter(setSlave => masterOf.some(masterOfSlave => setSlave === masterOfSlave));
+                            setSlaves.forEach(setSlave => instance._setZoneSlave(setSlave, setZoneFunction));
+                        }
                     }
                 }
             }
@@ -772,7 +768,7 @@ class boseSoundTouch {
             function (err, doc) {
                 if (doc && doc.rows && doc.rows.length) {
                     doc.rows.forEach(row => {
-                        if (row.value.native.address != instance.adapter.ipAddress) {
+                        if (row.value.native.address !== instance.adapter.ipAddress) {
                             const systemId  = row.id.split('.');
                             const index = systemId[systemId.length - 1];
                             const namespace = systemId[systemId.length - 2] + '.' + index + '.';
@@ -821,7 +817,7 @@ class boseSoundTouch {
                     var toDoList = [];
                     for (var i = 0; i < doc.rows.length; i++) {
                         var obj = doc.rows[i].value;
-                        if (obj.native.address != instance.adapter.ipAddress) {
+                        if (obj.native.address !== instance.adapter.ipAddress) {
                             var systemId  = doc.rows[i].id.split('.');
                             var index = systemId[systemId.length - 1];
                             var namespace = systemId[systemId.length - 2] + '.' + index + '.';
@@ -837,7 +833,7 @@ class boseSoundTouch {
             }
         );
     }
-	
+
     playSource(id) {
         id = id.split('.');
         id = id[id.length - 1];
