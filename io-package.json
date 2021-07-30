@@ -1,8 +1,20 @@
 {
     "common": {
         "name": "bosesoundtouch",
-        "version": "0.9.3",
+        "version": "0.10.0",
         "news": {
+            "0.10.0": {
+                "en": "IMPORTANT: The adapter now requires at least js-controller 2.0\nOptimize for js-controller 3.3",
+                "de": "WICHTIG: Der Adapter benötigt jetzt mindestens js-controller 2.0\nOptimieren Sie für js-Controller 3.3",
+                "ru": "ВАЖНО: Теперь для адаптера требуется как минимум js-controller 2.0.\nОптимизировать под js-controller 3.3",
+                "pt": "IMPORTANTE: O adaptador agora requer pelo menos js-controller 2.0\nOtimize para js-controller 3.3",
+                "nl": "BELANGRIJK: de adapter vereist nu minimaal js-controller 2.0\nOptimaliseren voor js-controller 3.3",
+                "fr": "IMPORTANT: L'adaptateur nécessite maintenant au moins js-controller 2.0\nOptimiser pour js-controller 3.3",
+                "it": "IMPORTANTE: l'adattatore ora richiede almeno js-controller 2.0\nOttimizza per js-controller 3.3",
+                "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
+                "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
+                "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化"
+            },
             "0.9.3": {
                 "en": "Added elapsed time, duration, status, keys and roles",
                 "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
@@ -120,7 +132,10 @@
         "icon": "bosesoundtouch.png",
         "enabled": false,
         "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
-        "keywords": ["bose", "soundtouch"],
+        "keywords": [
+            "bose",
+            "soundtouch"
+        ],
         "readme": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/blob/master/README.md",
         "loglevel": "info",
         "type": "multimedia",
@@ -139,7 +154,5 @@
         "address": "",
         "reconnectTime": 60
     },
-    "objects": [
-
-    ]
+    "objects": []
 }

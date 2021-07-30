@@ -68,7 +68,7 @@ Soundtouch Application itself.
 
 ## Changelog
 
-### __WORK IN PROGRESS__
+### 0.10.0 (2021-07-30)
 * IMPORTANT: The adapter now requires at least js-controller 2.0
 * (Apollon77) Optimize for js-controller 3.3
 
