@@ -36,7 +36,7 @@
     "gulp": "^4.0.2",
     "chai": "^4.3.4",
     "eslint-config-google": "^0.14.0",
-    "mocha": "^9.1.3",
+    "mocha": "^9.2.0",
     "eslint": "^7.32.0"
   },
   "main": "bosesoundtouch.js",
