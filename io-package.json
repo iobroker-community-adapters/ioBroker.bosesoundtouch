@@ -1,309 +1,153 @@
 {
-    "common": {
-        "name": "bosesoundtouch",
-        "version": "0.10.0",
-        "news": {
-            "0.10.0": {
-                "en": "IMPORTANT: The adapter now requires at least js-controller 2.0\nOptimize for js-controller 3.3",
-                "de": "WICHTIG: Der Adapter benötigt jetzt mindestens js-controller 2.0\nOptimieren Sie für js-Controller 3.3",
-                "ru": "ВАЖНО: Теперь для адаптера требуется как минимум js-controller 2.0.\nОптимизировать под js-controller 3.3",
-                "pt": "IMPORTANTE: O adaptador agora requer pelo menos js-controller 2.0\nOtimize para js-controller 3.3",
-                "nl": "BELANGRIJK: de adapter vereist nu minimaal js-controller 2.0\nOptimaliseren voor js-controller 3.3",
-                "fr": "IMPORTANT: L'adaptateur nécessite maintenant au moins js-controller 2.0\nOptimiser pour js-controller 3.3",
-                "it": "IMPORTANTE: l'adattatore ora richiede almeno js-controller 2.0\nOttimizza per js-controller 3.3",
-                "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
-                "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
-                "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化"
-            },
-            "0.9.3": {
-                "en": "Added elapsed time, duration, status, keys and roles",
-                "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
-                "ru": "Добавлено прошедшее время, продолжительность, статус, ключи и роли",
-                "pt": "Adicionado tempo decorrido, duração, status, chaves e funções",
-                "nl": "Verstreken tijd, duur, status, sleutels en rollen toegevoegd",
-                "fr": "Ajout du temps écoulé, de la durée, du statut, des clés et des rôles",
-                "it": "Aggiunto tempo trascorso, durata, stato, chiavi e ruoli",
-                "es": "Se agregó tiempo transcurrido, duración, estado, claves y roles.",
-                "pl": "Dodano upływający czas, czas trwania, status, klucze i role",
-                "zh-cn": "增加了经过时间，持续时间，状态，键和角色"
-            },
-            "0.9.2": {
-                "en": "We don't use adapter.objects anymore",
-                "de": "Wir verwenden keine adapter.objects mehr",
-                "ru": "мы больше не используем адаптер.объекты",
-                "pt": "não usamos mais adapter.objects",
-                "nl": "we gebruiken geen adapter.objects meer",
-                "fr": "nous n'utilisons plus adapter.objects",
-                "it": "non usiamo più adapter.objects",
-                "es": "ya no usamos object.objects",
-                "pl": "nie używamy już adapter.objects",
-                "zh-cn": "我们不再使用adapter.objects"
-            },
-            "0.9.1": {
-                "en": "Support for compact mode. \nFixed bugs found by adapter checker.",
-                "de": "Unterstützung für compact mode. \nGefundene Fehler vom adapter checker behoben.",
-                "ru": "Поддержка компактного режима.\n",
-                "pt": "Suporte para o modo compacto.\n",
-                "nl": "Ondersteuning voor compacte modus.\n",
-                "fr": "Prise en charge du mode compact.\n",
-                "it": "Supporto per la modalità compatta.\n",
-                "es": "Soporte para modo compacto.\n",
-                "pl": "Wsparcie dla trybu kompaktowego.\n",
-                "zh-cn": "支持紧凑模式。\n"
-            },
-            "0.9.0": {
-                "en": "Added possibility to change the source. \nAll available sources are listed as states in folder sources and can be used as play buttons.",
-                "de": "Die Quellen können jetzt geändert werden. \nAlle verfügbaren Quellen werden als State im Unterverzeichnis 'sources' gelistet und können als Play-Button verwendet werden.",
-                "ru": "Добавлена ​​возможность смены источника.\n",
-                "pt": "Adicionada possibilidade de alterar a fonte.\n",
-                "nl": "Mogelijkheid toegevoegd om de bron te wijzigen.\n",
-                "fr": "Ajout de la possibilité de changer la source.\n",
-                "it": "Aggiunta la possibilità di cambiare la sorgente.\n",
-                "es": "Posibilidad añadida de cambiar la fuente.\n",
-                "pl": "Dodano możliwość zmiany źródła.\n",
-                "zh-cn": "增加了更改来源的可能性。\n"
-            },
-            "0.2.4": {
-                "en": "Core Files/Testing Update and introduce adapter-core",
-                "de": "Kern-Dateien/Tests aktualisiert und Einführung des adapter-core",
-                "ru": "Обновление Core Files/Testing и представление адаптера-ядра",
-                "pt": "Core Files/Testing Update e introduzindo o adaptador-core",
-                "nl": "Core Files/Testing Update en introduceer adapter-core",
-                "fr": "Mise à jour des fichiers de base/tests et introduction de l'adaptateur-core",
-                "it": "Core Files/Testing Aggiorna e introduci adapter-core",
-                "es": "Archivos principales/Actualización de prueba e introducción de adaptador-núcleo",
-                "pl": "Core Files/Testing Update i wprowadzenie adapter-core",
-                "zh-cn": "核心文件/测试更新并引入适配器核心"
-            },
-            "0.2.3": {
-                "en": "Fixed issue #24 'does not start'",
-                "de": "Behoben: Problem #24 'startet nicht'",
-                "ru": "Исправлена ​​проблема №24 «не запускается»",
-                "pt": "Corrigido o problema nº 24 'não inicia'",
-                "nl": "Probleem #24 'start niet' opgelost",
-                "fr": "Correction du problème #24 'ne démarre pas'",
-                "it": "Risolto il problema n. 24 \"non si avvia\"",
-                "es": "Se corrigió el problema #24 'no arranca'",
-                "pl": "Naprawiono problem nr 24 „nie uruchamia się”",
-                "zh-cn": "修复了问题 #24 '不启动'"
-            },
-            "0.2.2": {
-                "en": "Zones: objects moved to sub folder 'zones'",
-                "de": "Zonen: Objekte in Unterverzeichnis 'zones' verschoben.",
-                "ru": "Зоны: объекты перемещены в подпапку «зоны».",
-                "pt": "Zonas: objetos movidos para a subpasta 'zonas'",
-                "nl": "Zones: objecten verplaatst naar submap 'zones'",
-                "fr": "Zones : objets déplacés vers le sous-dossier 'zones'",
-                "it": "Zone: oggetti spostati nella sottocartella 'zone'",
-                "es": "Zonas: objetos movidos a la subcarpeta 'zonas'",
-                "pl": "Strefy: obiekty przeniesione do podfolderu „strefy”",
-                "zh-cn": "区域：移动到子文件夹“区域”的对象"
-            },
-            "0.2.1": {
-                "en": "Update now playing info for source Deezer",
-                "de": "Daten für nowPlaying werden für die Quelle Deezer jetzt richtig befüllt.",
-                "ru": "Обновите сейчас информацию о воспроизведении для источника Deezer",
-                "pt": "Atualize agora reproduzindo informações para a fonte Deezer",
-                "nl": "Update nu afspeelinformatie voor bron Deezer",
-                "fr": "Mettre à jour les informations de lecture en cours pour la source Deezer",
-                "it": "Aggiorna ora le informazioni di gioco per Deezer di origine",
-                "es": "Actualizar ahora la información de reproducción para la fuente Deezer",
-                "pl": "Zaktualizuj teraz odtwarzane informacje dla źródła Deezer",
-                "zh-cn": "现在更新源 Deezer 的播放信息"
-            },
-            "0.2.0": {
-                "en": "Add support for zones",
-                "de": "Unterstützung von Zonen hinzugefügt.",
-                "ru": "Добавить поддержку зон",
-                "pt": "Adicionar suporte para zonas",
-                "nl": "Ondersteuning voor zones toevoegen",
-                "fr": "Ajouter la prise en charge des zones",
-                "it": "Aggiungi il supporto per le zone",
-                "es": "Agregar soporte para zonas",
-                "pl": "Dodaj obsługę stref",
-                "zh-cn": "添加对区域的支持"
-            },
-            "0.1.9": {
-                "en": "Update now playing info for source Amazon",
-                "de": "Daten für nowPlaying werden für die Quelle Amazon jetzt richtig befüllt.",
-                "ru": "Обновите информацию о воспроизведении для источника Amazon",
-                "pt": "Atualize agora reproduzindo informações para a fonte Amazon",
-                "nl": "Update nu afspeelinformatie voor bron Amazon",
-                "fr": "Mettre à jour les informations de lecture en cours pour la source Amazon",
-                "it": "Aggiorna ora le informazioni di riproduzione per la fonte Amazon",
-                "es": "Actualizar ahora la información de reproducción para la fuente Amazon",
-                "pl": "Zaktualizuj teraz odtwarzane informacje dla źródła Amazon",
-                "zh-cn": "立即更新来源亚马逊的播放信息"
-            },
-            "0.1.8": {
-                "en": "Update now playing info for source Spotify\nnow playing: added state 'genre'",
-                "de": "Daten für nowPlaying werden für die Quelle Spotify jetzt richtig befüllt.\nnow playing: neuer Status 'genre'",
-                "ru": "Обновите сейчас информацию о воспроизведении для источника Spotify\n",
-                "pt": "Atualize agora reproduzindo informações para a fonte Spotify\n",
-                "nl": "Update nu afspeelinformatie voor bron Spotify\n",
-                "fr": "Mettre à jour les informations de lecture en cours pour la source Spotify\n",
-                "it": "Aggiorna ora le informazioni di riproduzione per Spotify di origine\n",
-                "es": "Actualizar ahora la información de reproducción de la fuente Spotify\n",
-                "pl": "Zaktualizuj teraz odtwarzane informacje dla źródła Spotify\n",
-                "zh-cn": "立即更新源 Spotify 的播放信息\n"
-            },
-            "0.1.7": {
-                "en": "fixed crash if no presets are defined",
-                "de": "Behoben: Absturz bei fehlenden Presets.",
-                "ru": "исправлен сбой, если пресеты не определены",
-                "pt": "travamento corrigido se nenhuma predefinição for definida",
-                "nl": "vaste crash als er geen voorinstellingen zijn gedefinieerd",
-                "fr": "plantage fixe si aucun préréglage n'est défini",
-                "it": "risolto il crash se non sono stati definiti preset",
-                "es": "bloqueo fijo si no se definen ajustes preestablecidos",
-                "pl": "naprawiono awarię, jeśli nie zdefiniowano żadnych ustawień wstępnych;",
-                "zh-cn": "如果未定义预设，则修复崩溃"
-            },
-            "0.1.6": {
-                "en": "fixed crash if socket connection fails\nadded setting: time to reconnect in seconds",
-                "de": "Behoben: Absturz bei fehlerhafter Socket-Verbindung\nNeuer Konfigurationsparameter: Zeit für neuerlichen Verbindungsaufbau in Sekunden.",
-                "ru": "исправлен сбой при сбое подключения к сокету\n",
-                "pt": "travamento corrigido se a conexão do soquete falhar\n",
-                "nl": "vaste crash als socketverbinding mislukt\n",
-                "fr": "Correction d'un crash en cas d'échec de la connexion au socket\n",
-                "it": "risolto il crash se la connessione del socket non riesce\n",
-                "es": "bloqueo fijo si falla la conexión del socket\n",
-                "pl": "naprawiono awarię, jeśli połączenie z gniazdem nie powiedzie się\n",
-                "zh-cn": "修复了套接字连接失败时的崩溃\n"
-            },
-            "0.1.5": {
-                "en": "Update now playing info for source TuneIn\nState playEverywhere falls back to false after activation.",
-                "de": "Daten für nowPlaying werden für die Quelle TuneIn jetzt richtig befüllt.\nStatus playEverywhere wechselt automatisch wieder auf AUS,",
-                "ru": "Обновите сейчас информацию о воспроизведении для источника TuneIn\n",
-                "pt": "Atualize agora reproduzindo informações para o TuneIn de origem\n",
-                "nl": "Update nu afspeelinformatie voor bron TuneIn\n",
-                "fr": "Mettre à jour les informations de lecture en cours pour la source TuneIn\n",
-                "it": "Aggiorna ora le informazioni di riproduzione per la sorgente TuneIn\n",
-                "es": "Actualizar ahora la información de reproducción para la fuente TuneIn\n",
-                "pl": "Zaktualizuj teraz odtwarzane informacje dla źródła TuneIn\n",
-                "zh-cn": "立即更新源 TuneIn 的播放信息\n"
-            },
-            "0.1.4": {
-                "en": "playEverywhere: support multi room (zones) to define one speaker as master for all others.",
-                "de": "playEverywhere: Erste Unterstützung von Zonen, Musik eines Lautsprechers auf allen anderen abspielen.",
-                "ru": "playEverywhere: поддержка нескольких комнат (зон), чтобы определить один динамик в качестве основного для всех остальных.",
-                "pt": "playEverywhere: suporte a várias salas (zonas) para definir um alto-falante como mestre para todos os outros.",
-                "nl": "playEverywhere: ondersteuning voor meerdere kamers (zones) om één luidspreker als master voor alle andere te definiëren.",
-                "fr": "playEverywhere : prend en charge plusieurs pièces (zones) pour définir un haut-parleur comme maître pour tous les autres.",
-                "it": "playEverywhere: supporta multi room (zone) per definire un altoparlante come master per tutti gli altri.",
-                "es": "playEverywhere: admite múltiples salas (zonas) para definir un altavoz como maestro para todos los demás.",
-                "pl": "playEverywhere: obsługa wielu pomieszczeń (stref), aby zdefiniować jednego głośnika jako głównego dla wszystkich pozostałych.",
-                "zh-cn": "playEverywhere：支持多房间（区域）将一个扬声器定义为所有其他扬声器的主控。"
-            },
-            "0.1.3": {
-                "en": "revert last change",
-                "de": "letzte Änderung rückgängig machen",
-                "ru": "отменить последнее изменение",
-                "pt": "reverter a última alteração",
-                "nl": "laatste wijziging terugdraaien",
-                "fr": "annuler la dernière modification",
-                "it": "ripristinare l'ultima modifica",
-                "es": "revertir el último cambio",
-                "pl": "cofnij ostatnią zmianę",
-                "zh-cn": "恢复上次更改"
-            },
-            "0.1.2": {
-                "en": "fixed typos for 'ioBroker.bosesoundtouch'",
-                "de": "Tippfehler für „ioBroker.bosesoundtouch“ behoben",
-                "ru": "исправлены опечатки для «ioBroker.bosesoundtouch»",
-                "pt": "erros de digitação corrigidos para 'ioBroker.bosesoundtouch'",
-                "nl": "vaste typefouten voor 'ioBroker.bosesoundtouch'",
-                "fr": "correction de fautes de frappe pour 'ioBroker.bosesoundtouch'",
-                "it": "corretti errori di battitura per \"ioBroker.bosesoundtouch\"",
-                "es": "errores tipográficos corregidos para 'ioBroker.bosesoundtouch'",
-                "pl": "poprawione literówki dla „ioBroker.bosesoundtouch”",
-                "zh-cn": "修复了“ioBroker.bosesoundtouch”的拼写错误"
-            },
-            "0.1.1": {
-                "en": "now playing: added state 'art' (URL to cover image if available)\nmerged pull request from Apollon77 (basic config files for testing)\nrenamed repo to 'ioBroker.bosesoundtouch'",
-                "de": "now playing: neuer status 'art' (URL zum Album-Bild, falls vorhanden)\nMerged: Pull reqeust von Apollon77 (Testkonfiguration)\nRepo umbenannt auf 'ioBroker.bosesoundtouch'",
-                "ru": "сейчас играет: добавлено состояние «искусство» (URL-адрес изображения обложки, если он доступен)\n",
-                "pt": "agora em execução: adicionado estado 'arte' (URL para a imagem da capa, se disponível)\n",
-                "nl": "nu aan het spelen: state 'art' toegevoegd (URL naar omslagafbeelding indien beschikbaar)\n",
-                "fr": "lecture en cours : ajout de l'état 'art' (URL de l'image de couverture si disponible)\n",
-                "it": "ora in riproduzione: aggiunto stato \"art\" (URL per l'immagine di copertina se disponibile)\n",
-                "es": "ahora reproduciendo: estado agregado 'arte' (URL para cubrir la imagen si está disponible)\n",
-                "pl": "teraz odtwarzane: dodano stan „sztuki” (URL do okładki obrazu, jeśli jest dostępny)\n",
-                "zh-cn": "正在播放：添加了状态“艺术”（如果有的话，封面图片的 URL）\n"
-            },
-            "0.1.0": {
-                "en": "objectChange/stateChange: log level 'debug'\nadded 'STORED_MUSIC' to now playing info.",
-                "de": "objectChange/stateChange: log level 'debug'\n'STORED_MUSIC' wird berücksichting für 'nowPlaying'",
-                "ru": "objectChange/stateChange: уровень журнала «отладка»\n",
-                "pt": "objectChange/stateChange: nível de log 'depurar'\n",
-                "nl": "objectChange/stateChange: logniveau 'debug'\n",
-                "fr": "objectChange/stateChange : niveau de journalisation \"débogage\"\n",
-                "it": "ObjectChange/stateChange: livello di registro 'debug'\n",
-                "es": "objectChange/stateChange: nivel de registro 'depuración'\n",
-                "pl": "objectChange/stateChange: poziom dziennika 'debug'\n",
-                "zh-cn": "objectChange/stateChange：日志级别“调试”\n"
-            }
-        },
-        "title": "Bose SoundTouch",
-        "titleLang": {
-            "en": "Bose SoundTouch",
-            "de": "Bose SoundTouch",
-            "ru": "Bose SoundTouch",
-            "pt": "Bose SoundTouch",
-            "nl": "Bose SoundTouch",
-            "fr": "Bose SoundTouch",
-            "it": "Bose SoundTouch",
-            "es": "Bose SoundTouch",
-            "pl": "Bose SoundTouch",
-            "zh-cn": "Bose SoundTouch"
-        },
-        "desc": {
-            "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
-            "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen.",
-            "ru": "Управляет динамиками Bose SoundTouch через разъем и отслеживает информацию, отправляемую динамиком.",
-            "pt": "Controla os alto-falantes Bose SoundTouch por meio de uma conexão de soquete e monitora as informações enviadas do alto-falante.",
-            "nl": "Bestuurt Bose SoundTouch-luidsprekers via een stopcontact en controleert de informatie die door de luidspreker wordt verzonden.",
-            "fr": "Contrôle les haut-parleurs Bose SoundTouch via une connexion de prise et surveille les informations envoyées par le haut-parleur.",
-            "it": "Controlla gli altoparlanti Bose SoundTouch tramite una presa di connessione e monitora le informazioni inviate dall'altoparlante.",
-            "es": "Controla los altavoces Bose SoundTouch a través de una conexión de enchufe y supervisa la información enviada desde el altavoz.",
-            "pl": "Steruje głośnikami Bose SoundTouch przez połączenie gniazdowe i monitoruje informacje wysyłane z głośnika.",
-            "zh-cn": "通过插座连接控制 Bose SoundTouch 扬声器并监控扬声器发送的信息。"
-        },
-        "authors": [
-            "sven-s-ter <sven-s-ter@icloud.com>"
-        ],
-        "license": "MIT",
-        "platform": "Javascript/Node.js",
-        "mode": "daemon",
-        "icon": "bosesoundtouch.png",
-        "enabled": false,
-        "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
-        "keywords": [
-            "bose",
-            "soundtouch"
-        ],
-        "readme": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/blob/master/README.md",
-        "loglevel": "info",
-        "type": "multimedia",
-        "compact": true,
-        "restartAdapters": [],
-        "dependencies": [
-            {
-                "js-controller": ">=2.0.0"
-            }
-        ],
-        "connectionType": "local",
-        "dataSource": "push",
-        "tier": 2,
-        "plugins": {
-            "sentry": {
-                "dsn": "https://41cd8a095c1e4478a2a8a8c6e43f2e29@sentry.iobroker.net/199"
-            }
-        }
+  "common": {
+    "name": "bosesoundtouch",
+    "version": "0.10.1",
+    "news": {
+      "0.10.1": {
+        "en": "Add Sentry for crash reporting",
+        "de": "Fügen Sie Sentry für Absturzberichte hinzu",
+        "ru": "Добавьте Sentry для отчетов о сбоях",
+        "pt": "Adicionar Sentinela para relatórios de falhas",
+        "nl": "Sentry toevoegen voor crashrapportage",
+        "fr": "Ajouter Sentry pour les rapports de plantage",
+        "it": "Aggiungi Sentinella per la segnalazione degli arresti anomali",
+        "es": "Agregar Sentry para informes de fallas",
+        "pl": "Dodaj Sentry do zgłaszania awarii",
+        "zh-cn": "添加 Sentry 以进行崩溃报告"
+      },
+      "0.10.0": {
+        "en": "IMPORTANT: The adapter now requires at least js-controller 2.0\nOptimize for js-controller 3.3",
+        "de": "WICHTIG: Der Adapter benötigt jetzt mindestens js-controller 2.0\nOptimieren Sie für js-Controller 3.3",
+        "ru": "ВАЖНО: Теперь для адаптера требуется как минимум js-controller 2.0.\nОптимизировать под js-controller 3.3",
+        "pt": "IMPORTANTE: O adaptador agora requer pelo menos js-controller 2.0\nOtimize para js-controller 3.3",
+        "nl": "BELANGRIJK: de adapter vereist nu minimaal js-controller 2.0\nOptimaliseren voor js-controller 3.3",
+        "fr": "IMPORTANT: L'adaptateur nécessite maintenant au moins js-controller 2.0\nOptimiser pour js-controller 3.3",
+        "it": "IMPORTANTE: l'adattatore ora richiede almeno js-controller 2.0\nOttimizza per js-controller 3.3",
+        "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
+        "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
+        "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化"
+      },
+      "0.9.3": {
+        "en": "Added elapsed time, duration, status, keys and roles",
+        "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
+        "ru": "Добавлено прошедшее время, продолжительность, статус, ключи и роли",
+        "pt": "Adicionado tempo decorrido, duração, status, chaves e funções",
+        "nl": "Verstreken tijd, duur, status, sleutels en rollen toegevoegd",
+        "fr": "Ajout du temps écoulé, de la durée, du statut, des clés et des rôles",
+        "it": "Aggiunto tempo trascorso, durata, stato, chiavi e ruoli",
+        "es": "Se agregó tiempo transcurrido, duración, estado, claves y roles.",
+        "pl": "Dodano upływający czas, czas trwania, status, klucze i role",
+        "zh-cn": "增加了经过时间，持续时间，状态，键和角色"
+      },
+      "0.9.2": {
+        "en": "We don't use adapter.objects anymore",
+        "de": "Wir verwenden keine adapter.objects mehr",
+        "ru": "мы больше не используем адаптер.объекты",
+        "pt": "não usamos mais adapter.objects",
+        "nl": "we gebruiken geen adapter.objects meer",
+        "fr": "nous n'utilisons plus adapter.objects",
+        "it": "non usiamo più adapter.objects",
+        "es": "ya no usamos object.objects",
+        "pl": "nie używamy już adapter.objects",
+        "zh-cn": "我们不再使用adapter.objects"
+      },
+      "0.9.1": {
+        "en": "Support for compact mode. \nFixed bugs found by adapter checker.",
+        "de": "Unterstützung für compact mode. \nGefundene Fehler vom adapter checker behoben.",
+        "ru": "Поддержка компактного режима.\n",
+        "pt": "Suporte para o modo compacto.\n",
+        "nl": "Ondersteuning voor compacte modus.\n",
+        "fr": "Prise en charge du mode compact.\n",
+        "it": "Supporto per la modalità compatta.\n",
+        "es": "Soporte para modo compacto.\n",
+        "pl": "Wsparcie dla trybu kompaktowego.\n",
+        "zh-cn": "支持紧凑模式。\n"
+      },
+      "0.9.0": {
+        "en": "Added possibility to change the source. \nAll available sources are listed as states in folder sources and can be used as play buttons.",
+        "de": "Die Quellen können jetzt geändert werden. \nAlle verfügbaren Quellen werden als State im Unterverzeichnis 'sources' gelistet und können als Play-Button verwendet werden.",
+        "ru": "Добавлена ​​возможность смены источника.\n",
+        "pt": "Adicionada possibilidade de alterar a fonte.\n",
+        "nl": "Mogelijkheid toegevoegd om de bron te wijzigen.\n",
+        "fr": "Ajout de la possibilité de changer la source.\n",
+        "it": "Aggiunta la possibilità di cambiare la sorgente.\n",
+        "es": "Posibilidad añadida de cambiar la fuente.\n",
+        "pl": "Dodano możliwość zmiany źródła.\n",
+        "zh-cn": "增加了更改来源的可能性。\n"
+      },
+      "0.2.4": {
+        "en": "Core Files/Testing Update and introduce adapter-core",
+        "de": "Kern-Dateien/Tests aktualisiert und Einführung des adapter-core",
+        "ru": "Обновление Core Files/Testing и представление адаптера-ядра",
+        "pt": "Core Files/Testing Update e introduzindo o adaptador-core",
+        "nl": "Core Files/Testing Update en introduceer adapter-core",
+        "fr": "Mise à jour des fichiers de base/tests et introduction de l'adaptateur-core",
+        "it": "Core Files/Testing Aggiorna e introduci adapter-core",
+        "es": "Archivos principales/Actualización de prueba e introducción de adaptador-núcleo",
+        "pl": "Core Files/Testing Update i wprowadzenie adapter-core",
+        "zh-cn": "核心文件/测试更新并引入适配器核心"
+      }
     },
-    "native": {
-        "address": "",
-        "reconnectTime": 60
+    "title": "Bose SoundTouch",
+    "titleLang": {
+      "en": "Bose SoundTouch",
+      "de": "Bose SoundTouch",
+      "ru": "Bose SoundTouch",
+      "pt": "Bose SoundTouch",
+      "nl": "Bose SoundTouch",
+      "fr": "Bose SoundTouch",
+      "it": "Bose SoundTouch",
+      "es": "Bose SoundTouch",
+      "pl": "Bose SoundTouch",
+      "zh-cn": "Bose SoundTouch"
     },
-    "objects": []
+    "desc": {
+      "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
+      "de": "Steuert Bose SoundTouch-Lautsprecher über eine Socket-Verbindung und überwacht die vom Lautsprecher gesendeten Informationen.",
+      "ru": "Управляет динамиками Bose SoundTouch через разъем и отслеживает информацию, отправляемую динамиком.",
+      "pt": "Controla os alto-falantes Bose SoundTouch por meio de uma conexão de soquete e monitora as informações enviadas do alto-falante.",
+      "nl": "Bestuurt Bose SoundTouch-luidsprekers via een stopcontact en controleert de informatie die door de luidspreker wordt verzonden.",
+      "fr": "Contrôle les haut-parleurs Bose SoundTouch via une connexion de prise et surveille les informations envoyées par le haut-parleur.",
+      "it": "Controlla gli altoparlanti Bose SoundTouch tramite una presa di connessione e monitora le informazioni inviate dall'altoparlante.",
+      "es": "Controla los altavoces Bose SoundTouch a través de una conexión de enchufe y supervisa la información enviada desde el altavoz.",
+      "pl": "Steruje głośnikami Bose SoundTouch przez połączenie gniazdowe i monitoruje informacje wysyłane z głośnika.",
+      "zh-cn": "通过插座连接控制 Bose SoundTouch 扬声器并监控扬声器发送的信息。"
+    },
+    "authors": [
+      "sven-s-ter <sven-s-ter@icloud.com>"
+    ],
+    "license": "MIT",
+    "platform": "Javascript/Node.js",
+    "mode": "daemon",
+    "icon": "bosesoundtouch.png",
+    "enabled": false,
+    "extIcon": "https://raw.githubusercontent.com/iobroker-community-adapters/ioBroker.bosesoundtouch/master/admin/bosesoundtouch.png",
+    "keywords": [
+      "bose",
+      "soundtouch"
+    ],
+    "readme": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/blob/master/README.md",
+    "loglevel": "info",
+    "type": "multimedia",
+    "compact": true,
+    "restartAdapters": [],
+    "dependencies": [
+      {
+        "js-controller": ">=2.0.0"
+      }
+    ],
+    "connectionType": "local",
+    "dataSource": "push",
+    "tier": 2,
+    "plugins": {
+      "sentry": {
+        "dsn": "https://41cd8a095c1e4478a2a8a8c6e43f2e29@sentry.iobroker.net/199"
+      }
+    }
+  },
+  "native": {
+    "address": "",
+    "reconnectTime": 60
+  },
+  "objects": []
 }
