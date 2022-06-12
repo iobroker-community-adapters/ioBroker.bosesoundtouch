@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "bosesoundtouch",
-    "version": "0.10.1",
+    "version": "0.10.2",
     "news": {
+      "0.10.2": {
+        "en": "Check if adapter is configured properly before trying to connect",
+        "de": "Überprüfen Sie, ob Adapter richtig konfiguriert ist, bevor Sie versuchen, zu verbinden",
+        "ru": "Проверьте, настроен ли адаптер правильно перед тем, как пытаться подключиться",
+        "pt": "Verifique se o adaptador está configurado corretamente antes de tentar se conectar",
+        "nl": "Controleer of adapter goed in beslag genomen wordt voordat hij probeert te verbinden",
+        "fr": "Vérifiez si l'adaptateur est configuré correctement avant d'essayer de se connecter",
+        "it": "Controllare se l'adattatore è configurato correttamente prima di provare a connettersi",
+        "es": "Compruebe si el adaptador está configurado correctamente antes de intentar conectarse",
+        "pl": "Jeśli dostosowy jest prawidłowy, zanim próba połączenia się ze sobą",
+        "zh-cn": "如果适应人员在试图连接之前进行适当的配置,那么"
+      },
       "0.10.1": {
         "en": "Add Sentry for crash reporting",
         "de": "Fügen Sie Sentry für Absturzberichte hinzu",
@@ -74,18 +86,6 @@
         "es": "Posibilidad añadida de cambiar la fuente.\n",
         "pl": "Dodano możliwość zmiany źródła.\n",
         "zh-cn": "增加了更改来源的可能性。\n"
-      },
-      "0.2.4": {
-        "en": "Core Files/Testing Update and introduce adapter-core",
-        "de": "Kern-Dateien/Tests aktualisiert und Einführung des adapter-core",
-        "ru": "Обновление Core Files/Testing и представление адаптера-ядра",
-        "pt": "Core Files/Testing Update e introduzindo o adaptador-core",
-        "nl": "Core Files/Testing Update en introduceer adapter-core",
-        "fr": "Mise à jour des fichiers de base/tests et introduction de l'adaptateur-core",
-        "it": "Core Files/Testing Aggiorna e introduci adapter-core",
-        "es": "Archivos principales/Actualización de prueba e introducción de adaptador-núcleo",
-        "pl": "Core Files/Testing Update i wprowadzenie adapter-core",
-        "zh-cn": "核心文件/测试更新并引入适配器核心"
       }
     },
     "title": "Bose SoundTouch",
