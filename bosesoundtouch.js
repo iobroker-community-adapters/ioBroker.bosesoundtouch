@@ -322,11 +322,16 @@ class boseSoundTouch {
 
     async onReady() {
         await this.initObjects();
-        this.adapter.subscribeStates('*');
 
+        if (!this.adapter.config.address) {
+            this.adapter.log.error('No address configured! Please configure the adapter first.');
+            return;
+        }
         // in this template all states changes inside the adapters namespace are subscribed
         this.socket = new soundtouchsocket(this.adapter);
         this._connect();
+
+        this.adapter.subscribeStates('*');
     }
 
     _connect() {
