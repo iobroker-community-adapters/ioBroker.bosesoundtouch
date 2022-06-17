@@ -219,7 +219,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 }
                 if (data.time && data.time._) {
                     object.time = data.time._;
-                }				
+                }
                 if (data.time && data.time.$ && data.time.$.total) {
                     object.total = data.time.$.total;
                 }
@@ -357,7 +357,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             body:       bodyString
         };
         this.adapter.log.debug('_post: ' + options.baseUrl + command + ' - ' + bodyString);
-        this.request.post(options, this._postCallback);
+        this.request.post(options, (error, response, body) => this._postCallback(error, response, body));
     }
 
     setValue(command, args, value) {
