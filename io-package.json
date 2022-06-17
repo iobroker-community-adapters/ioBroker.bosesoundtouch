@@ -1,8 +1,20 @@
 {
   "common": {
     "name": "bosesoundtouch",
-    "version": "0.10.2",
+    "version": "0.10.3",
     "news": {
+      "0.10.3": {
+        "en": "Fix crash case reported by Sentry",
+        "de": "Reparieren Crashfall berichtet von Sentry",
+        "ru": "Исправление случай аварии сообщается в Sentry",
+        "pt": "Corrigir caso de acidente relatado por Sentry",
+        "nl": "Vertaling:",
+        "fr": "Correction de l'accident rapporté par Sentry",
+        "it": "Correzione caso di crash segnalato da Sentry",
+        "es": "Caso de accidente fijo reportado por Sentry",
+        "pl": "Sprawa rozbicia Fixa doniesiona przez firmę Sentry",
+        "zh-cn": "Sentry所报告的六例事故"
+      },
       "0.10.2": {
         "en": "Check if adapter is configured properly before trying to connect",
         "de": "Überprüfen Sie, ob Adapter richtig konfiguriert ist, bevor Sie versuchen, zu verbinden",
@@ -74,18 +86,6 @@
         "es": "Soporte para modo compacto.\n",
         "pl": "Wsparcie dla trybu kompaktowego.\n",
         "zh-cn": "支持紧凑模式。\n"
-      },
-      "0.9.0": {
-        "en": "Added possibility to change the source. \nAll available sources are listed as states in folder sources and can be used as play buttons.",
-        "de": "Die Quellen können jetzt geändert werden. \nAlle verfügbaren Quellen werden als State im Unterverzeichnis 'sources' gelistet und können als Play-Button verwendet werden.",
-        "ru": "Добавлена ​​возможность смены источника.\n",
-        "pt": "Adicionada possibilidade de alterar a fonte.\n",
-        "nl": "Mogelijkheid toegevoegd om de bron te wijzigen.\n",
-        "fr": "Ajout de la possibilité de changer la source.\n",
-        "it": "Aggiunta la possibilità di cambiare la sorgente.\n",
-        "es": "Posibilidad añadida de cambiar la fuente.\n",
-        "pl": "Dodano możliwość zmiany źródła.\n",
-        "zh-cn": "增加了更改来源的可能性。\n"
       }
     },
     "title": "Bose SoundTouch",
