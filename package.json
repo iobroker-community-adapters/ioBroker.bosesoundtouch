@@ -24,7 +24,7 @@
     "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^2.6.8",
+    "@iobroker/adapter-core": "^3.0.3",
     "es6-promise": "^4.2.8",
     "request": "^2.88.2",
     "string-format": "^2.0.0",
