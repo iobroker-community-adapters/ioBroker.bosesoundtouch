@@ -41,7 +41,7 @@
     "@iobroker/adapter-dev": "^1.2.0",
     "chai": "^4.3.10",
     "eslint-config-google": "^0.14.0",
-    "mocha": "^10.2.0",
+    "mocha": "^10.3.0",
     "eslint": "^8.56.0"
   },
   "main": "bosesoundtouch.js",
