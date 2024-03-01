@@ -42,7 +42,7 @@
     "chai": "^4.3.10",
     "eslint-config-google": "^0.14.0",
     "mocha": "^10.3.0",
-    "eslint": "^8.56.0"
+    "eslint": "^8.57.0"
   },
   "main": "bosesoundtouch.js",
   "scripts": {
