@@ -79,7 +79,7 @@ Soundtouch Application itself.
     ### **WORK IN PROGRESS**
 -->
 ### **WORK IN PROGRESS**
-* (mcm1957) Release wrikflow has been fixed
+* (mcm1957) Release workflow has been fixed
 
 ### 0.11.0 (2024-04-03)
 * (mcm1957) Adapter requires node.js 18 and js-controller >= 5 now
