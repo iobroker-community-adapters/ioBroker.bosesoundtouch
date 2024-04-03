@@ -78,7 +78,7 @@ Soundtouch Application itself.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.11.1 (2024-04-03)
 * (mcm1957) Release workflow has been fixed
 
 ### 0.11.0 (2024-04-03)
