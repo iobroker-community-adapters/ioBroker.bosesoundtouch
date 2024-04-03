@@ -28,24 +28,24 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ matrix.node-version }}
 
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-#      - name: Perform a type check
-#        run: npm run check:ts
-#        env:
-#          CI: true
-      # - name: Lint TypeScript code
-      #   run: npm run lint
-#      - name: Test package files
-#        run: npm run test:package
+      #      - name: Perform a type check
+      #        run: npm run check:ts
+      #        env:
+      #          CI: true
+      - name: Lint TypeScript code
+        run: npm run lint
+  #      - name: Test package files
+  #        run: npm run test:package
 
   # Runs adapter tests on all supported node versions and OSes
   adapter-tests:
@@ -60,25 +60,25 @@ jobs:
         os: [ubuntu-latest, windows-latest, macos-latest]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.1.2
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ matrix.node-version }}
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Run local tests
-        run: npm test
-#      - name: Run unit tests
-#        run: npm run test:unit
-#      - name: Run integration tests # (linux/osx)
-#        if: startsWith(runner.OS, 'windows') == false
-#        run: DEBUG=testing:* npm run test:integration
-#      - name: Run integration tests # (windows)
-#        if: startsWith(runner.OS, 'windows')
-#        run: set DEBUG=testing:* & npm run test:integration
+  #      - name: Run local tests
+  #        run: npm test
+  #      - name: Run unit tests
+  #        run: npm run test:unit
+  #      - name: Run integration tests # (linux/osx)
+  #        if: startsWith(runner.OS, 'windows') == false
+  #        run: DEBUG=testing:* npm run test:integration
+  #      - name: Run integration tests # (windows)
+  #        if: startsWith(runner.OS, 'windows')
+  #        run: set DEBUG=testing:* & npm run test:integration
 
   # Deploys the final package to NPM
   deploy:
@@ -96,10 +96,10 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.1.2
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v4.0.2
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -118,7 +118,10 @@ jobs:
           echo "::set-output name=BODY::$BODY"
 
       - name: Install Dependencies
-        run: npm ci
+        run: npm install
+
+      #      - name: Create a clean build
+      #        run: npm run build
       - name: Publish package to npm
         run: |
           npm config set //registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}
@@ -133,21 +136,23 @@ jobs:
           tag_name: ${{ github.ref }}
           release_name: Release v${{ steps.extract_release.outputs.VERSION }}
           draft: false
-          # Prerelease versions create prereleases on Github
+          # Prerelease versions create pre-releases on GitHub
           prerelease: ${{ contains(steps.extract_release.outputs.VERSION, '-') }}
           body: ${{ steps.extract_release.outputs.BODY }}
 
-      - name: Notify Sentry.io about the release
-        run: |
-          npm i -g @sentry/cli
-          export SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
-          export SENTRY_URL=https://sentry.iobroker.net
-          export SENTRY_ORG=iobroker
-          export SENTRY_PROJECT=iobroker-bosesoundtouch
-          export SENTRY_VERSION=iobroker.bosesoundtouch@${{ steps.extract_release.outputs.VERSION }}
-          sentry-cli releases new $SENTRY_VERSION
-          sentry-cli releases set-commits $SENTRY_VERSION --auto
-          sentry-cli releases finalize $SENTRY_VERSION
+#      - name: Notify Sentry.io about the release
+#        run: |
+#          npm i -g @sentry/cli
+#          export SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_AUTH_TOKEN }}
+#          export SENTRY_URL=https://sentry.iobroker.net
+#          export SENTRY_ORG=iobroker
+#          export SENTRY_PROJECT=iobroker-accuweather
+#          export SENTRY_VERSION=iobroker.accuweather@${{ steps.extract_release.outputs.VERSION }}
+#          sentry-cli releases new $SENTRY_VERSION
+#          sentry-cli releases finalize $SENTRY_VERSION
+
+        # Add the following line BEFORE finalize if repositories are connected in Sentry
+        # sentry-cli releases set-commits $SENTRY_VERSION --auto
 
         # Add the following line BEFORE finalize if sourcemap uploads are needed
         # sentry-cli releases files $SENTRY_VERSION upload-sourcemaps build/
