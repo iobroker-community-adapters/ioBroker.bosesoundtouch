@@ -78,7 +78,7 @@ Soundtouch Application itself.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-### **WORK IN PROGRESS**
+### 0.11.0 (2024-04-03)
 * (mcm1957) Adapter requires node.js 18 and js-controller >= 5 now
 * (mcm1957) Testing has been changed to support node 18 and 20
 * (mcm1957) Dependencies have been updated

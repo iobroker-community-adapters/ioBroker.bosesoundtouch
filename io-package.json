@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "bosesoundtouch",
-    "version": "0.10.3",
+    "version": "0.11.0",
     "news": {
+      "0.11.0": {
+        "en": "Adapter requires node.js 18 and js-controller >= 5 now\nTesting has been changed to support node 18 and 20\nDependencies have been updated",
+        "de": "Adapter benötigt node.js 18 und js-controller >= 5 jetzt\nDie Prüfung wurde in den Stützknoten 18 und 20 geändert\nAbhängigkeiten wurden aktualisiert",
+        "ru": "Адаптер требует node.js 18 и js-controller >= 5 сейчас\nТестирование было изменено на узел 18 и 20\nЗависимость обновлена",
+        "pt": "Adapter requer node.js 18 e js-controller >= 5 agora\nOs testes foram alterados para suportar o nó 18 e 20\nAs dependências foram atualizadas",
+        "nl": "Adapter vereist node.js 18 en js-controller Nu 5\nTesten is gewijzigd om node 18 en 20 te ondersteunen\nAfhankelijkheden zijn bijgewerkt",
+        "fr": "Adaptateur nécessite node.js 18 et js-controller >= 5 maintenant\nLes essais ont été modifiés pour soutenir les nœuds 18 et 20\nLes dépendances ont été actualisées",
+        "it": "Adattatore richiede node.js 18 e js-controller >= 5 ora\nI test sono stati modificati per supportare il nodo 18 e 20\nLe dipendenze sono state aggiornate",
+        "es": "Adaptador requiere node.js 18 y js-controller √= 5 ahora\nLos exámenes se han modificado para apoyar los nodos 18 y 20\nSe han actualizado las dependencias",
+        "pl": "Adapter wymaga node.js 18 i sterownika js- > = 5 teraz\nTesty zostały zmienione, aby wspierać węzeł 18 i 20\nZaktualizowano zależności",
+        "uk": "Адаптер вимагає node.js 18 і js-controller >= 5 тепер\nТестування було змінено для підтримки вузла 18 та 20\nЗалежність було оновлено",
+        "zh-cn": "适配器需要节点.js 18和js控制器 QQ 现在5号\n测试已更改为支持节点18和20\n依赖关系已更新"
+      },
       "0.10.3": {
         "en": "Fix crash case reported by Sentry",
         "de": "Reparieren Crashfall berichtet von Sentry",
@@ -74,18 +87,6 @@
         "es": "ya no usamos object.objects",
         "pl": "nie używamy już adapter.objects",
         "zh-cn": "我们不再使用adapter.objects"
-      },
-      "0.9.1": {
-        "en": "Support for compact mode. \nFixed bugs found by adapter checker.",
-        "de": "Unterstützung für compact mode. \nGefundene Fehler vom adapter checker behoben.",
-        "ru": "Поддержка компактного режима.\n",
-        "pt": "Suporte para o modo compacto.\n",
-        "nl": "Ondersteuning voor compacte modus.\n",
-        "fr": "Prise en charge du mode compact.\n",
-        "it": "Supporto per la modalità compatta.\n",
-        "es": "Soporte para modo compacto.\n",
-        "pl": "Wsparcie dla trybu kompaktowego.\n",
-        "zh-cn": "支持紧凑模式。\n"
       }
     },
     "titleLang": {
