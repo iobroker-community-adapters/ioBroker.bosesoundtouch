@@ -31,7 +31,7 @@
     "es6-promise": "^4.2.8",
     "request": "^2.88.2",
     "string-format": "^2.0.0",
-    "ws": "^8.16.0",
+    "ws": "^8.18.0",
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
