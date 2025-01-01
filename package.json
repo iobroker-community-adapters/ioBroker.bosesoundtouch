@@ -27,7 +27,7 @@
     "node": ">=18"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.1.6",
+    "@iobroker/adapter-core": "^3.2.3",
     "es6-promise": "^4.2.8",
     "request": "^2.88.2",
     "string-format": "^2.0.0",
