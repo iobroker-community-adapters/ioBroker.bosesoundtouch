@@ -9,7 +9,11 @@
   "contributors": [
     "SwedishChef <swedish.chef@gmx.at>",
     "sven_s_ter <sven_s_ter@icloud.com>",
-    "Apollon77"
+    "Apollon77",
+    {
+      "name": "iobroker-community-adapters",
+      "email": "iobroker-community-adapters@gmx.de"
+    }
   ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch",
   "license": "MIT",

@@ -115,7 +115,8 @@
       "zh-cn": "通过插座连接控制 Bose SoundTouch 扬声器并监控扬声器发送的信息。"
     },
     "authors": [
-      "sven-s-ter <sven-s-ter@icloud.com>"
+      "sven-s-ter <sven-s-ter@icloud.com>",
+      "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
     ],
     "keywords": [
       "bose",
@@ -138,7 +139,7 @@
     "restartAdapters": [],
     "dependencies": [
       {
-        "js-controller": ">=5.0.0"
+        "js-controller": ">=6.0.11"
       }
     ],
     "connectionType": "local",
@@ -147,7 +148,12 @@
       "sentry": {
         "dsn": "https://41cd8a095c1e4478a2a8a8c6e43f2e29@sentry.iobroker.net/199"
       }
-    }
+    },
+    "globalDependencies": [
+      {
+        "admin": ">=7.6.17"
+      }
+    ]
   },
   "native": {
     "address": "",
