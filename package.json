@@ -2,18 +2,12 @@
   "name": "iobroker.bosesoundtouch",
   "version": "0.11.1",
   "description": "Integration for Bose SoundTouch speakers",
-  "author": {
-    "name": "sven_s_ter",
-    "email": "sven_s_ter@icloud.com"
-  },
+  "author": "sven_s_ter <sven_s_ter@icloud.com>",
   "contributors": [
     "SwedishChef <swedish.chef@gmx.at>",
     "sven_s_ter <sven_s_ter@icloud.com>",
     "Apollon77",
-    {
-      "name": "iobroker-community-adapters",
-      "email": "iobroker-community-adapters@gmx.de"
-    }
+    "iobroker-community-adapters <iobroker-community-adapters@gmx.de>"
   ],
   "homepage": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch",
   "license": "MIT",
