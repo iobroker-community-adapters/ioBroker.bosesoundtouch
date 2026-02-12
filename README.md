@@ -84,6 +84,7 @@ Soundtouch Application itself.
 - (copilot) Adapter requires js-controller >= 6.0.11 now
 - (copilot) Adapter requires admin >= 7.6.17 now
 - (mcm1957) Dependencies have been updated
+- (copilot) **CI/CD**: Migrated to ESLint 9 and @iobroker/eslint-config following ioBroker community standards
 
 ### 0.11.1 (2024-04-03)
 * (mcm1957) Release workflow has been fixed
