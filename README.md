@@ -80,8 +80,10 @@ Soundtouch Application itself.
 -->
 
 ### **WORK IN PROGRESS**
+- (mcm1957) Adapter requires node.js >= 20 now
 - (copilot) Adapter requires js-controller >= 6.0.11 now
 - (copilot) Adapter requires admin >= 7.6.17 now
+- (mcm1957) Dependencies have been updated
 
 ### 0.11.1 (2024-04-03)
 * (mcm1957) Release workflow has been fixed
