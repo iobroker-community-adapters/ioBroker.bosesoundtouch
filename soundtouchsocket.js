@@ -5,7 +5,7 @@
 
 'use strict';
 
-var format = require('string-format');
+const format = require('string-format');
 
 module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
@@ -24,10 +24,10 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     connect() {
         this.adapter.log.debug('connect');
-        var instance = this;
+        const instance = this;
 
         return new this.promise.Promise(function(resolve, reject) {
-            var address = 'ws://' + instance.address + ':8080/';
+            const address = 'ws://' + instance.address + ':8080/';
             const WebSocket = require('ws');
 
             instance.adapter.log.info('connecting to host ' + address);
@@ -57,7 +57,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         this.adapter.log.debug('_restartHeartBeat');
         this._lastMessage = Date.now();
         clearInterval(this.heartBeatInterval);
-        var instance = this;
+        const instance = this;
         this.heartBeatInterval = setInterval(function() { instance._heartBeatFunc(); }, 10000);
     }
 
@@ -86,7 +86,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     send(data) {
-        var instance = this;
+        const instance = this;
         return new this.promise.Promise(function(resolve, reject) {
             instance.adapter.log.debug('Send: ' + data);
             instance.ws.send(data, function ackSend(err) {
@@ -102,7 +102,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleVolume(volume) {
         this.adapter.log.debug('received [volume]:' + volume.actualvolume);
-        var obj = {
+        const obj = {
             volume: volume.actualvolume,
             muted: volume.muteenabled == 'true'
         };
@@ -110,8 +110,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _handlePresets(data) {
-        var object = [];
-        for (var i = 0; i < 6; i++) {
+        const object = [];
+        for (let i = 0; i < 6; i++) {
             object[i] = {
                 source:  '',
                 name:    '',
@@ -121,11 +121,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         if (data.presets) {
             this.adapter.log.debug('received [presets]:' + JSON.stringify(data.presets));
             if (data.presets.preset) {
-                var presets = data.presets.preset;
-                var contentItem;
-                var id;
+                const presets = data.presets.preset;
+                let contentItem;
+                let id;
                 if (Array.isArray(presets)) {
-                    for (i in presets) {
+                    for (const i in presets) {
                         contentItem = presets[i].ContentItem;
                         id = presets[i].$.id - 1;
                         object[id].source  = contentItem.$.source;
@@ -147,9 +147,9 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleSources(data) {
         this.adapter.log.debug('received [sources]:' + JSON.stringify(data.sourceItem));
-        var object = [];
-        for (var i in data.sourceItem) {
-            var source = data.sourceItem[i].$;
+        const object = [];
+        for (const i in data.sourceItem) {
+            const source = data.sourceItem[i].$;
             object.push({
                 name:             source.source,
                 sourceAccount:    source.sourceAccount,
@@ -163,14 +163,14 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleDeviceInfo(data) {
         this.adapter.log.debug('received [info] ' + JSON.stringify(data));
-        var networkInfo;
+        let networkInfo;
         if (Array.isArray(data.networkInfo)) {
             networkInfo = data.networkInfo[0];
         }
         else {
             networkInfo = data.networkInfo;
         }
-        var object = {
+        const object = {
             name:       data.name,
             type:       data.type,
             macAddress: data.$.deviceID,
@@ -181,7 +181,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _handleNowPlaying(data) {
         this.adapter.log.debug('received [now_playing] ' + JSON.stringify(data));
-        var object = {
+        const object = {
             source:  data.$.source,
             track:   '',
             artist:  '',
@@ -189,11 +189,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
             station: '',
             art:     '',
             genre:   '',
-			time:	 '',
-			total:	 '',
-			playStatus: '',
-			repeatStatus: '',
-			shuffleStatus: '',
+            time:	 '',
+            total:	 '',
+            playStatus: '',
+            repeatStatus: '',
+            shuffleStatus: '',
             contentItem: null
         };
         switch (data.$.source) {
@@ -223,13 +223,13 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                 if (data.time && data.time.$ && data.time.$.total) {
                     object.total = data.time.$.total;
                 }
-				object.playStatus = data.playStatus;
-				if (data.repeatSetting) {
-					object.repeatSetting = data.repeatSetting;
-				}
-				if (data.shuffleSetting) {
-					object.shuffleSetting = data.shuffleSetting;
-				}
+                object.playStatus = data.playStatus;
+                if (data.repeatSetting) {
+                    object.repeatSetting = data.repeatSetting;
+                }
+                if (data.shuffleSetting) {
+                    object.shuffleSetting = data.shuffleSetting;
+                }
                 break;
 
             case 'PRODUCT':
@@ -246,7 +246,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     _onJsData(jsData) {
         this.adapter.log.debug(JSON.stringify(jsData));
-        for (var infoItem in jsData) {
+        for (const infoItem in jsData) {
             switch(infoItem) {
                 case 'info':
                     this._handleDeviceInfo(jsData[infoItem]);
@@ -265,7 +265,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                     break;
 
                 case 'volume': {
-                    var volume = jsData.volume;
+                    const volume = jsData.volume;
                     if (volume) {
                         this._handleVolume(volume);
                     }
@@ -289,11 +289,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                     break;
 
                 case 'updates':
-                    if (jsData.hasOwnProperty('updates')) {
-                        for (var updateItem in jsData.updates) {
+                    if (Object.prototype.hasOwnProperty.call(jsData, 'updates')) {
+                        for (const updateItem in jsData.updates) {
                             switch(updateItem) {
                                 case 'nowPlayingUpdated': {
-                                    var nowPlaying = jsData.updates.nowPlayingUpdated.nowPlaying;
+                                    const nowPlaying = jsData.updates.nowPlayingUpdated.nowPlaying;
                                     if (nowPlaying) {
                                         this._handleNowPlaying(nowPlaying);
                                     }
@@ -304,7 +304,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
                                 }
 
                                 case 'volumeUpdated': {
-                                    var vol = jsData.updates.volumeUpdated.volume;
+                                    const vol = jsData.updates.volumeUpdated.volume;
                                     if (vol) {
                                         this._handleVolume(vol);
                                     }
@@ -330,7 +330,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _parse(xml) {
-        var instance = this;
+        const instance = this;
         this.xml2js.parseString(xml, { explicitArray: false }, function(err, jsData) {
             if (err) {
                 instance.adapter.log.error(err);
@@ -351,7 +351,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     _post(command, bodyString) {
-        var options = {
+        const options = {
             baseUrl:    'http://' + this.address + ':8090/',
             uri:        command,
             body:       bodyString
@@ -364,7 +364,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         if (args !== '' && args[0] != ' ') {
             args = ' ' + args;
         }
-        var bodyString = '<' + command + args + '>' + value + '</' + command + '>';
+        const bodyString = '<' + command + args + '>' + value + '</' + command + '>';
         this._post(command, bodyString);
     }
 
@@ -372,11 +372,11 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
         const body = '<zone master="{}"> {} </zone>';
         const member = '<member ipaddress="{}">{}</member>';
 
-        var members = '';
+        let members = '';
         slaves.forEach(slave => {
             members = members + format(member, slave.ip, slave.mac);
         });
-        var str = format(body, master.mac, members);
+        const str = format(body, master.mac, members);
         this._post('setZone', str);
     }
 
@@ -384,7 +384,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     {
         const body = '<zone master="{}"> {} </zone>';
         const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;
-        var str = format(body, master.mac, member);
+        const str = format(body, master.mac, member);
         socket._post('addZoneSlave', str);
     }
 
@@ -392,12 +392,12 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     {
         const body = '<zone master="{}"> {} </zone>';
         const member = `<member ipaddress="${slave.ip}">${slave.mac}</member>`;
-        var str = format(body, master.mac, member);
+        const str = format(body, master.mac, member);
         socket._post('removeZoneSlave', str);
     }
 
     playSource(source, sourceAccount, contentItem) {
-        var str;
+        let str;
         if (contentItem) {
             str = this.js2xml.buildObject(contentItem);
         }
@@ -409,8 +409,8 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
     }
 
     get(value) {
-        var instance = this;
-        var command = 'http://' + this.address + ':8090/' + value;
+        const instance = this;
+        const command = 'http://' + this.address + ':8090/' + value;
         this.adapter.log.debug('request: ' + command);
         this.request.get(command, function(error, response, body) {
             if (error) {
@@ -448,7 +448,7 @@ module.exports = class soundtouchsocket extends require('events').EventEmitter {
 
     updateAll() {
         this.adapter.log.debug('updateAll');
-        var instance = this;
+        const instance = this;
         return this.promise.Promise.all([
             instance.getDeviceInfo(),
             instance.getPlayInfo(),

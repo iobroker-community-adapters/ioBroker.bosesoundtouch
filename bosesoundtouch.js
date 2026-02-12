@@ -81,19 +81,19 @@ const BOSE_ID_KEYS_REMOVE_FAVORITE 	= { id: BOSE_ID_KEYS + '.REMOVE_FAVORITE', 	
 
 
 // you have to require the utils module and call adapter function
-var format = require('string-format');
-var utils = require('@iobroker/adapter-core'); // Get common adapter utils
-var soundtouchsocket = require(__dirname + '/soundtouchsocket');
+const format = require('string-format');
+const utils = require('@iobroker/adapter-core'); // Get common adapter utils
+const soundtouchsocket = require(__dirname + '/soundtouchsocket');
 //var bosestates = require(__dirname + '/bosestates');
 const adapterName = require('./package.json').name.split('.').pop();
-var playTimer, playTimerTime;
+let playTimer, playTimerTime;
 
 // you have to call the adapter function and pass a options object
 // name has to be set and has to be equal to adapters folder name and main file name excluding extension
 // adapter will be restarted automatically every time as the configuration changed, e.g system.adapter.template.0
 class boseSoundTouch {
     constructor(options) {
-        var instance = this;
+        const instance = this;
 
         options = options || {};
         Object.assign(options, {
@@ -133,7 +133,7 @@ class boseSoundTouch {
         // Warning, state can be null if it was deleted
         this.adapter.log.debug('stateChange ' + id + ' ' + JSON.stringify(state));
 
-        var namespace = this.adapter.namespace + '.';
+        const namespace = this.adapter.namespace + '.';
 
         // you can use the ack flag to detect if it is status (true) or command (false)
         if (state && !state.ack) {
@@ -313,8 +313,8 @@ class boseSoundTouch {
 
     onError() {
         //this.adapter.log.error('error' + obj);
-        var instance = this;
-        var interval = this.adapter.config.reconnectTime * 1000;
+        const instance = this;
+        const interval = this.adapter.config.reconnectTime * 1000;
         if (interval > 0) {
             this.reconnectInterval = setInterval(function() { instance._connect(); }, interval);
         }
@@ -337,7 +337,7 @@ class boseSoundTouch {
     _connect() {
         this.adapter.log.debug('connect...');
         clearInterval(this.reconnectInterval);
-        var instance = this;
+        const instance = this;
 
         this.socket.removeAllListeners();
         this.socket.addListener('error', function() { instance.onError(); });
@@ -361,7 +361,7 @@ class boseSoundTouch {
     }
 
     setObject(obj, arg) {
-        var config = {
+        const config = {
             type: 'state',
             common: {
                 name: '',
@@ -414,8 +414,8 @@ class boseSoundTouch {
     }
 
     setState(obj, value, optional) {
-        var arg = (optional && optional.arg != null) ? optional.arg : null;
-        var ack = (optional && optional.ack != null) ? optional.ack : true;
+        const arg = (optional && optional.arg != null) ? optional.arg : null;
+        const ack = (optional && optional.ack != null) ? optional.ack : true;
         this.adapter.setState(this._getId(obj, arg), {val: value, ack: ack});
     }
 
@@ -434,7 +434,7 @@ class boseSoundTouch {
 
         await this.setObject(BOSE_ID_ZONES_PLAY_EVERYWHERE);
 
-        for (var i = 1; i <= 6; i++) {
+        for (let i = 1; i <= 6; i++) {
             await this.setObject(BOSE_ID_PRESET_SOURCE, i);
             await this.setObject(BOSE_ID_PRESET_NAME, i);
             await this.setObject(BOSE_ID_PRESET_ICON, i);
@@ -519,7 +519,7 @@ class boseSoundTouch {
         this.setState(BOSE_ID_ON, (obj.source !== 'STANDBY'));
 
         if (obj.contentItem && this.availableSources) {
-            var source = this.availableSources.find(function (source) { return source.source === obj.source; });
+            const source = this.availableSources.find(function (source) { return source.source === obj.source; });
             if (source) {
                 source.contentItem = obj.contentItem;
             }
@@ -545,8 +545,8 @@ class boseSoundTouch {
 
     setPresets(obj) {
         //var presets = JSON.parse(data);
-        for (var i = 0; i < 6; i++) {
-            var preset = {
+        for (let i = 0; i < 6; i++) {
+            let preset = {
                 source: 	'',
                 name:		'',
                 iconUrl:	''
@@ -562,7 +562,7 @@ class boseSoundTouch {
     }
 
     setZone(obj) {
-        var instance = this;
+        const instance = this;
         instance.masterSlaveData = {
             master: {
                 ip: this.adapter.ipAddress,
@@ -577,7 +577,7 @@ class boseSoundTouch {
         }
         else {
             if (obj.$.master === this.adapter.macAddress) {
-                let members = [];
+                const members = [];
                 if (obj.member && obj.member.length > 0) {
                     obj.member.forEach(member => {
                         members.push(member._);
@@ -595,13 +595,13 @@ class boseSoundTouch {
                         endkey: 'system.adapter.bosesoundtouch.\u9999' },
                     function (err, doc) {
                         if (doc && doc.rows && doc.rows.length) {
-                            var toDoList = [];
-                            for (var i = 0; i < doc.rows.length; i++) {
-                                var obj = doc.rows[i].value;
+                            const toDoList = [];
+                            for (let i = 0; i < doc.rows.length; i++) {
+                                const obj = doc.rows[i].value;
                                 if (obj.native.address !== instance.adapter.ipAddress) {
-                                    var systemId  = doc.rows[i].id.split('.');
-                                    var index = systemId[systemId.length - 1];
-                                    var namespace = systemId[systemId.length - 2] + '.' + index + '.';
+                                    const systemId  = doc.rows[i].id.split('.');
+                                    const index = systemId[systemId.length - 1];
+                                    const namespace = systemId[systemId.length - 2] + '.' + index + '.';
                                     toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS.id);
                                     toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS.id);
                                 }
@@ -625,13 +625,13 @@ class boseSoundTouch {
     _collectPlayEverywhereDataFinished_checkPlayEverywhere(instance, filterList){
         instance.adapter.log.warn('checkPlayEverywhere: ' + JSON.stringify(filterList));
         instance.adapter.log.warn('checkPlayEverywhere msd: ' + JSON.stringify(instance.masterSlaveData));
-        var playEverywhere = true;
-        var items = instance.masterSlaveData.slave;
+        let playEverywhere = true;
+        const items = instance.masterSlaveData.slave;
         for (let index = 0; index < items.length; index += 2) {
-            var type = items[index].id.split('.');
+            let type = items[index].id.split('.');
             type = type[type.length - 1];
             if (type === 'ipAddress') {
-                var slaveMac = items[index+1].value;
+                const slaveMac = items[index+1].value;
                 if (filterList.indexOf(slaveMac) === -1) {
                     playEverywhere = false;
                     break;
@@ -644,8 +644,8 @@ class boseSoundTouch {
 
     async setSources(obj) {
         this.availableSources = [];
-        for (var i in obj) {
-            var source = obj[i];
+        for (const i in obj) {
+            const source = obj[i];
 
             if (source.status === 'READY') {
                 await this.setObject(BOSE_ID_SOURCES_SOURCE, source.name);
@@ -660,11 +660,11 @@ class boseSoundTouch {
         }
 
         // remove unavailable sources
-        var instance = this;
+        const instance = this;
         this.adapter.getStates(BOSE_ID_SOURCES + '.*', function(err, states) {
-            for (var id in states) {
-                let state = id.split('.').pop();
-                var source = instance.availableSources.find(function (element) { return element.source === state; });
+            for (const id in states) {
+                const state = id.split('.').pop();
+                const source = instance.availableSources.find(function (element) { return element.source === state; });
                 if (!source) {
                     instance.adapter.deleteState('', instance.adapter.namespace + '.' + BOSE_ID_SOURCES, state);
                 }
@@ -673,14 +673,14 @@ class boseSoundTouch {
     }
 
     _collectPlayEverywhereData(data, callback, filterList) {
-        var instance = this;
+        const instance = this;
         if (data) {
             if (!data.length) {
                 callback(instance, filterList);
             }
             else {
-                var id = data.shift();
-                var slave = {};
+                const id = data.shift();
+                const slave = {};
                 slave.id = id;
                 this.adapter.getForeignState(id, function(err, state) {
                     if (err) {
@@ -697,13 +697,13 @@ class boseSoundTouch {
     }
 
     _collectPlayEverywhereFinished_setMasterOf(instance, filterList) {
-        var slaveList = [];
-        var items = instance.masterSlaveData.slave;
+        const slaveList = [];
+        const items = instance.masterSlaveData.slave;
         for (let index = 0; index < items.length; index += 2) {
-            var type = items[index].id.split('.');
+            let type = items[index].id.split('.');
             type = type[type.length - 1];
             if (type === 'ipAddress') {
-                var slave = {
+                const slave = {
                     ip: items[index].value,
                     mac: items[index +1].value
                 };
@@ -716,7 +716,7 @@ class boseSoundTouch {
     }
 
     handleMasterOf(setMacAddresses, setZoneFunction, add) {
-        var instance = this;
+        const instance = this;
         instance.adapter.getState(this.adapter.namespace + '.' + BOSE_ID_ZONES_MASTER_OF.id, function(err, stateMasterOf) {
             if (err) {
                 instance.adapter.log.error(err);
@@ -758,7 +758,7 @@ class boseSoundTouch {
     }
 
     _setZoneSlave(slaveMacAddress, setZoneFunction) {
-        var instance = this;
+        const instance = this;
         instance.masterSlaveData = {
             master: {
                 ip: this.adapter.ipAddress,
@@ -805,7 +805,7 @@ class boseSoundTouch {
     }
 
     setMasterOf(setMasterOf) {
-        var instance = this;
+        const instance = this;
         instance.masterSlaveData = {
             master: {
                 ip: this.adapter.ipAddress,
@@ -819,13 +819,13 @@ class boseSoundTouch {
                 endkey: 'system.adapter.bosesoundtouch.\u9999' },
             function (err, doc) {
                 if (doc && doc.rows && doc.rows.length) {
-                    var toDoList = [];
-                    for (var i = 0; i < doc.rows.length; i++) {
-                        var obj = doc.rows[i].value;
+                    const toDoList = [];
+                    for (let i = 0; i < doc.rows.length; i++) {
+                        const obj = doc.rows[i].value;
                         if (obj.native.address !== instance.adapter.ipAddress) {
-                            var systemId  = doc.rows[i].id.split('.');
-                            var index = systemId[systemId.length - 1];
-                            var namespace = systemId[systemId.length - 2] + '.' + index + '.';
+                            const systemId  = doc.rows[i].id.split('.');
+                            const index = systemId[systemId.length - 1];
+                            const namespace = systemId[systemId.length - 2] + '.' + index + '.';
                             toDoList.push(namespace + BOSE_ID_INFO_IP_ADDRESS.id);
                             toDoList.push(namespace + BOSE_ID_INFO_MAC_ADDRESS.id);
                         }
@@ -842,7 +842,7 @@ class boseSoundTouch {
     playSource(id) {
         id = id.split('.');
         id = id[id.length - 1];
-        var source = this.availableSources.find(function (obj) { return obj.source === id; });
+        const source = this.availableSources.find(function (obj) { return obj.source === id; });
         // don't switch to on-local source as long as contentItem object (sent with now playing info) has received
         // TODO: persist contentItem objects
         if (source && (source.isLocal || source.contentItem)) {
