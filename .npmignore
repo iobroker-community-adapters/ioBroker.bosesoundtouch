@@ -3,3 +3,5 @@ test
 .idea
 .vscode
 gulpfile.js
+eslint.config.mjs
+prettier.config.mjs
