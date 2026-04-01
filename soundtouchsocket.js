@@ -7,7 +7,7 @@
 
 const format = require('string-format');
 
-module.exports = class soundtouchsocket extends require('events').EventEmitter {
+module.exports = class soundtouchsocket extends require('node:events').EventEmitter {
     /**
      *
      */
