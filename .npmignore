@@ -5,3 +5,4 @@ test
 gulpfile.js
 eslint.config.mjs
 prettier.config.mjs
+tsconfig.json

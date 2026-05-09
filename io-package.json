@@ -137,6 +137,9 @@
     "type": "multimedia",
     "compact": true,
     "restartAdapters": [],
+    "adminUI": {
+      "config": "html"
+    },
     "dependencies": [
       {
         "js-controller": ">=6.0.11"
