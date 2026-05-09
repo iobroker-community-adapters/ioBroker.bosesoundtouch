@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "bosesoundtouch",
-    "version": "0.11.1",
+    "version": "0.12.0",
     "news": {
+      "0.12.0": {
+        "en": "Adapter requires node.js >= 22 now\nAdapter requires admin >= 7.7.22 now\nAdapter requires js-controller >= 6.0.11 now\nDependencies have been updated\nMigrated to ESLint 9 and @iobroker/eslint-config following ioBroker community standards",
+        "de": "Adapter benötigt node.js >= 22 jetzt\nAdapter benötigt admin >= 7.7.22 jetzt\nAdapter benötigt jetzt js-controller >= 6.0.11\nAbhängigkeiten wurden aktualisiert\nGefördert auf ESLint 9 und @iobroker/eslint-config nach ioBroker Gemeinschaftsnormen",
+        "ru": "Адаптер требует node.js >= 22 сейчас\nАдаптер требует администратора >= 7.7.22\nАдаптер требует js-контроллер >= 6.0.11\nЗависимости были обновлены\nИммиграция в ESLint 9 и @iobroker/eslint-config в соответствии со стандартами сообщества ioBroker",
+        "pt": "Adaptador requer nod.js >= 22 agora\nAdaptador requer admin >= 7.7.22 agora\nAdaptador requer js-controlador >= 6.0.11 agora\nAs dependências foram atualizadas\nMigrado para ESLint 9 e @iobroker/eslint-config seguindo os padrões da comunidade ioBroker",
+        "nl": "Voor de adapter zijn node.js < 22 nu nodig\nAdapter vereist admin < 7.7.22 nu\nAdapter vereist js-controller < 6,0.11 nu\nAfhankelijkheden zijn bijgewerkt\nMigreren naar ESLint 9 en @iobroker/eslint-config volgens ioBroker gemeenschapsnormen",
+        "fr": "Adaptateur nécessite node.js >= 22 maintenant\nAdaptateur nécessite admin >= 7.7.22 maintenant\nAdaptateur nécessite js-controller >= 6.0.11 maintenant\nLes dépendances ont été actualisées\nMigré selon les normes communautaires ioBroker",
+        "it": "Adattatore richiede node.js >= 22 ora\nAdattatore richiede admin >= 7.7.22 ora\nAdattatore richiede js-controller >= 6.0.11 ora\nLe dipendenze sono state aggiornate\nMigrato a ESLint 9 e @iobroker/eslint-config secondo gli standard della community di ioBroker",
+        "es": "Adaptador requiere node.js ю= 22 ahora\nEl adaptador requiere administrador= 7.7.22 ahora\nAdaptador requiere js-controller >= 6.0.11\nSe han actualizado las dependencias\nMigrated to ESLint 9 and @iobroker/eslint-config following ioBroker community standards",
+        "pl": "Adapter wymaga node.js > = 22\nAdapter wymaga admin > = 7.7.22\nAdapter wymaga sterownika js- > = 6.0.11\nZaktualizowano zależności\nMigrant to ESLint 9 and @ iobroker / eslint- config following ioBroker community standards",
+        "uk": "Адаптер вимагає node.js >= 22 тепер\nАдаптер вимагає адмін >= 7.7.22 тепер\nАдаптер вимагає js-controller >=6.0.11 тепер\nЗалежність було оновлено\nMigrated to ESLint 9 і @iobroker/eslint-config наступні стандарти спільноти ioBroker",
+        "zh-cn": "适配器需要节点.js 现在22\n适任者需要管理员 \\ 7.7.22 现在\n适配器需要js控制器 现在6.0.11\n依赖关系已更新\n根据ioBroker社区标准"
+      },
       "0.11.1": {
         "en": "Release workflow has been fixed",
         "de": "Freigabe-Workflow wurde korrigiert",
@@ -76,18 +89,6 @@
         "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
         "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
         "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化"
-      },
-      "0.9.3": {
-        "en": "Added elapsed time, duration, status, keys and roles",
-        "de": "Verstrichene Zeit, Dauer, Status, Schlüssel und Rollen hinzugefügt",
-        "ru": "Добавлено прошедшее время, продолжительность, статус, ключи и роли",
-        "pt": "Adicionado tempo decorrido, duração, status, chaves e funções",
-        "nl": "Verstreken tijd, duur, status, sleutels en rollen toegevoegd",
-        "fr": "Ajout du temps écoulé, de la durée, du statut, des clés et des rôles",
-        "it": "Aggiunto tempo trascorso, durata, stato, chiavi e ruoli",
-        "es": "Se agregó tiempo transcurrido, duración, estado, claves y roles.",
-        "pl": "Dodano upływający czas, czas trwania, status, klucze i role",
-        "zh-cn": "增加了经过时间，持续时间，状态，键和角色"
       }
     },
     "titleLang": {
