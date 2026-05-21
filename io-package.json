@@ -139,7 +139,7 @@
     "compact": true,
     "restartAdapters": [],
     "adminUI": {
-      "config": "html"
+      "config": "json"
     },
     "dependencies": [
       {
