@@ -6,3 +6,5 @@ gulpfile.js
 eslint.config.mjs
 prettier.config.mjs
 tsconfig.json
+CHANGELOG_OLD.md
+.commitinfo
