@@ -751,7 +751,7 @@ class boseSoundTouch {
                     return element.source === state;
                 });
                 if (!source) {
-                    instance.adapter.deleteState('', `${instance.adapter.namespace}.${BOSE_ID_SOURCES}`, state);
+                    instance.adapter.delObject(`${BOSE_ID_SOURCES}.${state}`);
                 }
             }
         });
