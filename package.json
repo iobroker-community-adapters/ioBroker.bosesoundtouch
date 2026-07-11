@@ -60,11 +60,13 @@
   },
   "readmeFilename": "README.md",
   "files": [
-    "admin/",
-    "bosesoundtouch.js",
-    "soundtouchsocket.js",
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "lib/",
+    "www/",
     "io-package.json",
     "LICENSE",
-    "README.md"
+    "bosesoundtouch.js",
+    "soundtouchsocket.js"
   ]
 }
