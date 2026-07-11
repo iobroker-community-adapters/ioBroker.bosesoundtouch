@@ -24,6 +24,7 @@ To control your speaker, the following objects can be written:
 | on             | Power on or off the device. |
 | playEverywhere | Define speaker as zone master and play its content on all other speakers. |
 | volume         | Change device volume between 0 and 100. |
+| livestream     | Play directly a http/https audio live stream. E.g. http://liveradio.swr.de/sw282p3/swr3/play.mp3  |
 
 ## Info States
 
@@ -78,6 +79,10 @@ Soundtouch Application itself.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
+
+### **WORK IN PROGRESS**
+- extended control objects to play a livestream directly
+
 ### 0.12.0 (2026-05-09)
 - (copilot) Adapter requires node.js >= 22 now
 - (copilot) Adapter requires admin >= 7.7.22 now
