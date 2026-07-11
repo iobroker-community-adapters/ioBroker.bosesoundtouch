@@ -82,7 +82,7 @@ Soundtouch Application itself.
 
 ### **WORK IN PROGRESS**
 - (JR-home) Control objects have been extended to suppiort playing a livestream directly
-- (mcm1957) Depprecated delete state has been migrated.
+- (mcm1957) Deprecated delete state has been migrated.
 - (mcm1957) Dependencies have been updated
 
 ### 0.12.0 (2026-05-09)
