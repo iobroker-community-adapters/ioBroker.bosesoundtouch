@@ -1,4 +1,8 @@
 # Older changes
+## 0.10.2 (2022-06-12)
+* (Apollon77) Check if adapter is configured properly before trying to connect
+
+
 ## 0.10.1 (2022-06-02)
 * (Apollon77) Add Sentry for crash reporting
 

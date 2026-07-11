@@ -79,8 +79,7 @@ Soundtouch Application itself.
     Placeholder for the next version (at the beginning of the line):
     ### **WORK IN PROGRESS**
 -->
-
-### **WORK IN PROGRESS**
+### 0.13.0 (2026-07-11)
 - (JR-home) Control objects have been extended to suppiort playing a livestream directly
 - (mcm1957) Deprecated delete state has been migrated.
 - (mcm1957) Dependencies have been updated
@@ -102,9 +101,6 @@ Soundtouch Application itself.
 
 ### 0.10.3 (2022-06-17)
 * (Apollon77) Fix crash case reported by Sentry
-
-### 0.10.2 (2022-06-12)
-* (Apollon77) Check if adapter is configured properly before trying to connect
 
 [Older changelogs can be found there](CHANGELOG_OLD.md)
 

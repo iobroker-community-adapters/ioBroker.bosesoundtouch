@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "bosesoundtouch",
-    "version": "0.12.0",
+    "version": "0.13.0",
     "news": {
+      "0.13.0": {
+        "en": "Control objects have been extended to suppiort playing a livestream directly\nDeprecated delete state has been migrated.\nDependencies have been updated",
+        "de": "Die Steuerelemente wurden erweitert, um die direkte Wiedergabe eines Livestreams zu unterstützen.\nDer veraltete Löschstatus wurde migriert.\nDie Abhängigkeiten wurden aktualisiert.",
+        "ru": "Функции управления были расширены для поддержки прямой трансляции.\nУстаревшее состояние удаления было перенесено.\nЗависимости обновлены.",
+        "pt": "Os objetos de controle foram estendidos para suportar a reprodução direta de uma transmissão ao vivo.\nO estado de exclusão obsoleto foi migrado.\nAs dependências foram atualizadas.",
+        "nl": "De besturingsobjecten zijn uitgebreid om het direct afspelen van een livestream te ondersteunen.\nDe verouderde verwijderingsstatus is gemigreerd.\nAfhankelijkheden zijn bijgewerkt.",
+        "fr": "Les objets de contrôle ont été étendus pour permettre la lecture directe d'un flux en direct.\nL'état de suppression obsolète a été migré.\nLes dépendances ont été mises à jour",
+        "it": "Gli oggetti di controllo sono stati estesi per supportare la riproduzione diretta di un livestream\nLo stato di eliminazione obsoleto è stato migrato.\nLe dipendenze sono state aggiornate",
+        "es": "Los objetos de control se han ampliado para admitir la reproducción directa de una transmisión en vivo.\nEl estado de eliminación obsoleto se ha migrado.\nSe han actualizado las dependencias.",
+        "pl": "Obiekty sterujące zostały rozszerzone o obsługę bezpośredniego odtwarzania transmisji na żywo\nPrzestarzały stan usuwania został przeniesiony.\nZaktualizowano zależności",
+        "uk": "Об'єкти керування розширено для підтримки безпосереднього відтворення прямої трансляції.\nЗастарілий стан видалення перенесено.\nЗалежності оновлено",
+        "zh-cn": "控制对象已扩展，可直接支持播放直播流。\n已弃用的删除状态已迁移。\n依赖项已更新"
+      },
       "0.12.0": {
         "en": "Adapter requires node.js >= 22 now\nAdapter requires admin >= 7.7.22 now\nAdapter requires js-controller >= 6.0.11 now\nDependencies have been updated\nMigrated to ESLint 9 and @iobroker/eslint-config following ioBroker community standards",
         "de": "Adapter benötigt node.js >= 22 jetzt\nAdapter benötigt admin >= 7.7.22 jetzt\nAdapter benötigt jetzt js-controller >= 6.0.11\nAbhängigkeiten wurden aktualisiert\nGefördert auf ESLint 9 und @iobroker/eslint-config nach ioBroker Gemeinschaftsnormen",
@@ -80,19 +93,6 @@
         "pl": "Dodaj Sentry do zgłaszania awarii",
         "zh-cn": "添加 Sentry 以进行崩溃报告",
         "uk": "Додайте Sentry для звітування про збої"
-      },
-      "0.10.0": {
-        "en": "IMPORTANT: The adapter now requires at least js-controller 2.0\nOptimize for js-controller 3.3",
-        "de": "WICHTIG: Der Adapter benötigt jetzt mindestens js-controller 2.0\nOptimieren Sie für js-Controller 3.3",
-        "ru": "ВАЖНО: Теперь для адаптера требуется как минимум js-controller 2.0.\nОптимизировать под js-controller 3.3",
-        "pt": "IMPORTANTE: O adaptador agora requer pelo menos js-controller 2.0\nOtimize para js-controller 3.3",
-        "nl": "BELANGRIJK: de adapter vereist nu minimaal js-controller 2.0\nOptimaliseren voor js-controller 3.3",
-        "fr": "IMPORTANT: L'adaptateur nécessite maintenant au moins js-controller 2.0\nOptimiser pour js-controller 3.3",
-        "it": "IMPORTANTE: l'adattatore ora richiede almeno js-controller 2.0\nOttimizza per js-controller 3.3",
-        "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
-        "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
-        "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化",
-        "uk": "ВАЖЛИВО: тепер для адаптера потрібен принаймні js-controller 2.0\nОптимізація для js-контролера 3.3"
       }
     },
     "titleLang": {

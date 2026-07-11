@@ -1,6 +1,6 @@
 {
   "name": "iobroker.bosesoundtouch",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Integration for Bose SoundTouch speakers",
   "author": "sven_s_ter <sven_s_ter@icloud.com>",
   "contributors": [
