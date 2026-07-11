@@ -9,14 +9,14 @@ const BOSE_ID_ON = { id: 'on', type: 'boolean', write: true };
 const BOSE_ID_KEY = { id: 'key', type: 'string', write: true };
 const BOSE_ID_VOLUME = { id: 'volume', type: 'integer', write: true, role: 'level.volume' };
 const BOSE_ID_MUTED = { id: 'muted', type: 'boolean', write: true, role: 'media.mute' };
-const BOSE_ID_LIVESTREAM = { id: 'livestream', type: 'string', write: true };
+const BOSE_ID_LIVESTREAM = { id: 'livestream', type: 'string', write: true, role: 'text.url' };
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying';
 const BOSE_ID_NOW_PLAYING_SOURCE = { id: `${BOSE_ID_NOW_PLAYING}.source`, type: 'string', role: 'media.input' };
 const BOSE_ID_NOW_PLAYING_TRACK = { id: `${BOSE_ID_NOW_PLAYING}.track`, type: 'string', role: 'media.title' };
 const BOSE_ID_NOW_PLAYING_ARTIST = { id: `${BOSE_ID_NOW_PLAYING}.artist`, type: 'string', role: 'media.artist' };
 const BOSE_ID_NOW_PLAYING_ALBUM = { id: `${BOSE_ID_NOW_PLAYING}.album`, type: 'string', role: 'media.album' };
-const BOSE_ID_NOW_PLAYING_STATION = { id: `${BOSE_ID_NOW_PLAYING}.station`, type: 'string' };
+const BOSE_ID_NOW_PLAYING_STATION = { id: `${BOSE_ID_NOW_PLAYING}.station`, type: 'string', role: 'text' };
 const BOSE_ID_NOW_PLAYING_ART = { id: `${BOSE_ID_NOW_PLAYING}.art`, type: 'string', role: 'media.cover' };
 const BOSE_ID_NOW_PLAYING_GENRE = { id: `${BOSE_ID_NOW_PLAYING}.genre`, type: 'string', role: 'media.genre' };
 const BOSE_ID_NOW_PLAYING_TIME = { id: `${BOSE_ID_NOW_PLAYING}.time`, type: 'integer', role: 'media.elapsed' };
