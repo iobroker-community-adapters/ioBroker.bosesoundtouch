@@ -52,7 +52,8 @@
         "it": "Correzione caso di crash segnalato da Sentry",
         "es": "Caso de accidente fijo reportado por Sentry",
         "pl": "Sprawa rozbicia Fixa doniesiona przez firmę Sentry",
-        "zh-cn": "Sentry所报告的六例事故"
+        "zh-cn": "Sentry所报告的六例事故",
+        "uk": "Виправте випадок збою, про який повідомляє Sentry"
       },
       "0.10.2": {
         "en": "Check if adapter is configured properly before trying to connect",
@@ -64,7 +65,8 @@
         "it": "Controllare se l'adattatore è configurato correttamente prima di provare a connettersi",
         "es": "Compruebe si el adaptador está configurado correctamente antes de intentar conectarse",
         "pl": "Jeśli dostosowy jest prawidłowy, zanim próba połączenia się ze sobą",
-        "zh-cn": "如果适应人员在试图连接之前进行适当的配置,那么"
+        "zh-cn": "如果适应人员在试图连接之前进行适当的配置,那么",
+        "uk": "Перед підключенням перевірте, чи правильно налаштовано адаптер"
       },
       "0.10.1": {
         "en": "Add Sentry for crash reporting",
@@ -76,7 +78,8 @@
         "it": "Aggiungi Sentinella per la segnalazione degli arresti anomali",
         "es": "Agregar Sentry para informes de fallas",
         "pl": "Dodaj Sentry do zgłaszania awarii",
-        "zh-cn": "添加 Sentry 以进行崩溃报告"
+        "zh-cn": "添加 Sentry 以进行崩溃报告",
+        "uk": "Додайте Sentry для звітування про збої"
       },
       "0.10.0": {
         "en": "IMPORTANT: The adapter now requires at least js-controller 2.0\nOptimize for js-controller 3.3",
@@ -88,7 +91,8 @@
         "it": "IMPORTANTE: l'adattatore ora richiede almeno js-controller 2.0\nOttimizza per js-controller 3.3",
         "es": "IMPORTANTE: el adaptador ahora requiere al menos js-controller 2.0\nOptimizar para js-controller 3.3",
         "pl": "WAŻNE: Adapter wymaga teraz przynajmniej kontrolera js 2.0\nOptymalizacja dla kontrolera js 3.3",
-        "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化"
+        "zh-cn": "重要提示：适配器现在至少需要 js-controller 2.0\n针对 js-controller 3.3 优化",
+        "uk": "ВАЖЛИВО: тепер для адаптера потрібен принаймні js-controller 2.0\nОптимізація для js-контролера 3.3"
       }
     },
     "titleLang": {
@@ -101,7 +105,8 @@
       "it": "Bose SoundTouch",
       "es": "Bose SoundTouch",
       "pl": "Bose SoundTouch",
-      "zh-cn": "Bose SoundTouch"
+      "zh-cn": "Bose SoundTouch",
+      "uk": "Bose SoundTouch"
     },
     "desc": {
       "en": "Controls Bose SoundTouch speakers over a socket connection and monitors the information sent from the speaker.",
@@ -113,7 +118,8 @@
       "it": "Controlla gli altoparlanti Bose SoundTouch tramite una presa di connessione e monitora le informazioni inviate dall'altoparlante.",
       "es": "Controla los altavoces Bose SoundTouch a través de una conexión de enchufe y supervisa la información enviada desde el altavoz.",
       "pl": "Steruje głośnikami Bose SoundTouch przez połączenie gniazdowe i monitoruje informacje wysyłane z głośnika.",
-      "zh-cn": "通过插座连接控制 Bose SoundTouch 扬声器并监控扬声器发送的信息。"
+      "zh-cn": "通过插座连接控制 Bose SoundTouch 扬声器并监控扬声器发送的信息。",
+      "uk": "Керує динаміками Bose SoundTouch через розетку та контролює інформацію, що надсилається з динаміка."
     },
     "authors": [
       "sven-s-ter <sven-s-ter@icloud.com>",
