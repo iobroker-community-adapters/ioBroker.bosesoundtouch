@@ -81,7 +81,7 @@ Soundtouch Application itself.
 -->
 
 ### **WORK IN PROGRESS**
-- extended control objects to play a livestream directly
+- (JR-home) extended control objects to play a livestream directly
 
 ### 0.12.0 (2026-05-09)
 - (copilot) Adapter requires node.js >= 22 now
