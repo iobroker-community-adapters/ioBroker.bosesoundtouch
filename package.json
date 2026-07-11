@@ -58,5 +58,13 @@
   "bugs": {
     "url": "https://github.com/iobroker-community-adapters/ioBroker.bosesoundtouch/issues"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "files": [
+    "admin/",
+    "bosesoundtouch.js",
+    "soundtouchsocket.js",
+    "io-package.json",
+    "LICENSE",
+    "README.md"
+  ]
 }
