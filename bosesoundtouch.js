@@ -9,13 +9,14 @@ const BOSE_ID_ON = { id: 'on', type: 'boolean', write: true };
 const BOSE_ID_KEY = { id: 'key', type: 'string', write: true };
 const BOSE_ID_VOLUME = { id: 'volume', type: 'integer', write: true, role: 'level.volume' };
 const BOSE_ID_MUTED = { id: 'muted', type: 'boolean', write: true, role: 'media.mute' };
+const BOSE_ID_LIVESTREAM = { id: 'livestream', type: 'string', write: true, role: 'text.url' };
 
 const BOSE_ID_NOW_PLAYING = 'nowPlaying';
 const BOSE_ID_NOW_PLAYING_SOURCE = { id: `${BOSE_ID_NOW_PLAYING}.source`, type: 'string', role: 'media.input' };
 const BOSE_ID_NOW_PLAYING_TRACK = { id: `${BOSE_ID_NOW_PLAYING}.track`, type: 'string', role: 'media.title' };
 const BOSE_ID_NOW_PLAYING_ARTIST = { id: `${BOSE_ID_NOW_PLAYING}.artist`, type: 'string', role: 'media.artist' };
 const BOSE_ID_NOW_PLAYING_ALBUM = { id: `${BOSE_ID_NOW_PLAYING}.album`, type: 'string', role: 'media.album' };
-const BOSE_ID_NOW_PLAYING_STATION = { id: `${BOSE_ID_NOW_PLAYING}.station`, type: 'string' };
+const BOSE_ID_NOW_PLAYING_STATION = { id: `${BOSE_ID_NOW_PLAYING}.station`, type: 'string', role: 'text' };
 const BOSE_ID_NOW_PLAYING_ART = { id: `${BOSE_ID_NOW_PLAYING}.art`, type: 'string', role: 'media.cover' };
 const BOSE_ID_NOW_PLAYING_GENRE = { id: `${BOSE_ID_NOW_PLAYING}.genre`, type: 'string', role: 'media.genre' };
 const BOSE_ID_NOW_PLAYING_TIME = { id: `${BOSE_ID_NOW_PLAYING}.time`, type: 'integer', role: 'media.elapsed' };
@@ -48,6 +49,7 @@ const BOSE_ID_INFO_IP_ADDRESS = { id: `${BOSE_ID_DEVICE_INFO}.ipAddress`, type: 
 
 const BOSE_ID_SOURCES = 'sources';
 const BOSE_ID_SOURCES_SOURCE = { id: `${BOSE_ID_SOURCES}.{}`, type: 'playButton', write: true };
+
 /*const BOSE_ID_SOURCE_NAME               = { id: BOSE_ID_SOURCES + '{}.name',             type:'string' };
 const BOSE_ID_SOURCE_SOURCE             = { id: BOSE_ID_SOURCES + '{}.source',           type:'string' };
 const BOSE_ID_SOURCE_IS_LOCAL           = { id: BOSE_ID_SOURCES + '{}.isLocal',          type:'boolean' };
@@ -313,6 +315,20 @@ class boseSoundTouch {
                     this.setState(BOSE_ID_KEY, 'PLAY_PAUSE', { ack: false });
                     break;
 
+                case namespace + BOSE_ID_LIVESTREAM.id:
+                    if (this.socket && state && state.val) {
+                        // state.val expected to be a URL or "title|url"; support both
+                        let url = state.val;
+                        let title = '';
+                        if (typeof state.val === 'string' && state.val.includes('|')) {
+                            const parts = state.val.split('|');
+                            title = parts[0];
+                            url = parts[1];
+                        }
+                        this.socket.playStream(url, title);
+                    }
+                    break;
+
                 case namespace + BOSE_ID_KEYS_ADD_FAVORITE.id:
                     this.setState(BOSE_ID_KEY, 'ADD_FAVORITE', { ack: false });
                     break;
@@ -477,6 +493,7 @@ class boseSoundTouch {
         await this.setObject(BOSE_ID_VOLUME);
         await this.setObject(BOSE_ID_MUTED);
         await this.setObject(BOSE_ID_ON);
+        await this.setObject(BOSE_ID_LIVESTREAM);
         await this.setObject(BOSE_ID_ZONES_MEMBER_OF);
 
         await this.setObject(BOSE_ID_ZONES_MASTER_OF);

@@ -4,3 +4,7 @@ node_modules
 
 #ignore .commitinfo created by ioBroker release script
 .commitinfo
+
+
+# ioBroker dev-server
+.dev-server/

@@ -483,6 +483,45 @@ module.exports = class soundtouchsocket extends require('node:events').EventEmit
     }
 
     /**
+     * Play a live stream URL via SOAP AVTransport calls (SetAVTransportURI + Play)
+     * @param {string} url stream url
+     * @param {string} title optional title for metadata
+     */
+    playStream(url, title) {
+        const instance = this;
+        const baseUrl = `http://${this.address}:8091/`;
+
+        const setBody = `<?xml version="1.0"?>\n<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"\n        s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\n        <s:Body>\n            <u:SetAVTransportURI xmlns:u="urn:schemas-upnp-org:service:AVTransport:1">\n                <InstanceID>0</InstanceID>\n                <CurrentURI>${url}</CurrentURI>\n                <CurrentURIMetaData>&lt;DIDL-Lite xmlns=&quot;urn:schemas-upnp-org:metadata-1-0/DIDL-Lite/&quot; xmlns:dc=&quot;http://purl.org/dc/elements/1.1/&quot; xmlns:upnp=&quot;urn:schemas-upnp-org:metadata-1-0/upnp/&quot;&gt;&lt;item id=&quot;0&quot; parentID=&quot;-1&quot; restricted=&quot;1&quot;&gt;&lt;dc:title&gt;${title || ''}&lt;/dc:title&gt;&lt;upnp:class&gt;object.item.audioItem.audioBroadcast&lt;/upnp:class&gt;&lt;res protocolInfo=&quot;http-get:*:audio/mpeg:*&quot;&gt;${url}&lt;/res&gt;&lt;/item&gt;&lt;/DIDL-Lite&gt;</CurrentURIMetaData>\n                </u:SetAVTransportURI>\n            </s:Body>\n</s:Envelope>`;
+
+        const playBody = `<?xml version="1.0"?>\n<s:Envelope xmlns:s="http://schemas.xmlsoap.org/soap/envelope/"\n        s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">\n        <s:Body>\n            <u:Play xmlns:u="urn:schemas-upnp-org:service:AVTransport:1">\n               <InstanceID>0</InstanceID>\n               <Speed>1</Speed>\n            </u:Play>\n            </s:Body>\n</s:Envelope>`;
+
+        const options1 = {
+            baseUrl: baseUrl,
+            uri: 'AVTransport/Control',
+            headers: {
+                'Content-Type': 'text/xml; charset="utf-8"',
+                SOAPACTION: '"urn:schemas-upnp-org:service:AVTransport:1#SetAVTransportURI"',
+            },
+            body: setBody,
+        };
+
+        const options2 = {
+            baseUrl: baseUrl,
+            uri: 'AVTransport/Control',
+            headers: {
+                'Content-Type': 'text/xml; charset="utf-8"',
+                SOAPACTION: '"urn:schemas-upnp-org:service:AVTransport:1#Play"',
+            },
+            body: playBody,
+        };
+
+        this.adapter.log.debug(`playStream: ${url}`);
+        this.request.post(options1, (error, response, body) => this._postCallback(error /*, response, body*/));
+        // small delay could be required on some devices, but immediate call works for most
+        this.request.post(options2, (error, response, body) => this._postCallback(error /*, response, body*/));
+    }
+
+    /**
      *
      */
     get(value) {
