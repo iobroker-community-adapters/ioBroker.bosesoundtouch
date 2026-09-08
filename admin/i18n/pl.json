@@ -1,0 +1,6 @@
+{
+    "address": "Adres IP lub nazwa hosta",
+    "addressHelp": "Wprowadź adres IP lub prawidłową nazwę hosta dla urządzenia SoundTouch.",
+    "reconnectTime": "Czas ponownego połączenia w sekundach",
+    "reconnectTimeHelp": "W przypadku błędu połączenia gniazda adapter próbuje ponownie połączyć się po podanym czasie. 0, aby wyłączyć."
+}

@@ -1,0 +1,6 @@
+{
+    "address": "IP地址或主机名",
+    "addressHelp": "请输入您的SoundTouch设备的IP地址或有效主机名。",
+    "reconnectTime": "重新连接时间（秒）",
+    "reconnectTimeHelp": "当套接字连接出错时，适配器将在指定时间后尝试重新连接。设为0可禁用此功能。"
+}
