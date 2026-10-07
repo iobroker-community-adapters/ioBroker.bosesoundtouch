@@ -1,0 +1,6 @@
+{
+    "address": "Endereço IP ou nome do host",
+    "addressHelp": "Insira um endereço IP ou um nome de host válido para o seu dispositivo SoundTouch.",
+    "reconnectTime": "Tempo para reconectar em segundos",
+    "reconnectTimeHelp": "Em caso de erro de conexão de socket, o adaptador tenta reconectar após o tempo indicado. 0 para desativar."
+}
